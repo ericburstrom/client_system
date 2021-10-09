@@ -1,67 +1,67 @@
 part of '../main.dart';
 
 class UnityMessage {
-  UnityMessage(this._action) {}
+  UnityMessage(this.Action);
 
-  UnityMessage.reset(this._nrDices, this._nrThrows) {
-    _action = "reset";
+  UnityMessage.reset(this.NrDices, this.NrThrows) {
+    Action = "reset";
   }
 
-  UnityMessage.updateColors(this._colors) {
-    _action = "setProperty";
-    _property = "Color";
+  UnityMessage.updateColors(this.UnityColors) {
+    Action = "setProperty";
+    Property = "Color";
   }
 
-  UnityMessage.changeBool(this._property, this._bool) {
-    _action = "setProperty";
+  UnityMessage.changeBool(this.Property, this.Flag) {
+    Action = "setProperty";
   }
 
   UnityMessage.fromJson(Map<String, dynamic> json)
-      : _action = json['action'],
-        _nrDices = json['nrDices'],
-        _nrThrows = json['nrThrows'],
-        _property = json['property'],
-        _colors = json['colors'],
-        _bool = json['bool'];
+      : Action = json['action'],
+        NrDices = json['nrDices'],
+        NrThrows = json['nrThrows'],
+        Property = json['property'],
+        UnityColors = json['colors'],
+        Flag = json['flag'];
 
   Map<String, dynamic> toJson() => {
-        'action': _action,
-        'nrDices': _nrDices,
-        'nrThrows': _nrThrows,
-        'property': _property,
-        'colors': _colors,
-        'bool': _bool,
+        'action': Action,
+        'nrDices': NrDices,
+        'nrThrows': NrThrows,
+        'property': Property,
+        'colors': UnityColors,
+        'bool': Flag,
       };
 
-  String _action = "";
-  String _property = "";
-  List<double> _colors = [0.6, 0.7, 0.8, 0.1];
-  bool _bool = true;
-  int _nrDices = 5;
-  int _nrThrows = 3;
+  String Action = "";
+  String Property = "";
+  List<double> UnityColors = [0.6, 0.7, 0.8, 0.1];
+  bool Flag = true;
+  int NrDices = 5;
+  int NrThrows = 3;
 }
 
 class Dices extends LanguagesDices {
   Dices(Function updateDiceValues) {
-    _updateDiceValues = updateDiceValues;
+    UpdateDiceValues = updateDiceValues;
   }
 
-  var _hold;
-  var _holdText;
-  var _holdOpacity;
+  var HoldDices;
+  var HoldDiceText;
+  var HoldDiceOpacity;
 
-  var _rng = new Random();
-  int _nrRolls = 0;
-  int _nrDices = 5;
-  var _diceValue = List.filled(5, 0);
-  var _diceRef = [
+  var RandomNumberGenerator = Random();
+  int NrRolls = 0;
+  int NrDices = 5;
+  var DiceValue = List.filled(5, 0);
+  var DiceRef = [
     'assets/images/empty.jpg',
     'assets/images/empty.jpg',
     'assets/images/empty.jpg',
     'assets/images/empty.jpg',
     'assets/images/empty.jpg'
   ];
-  var diceFile = [
+  var DiceFile = [
     'empty.jpg',
     '1.jpg',
     '2.jpg',
@@ -71,95 +71,95 @@ class Dices extends LanguagesDices {
     '6.jpg'
   ];
 
-  late Function _updateDiceValues;
-  late UnityWidgetController _unityWidgetController;
-  bool _unityCreated = false;
-  List<double> _unityColors = [0.6, 0.7, 0.8, 0.1];
+  late Function UpdateDiceValues;
+  late UnityWidgetController UWController;
+  bool UnityCreated = false;
+  List<double> UnityColors = [0.6, 0.7, 0.8, 0.1];
 
-  List<bool> _unityDices = [false];
-  List<bool> _unityTransparent = [true];
-  List<bool> _unityLightMotion = [true];
-  List<bool> _unityColorChangeOverlay = [false];
+  List<bool> UnityDices = [false];
+  List<bool> UnityTransparent = [true];
+  List<bool> UnityLightMotion = [true];
+  List<bool> UnityColorChangeOverlay = [false];
 
   ClearDices() {
-    _diceValue = List.filled(_nrDices, 0);
-    _hold = List.filled(_nrDices, false);
-    _holdText = List.filled(_nrDices, "");
-    _holdOpacity = List.filled(_nrDices, 0.0);
-    _diceRef = List.filled(_nrDices, 'assets/images/empty.jpg');
-    _nrRolls = 0;
+    DiceValue = List.filled(NrDices, 0);
+    HoldDices = List.filled(NrDices, false);
+    HoldDiceText = List.filled(NrDices, "");
+    HoldDiceOpacity = List.filled(NrDices, 0.0);
+    DiceRef = List.filled(NrDices, 'assets/images/empty.jpg');
+    NrRolls = 0;
   }
 
   MakeDiceRoll(var diceValue) {
-    _diceValue = diceValue;
+    DiceValue = diceValue;
   }
 
   StartDices() {
-    _nrRolls = 0;
+    NrRolls = 0;
   }
 
   InitDices(int nrDices) {
-    if (_unityCreated) {
+    if (UnityCreated) {
       SendResetToUnity();
     }
-    _nrDices = nrDices;
-    _diceValue = List.filled(nrDices, 0);
-    _hold = List.filled(nrDices, false);
-    _holdText = List.filled(nrDices, "");
-    _holdOpacity = List.filled(nrDices, 0.0);
-    _diceRef = List.filled(nrDices, 'assets/images/empty.jpg');
-    _nrRolls = 0;
+    NrDices = nrDices;
+    DiceValue = List.filled(nrDices, 0);
+    HoldDices = List.filled(nrDices, false);
+    HoldDiceText = List.filled(nrDices, "");
+    HoldDiceOpacity = List.filled(nrDices, 0.0);
+    DiceRef = List.filled(nrDices, 'assets/images/empty.jpg');
+    NrRolls = 0;
   }
 
   HoldDice(int dice) {
-    if (_nrRolls > 0 && _nrRolls < 3) {
-      _hold[dice] = !_hold[dice];
-      if (_hold[dice]) {
-        _holdText[dice] = GetText(_holdDice);
-        _holdOpacity[dice] = 0.7;
+    if (NrRolls > 0 && NrRolls < 3) {
+      HoldDices[dice] = !HoldDices[dice];
+      if (HoldDices[dice]) {
+        HoldDiceText[dice] = GetText(Hold);
+        HoldDiceOpacity[dice] = 0.7;
       } else {
-        _holdText[dice] = "";
-        _holdOpacity[dice] = 0.0;
+        HoldDiceText[dice] = "";
+        HoldDiceOpacity[dice] = 0.0;
       }
     }
   }
 
   UpdateDiceImages() {
-    for (var i = 0; i < _nrDices; i++) {
-      _diceRef[i] = 'assets/images/' + diceFile[_diceValue[i]];
+    for (var i = 0; i < NrDices; i++) {
+      DiceRef[i] = 'assets/images/' + DiceFile[DiceValue[i]];
     }
   }
 
   bool RollDices() {
     print('hi');
-    if (_nrRolls < 3) {
+    if (NrRolls < 3) {
       print('hi again');
-      _nrRolls += 1;
-      for (var i = 0; i < _nrDices; i++) {
-        if (!_hold[i]) {
-          _diceValue[i] = _rng.nextInt(6) + 1;
-          _diceRef[i] = 'assets/images/' + diceFile[_diceValue[i]];
+      NrRolls += 1;
+      for (var i = 0; i < NrDices; i++) {
+        if (!HoldDices[i]) {
+          DiceValue[i] = RandomNumberGenerator.nextInt(6) + 1;
+          DiceRef[i] = 'assets/images/' + DiceFile[DiceValue[i]];
         } else {
-          if (_nrRolls == 3) {
-            _hold[i] = false;
-            _holdText[i] = "";
-            _holdOpacity[i] = 0.0;
+          if (NrRolls == 3) {
+            HoldDices[i] = false;
+            HoldDiceText[i] = "";
+            HoldDiceOpacity[i] = 0.0;
           }
         }
       }
-      _updateDiceValues();
-      net.SendDices(_diceValue);
+      UpdateDiceValues();
+      net.SendDices(DiceValue);
       return true;
     }
     return false;
   }
 
   void SendResetToUnity() {
-    UnityMessage msg = new UnityMessage.reset(_nrDices, 3);
+    UnityMessage msg = UnityMessage.reset(NrDices, 3);
 
     String json = jsonEncode(msg.toJson());
     print(json);
-    _unityWidgetController.postMessage(
+    UWController.postMessage(
       'GameManager',
       'flutterMessage',
       json,
@@ -167,11 +167,11 @@ class Dices extends LanguagesDices {
   }
 
   void SendColorsToUnity() {
-    UnityMessage msg = new UnityMessage.updateColors(_unityColors);
+    UnityMessage msg = UnityMessage.updateColors(UnityColors);
 
     String json = jsonEncode(msg.toJson());
     print(json);
-    _unityWidgetController.postMessage(
+    UWController.postMessage(
       'GameManager',
       'flutterMessage',
       json,
@@ -180,11 +180,11 @@ class Dices extends LanguagesDices {
 
   void SendTransparencyChangedToUnity() {
     UnityMessage msg =
-        new UnityMessage.changeBool('Transparency', _unityTransparent[0]);
+        UnityMessage.changeBool('Transparency', UnityTransparent[0]);
 
     String json = jsonEncode(msg.toJson());
     print(json);
-    _unityWidgetController.postMessage(
+    UWController.postMessage(
       'GameManager',
       'flutterMessage',
       json,
@@ -193,11 +193,11 @@ class Dices extends LanguagesDices {
 
   void SendLightMotionChangedToUnity() {
     UnityMessage msg =
-        new UnityMessage.changeBool('LightMotion', _unityLightMotion[0]);
+        UnityMessage.changeBool('LightMotion', UnityLightMotion[0]);
 
     String json = jsonEncode(msg.toJson());
     print(json);
-    _unityWidgetController.postMessage(
+    UWController.postMessage(
       'GameManager',
       'flutterMessage',
       json,
@@ -212,9 +212,9 @@ class Dices extends LanguagesDices {
       var _json = jsonDecode(msg);
       print(_json);
       if (_json['action'] == 'results') {
-        _diceValue = _json['diceResult'].cast<int>();
-        print(_diceValue);
-        _updateDiceValues();
+        DiceValue = _json['diceResult'].cast<int>();
+        print(DiceValue);
+        UpdateDiceValues();
         globalSetState();
       }
     } catch (e) {}
@@ -222,8 +222,8 @@ class Dices extends LanguagesDices {
 
   // Callback that connects the created controller to the unity controller
   void onUnityCreated(controller) {
-    this._unityWidgetController = controller;
-    _unityCreated = true;
+    UWController = controller;
+    UnityCreated = true;
     SendResetToUnity();
     print('Unity Created');
   }

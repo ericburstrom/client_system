@@ -1,8 +1,8 @@
 part of '../main.dart';
 
 class FileHandler {
-  String _settings = "user_login_settings.json";
-  String _highscores = "highscores.json";
+  String FileSettings = "user_loginSettings.json";
+  String FileHighscores = "highscores.json";
 
   Future<String> LocalPath() async {
     final directory = await getApplicationDocumentsDirectory();
@@ -32,7 +32,7 @@ class FileHandler {
   }
 
 //Future<File> writeFile(Map<String, dynamic> _json, fileName) async {
-  Future<File> saveFile(var _json, fileName) async {
+  Future<File> SaveFile(var _json, fileName) async {
     //fileFileName = fileName;
     try {
       final file = await LocalFile(fileName);

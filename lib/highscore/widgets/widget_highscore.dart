@@ -18,7 +18,7 @@ extension WidgetHighscore on Highscore {
             child: Center(
                 child: FittedBox(
                     fit: BoxFit.contain,
-                    child: Text(GetText(_highscore),
+                    child: Text(Highscores,
                         style: TextStyle(
                           fontStyle: FontStyle.italic,
                           color: Colors.blue[800],
@@ -32,7 +32,7 @@ extension WidgetHighscore on Highscore {
                         )))))));
 
     listings.add(AnimatedBuilder(
-        animation: animationsHighscore._animController,
+        animation: animationsHighscore.AnimController,
         builder: (BuildContext context, Widget? widget) {
           return Positioned(
             left: left,
@@ -48,13 +48,13 @@ extension WidgetHighscore on Highscore {
                       Colors.lightBlueAccent.withOpacity(0.7),
                       Colors.indigoAccent.withOpacity(0.7)
                     ],
-                    stops: [0.0, animationsHighscore._loopAnimation.value],
+                    stops: [0.0, animationsHighscore.LoopAnimation.value],
                   )),
               child: Scrollbar(
                 //showTrackOnHover: true,
                 child: ListView.builder(
                     padding: const EdgeInsets.all(4),
-                    itemCount: _highscoreText.length,
+                    itemCount: HighscoreText.length,
                     itemBuilder: (BuildContext context, int index) {
                       return Container(
                         height: heightCaption,
@@ -77,7 +77,7 @@ extension WidgetHighscore on Highscore {
                                   alignment: Alignment.center,
                                   child: FittedBox(
                                       fit: BoxFit.contain,
-                                      child: Text(_highscoreText[index],
+                                      child: Text(HighscoreText[index],
                                           style: TextStyle(
                                               fontWeight: FontWeight.bold)))),
                               Container(
@@ -85,7 +85,7 @@ extension WidgetHighscore on Highscore {
                                   child: FittedBox(
                                       fit: BoxFit.contain,
                                       child: Text(
-                                          _highscoreValue[index].toString() +
+                                          HighscoreValue[index].toString() +
                                               "  ",
                                           style:
                                               TextStyle(color: Colors.yellow))))

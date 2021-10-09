@@ -3,72 +3,70 @@ part of '../main.dart';
 class AnimationsBoardEffect {
   AnimationsBoardEffect() {
     Setup();
-    print('setup animation');
   }
 
-  final _animControllers = <AnimationController>[];
+  final AnimationControllers = <AnimationController>[];
 
-  List<Duration> _animDurations = List.filled(2, Duration(seconds: 1));
-  var _cellAnimationControllers = [];
-  var _cellAnimation = [];
+  List<Duration> AnimationDurations = List.filled(2, Duration(seconds: 1));
+  var CellAnimationControllers = [];
+  var CellAnimation = [];
 
   AnimateBoard() {
-    for (int i = 0; i < application._nrPlayers + 1; i++) {
-      _cellAnimationControllers[i][0].forward();
+    for (var i = 0; i < application.NrPlayers + 1; i++) {
+      CellAnimationControllers[i][0].forward();
     }
   }
 
   void Setup() {
-    _animDurations.forEach((Duration d) {
-      _animControllers.add(AnimationController(
+    AnimationDurations.forEach((Duration d) {
+      AnimationControllers.add(AnimationController(
         vsync: _MainAppHandlerState(),
         duration: d,
       ));
     });
 
-    _animControllers[0].addStatusListener((AnimationStatus status) {
+    AnimationControllers[0].addStatusListener((AnimationStatus status) {
       if (status == AnimationStatus.completed) {
-        _animControllers[0].reverse();
+        AnimationControllers[0].reverse();
       }
     });
 
-    for (int i = 0; i < application._maxNrPlayers + 1; i++) {
+    for (var i = 0; i < application.MaxNrPlayers + 1; i++) {
       var tmp = <AnimationController>[];
-      //List<Animation> tmp2 = [];
-      for (int j = 0; j < application._maxTotalFields; j++) {
+      for (var j = 0; j < application.MaxTotalFields; j++) {
         tmp.add(AnimationController(
           vsync: _MainAppHandlerState(),
           duration: Duration(milliseconds: 500),
         ));
       }
-      _cellAnimationControllers.add(tmp);
+      CellAnimationControllers.add(tmp);
     }
 
-    for (int i = 0; i < application._maxNrPlayers + 1; i++) {
+    for (var i = 0; i < application.MaxNrPlayers + 1; i++) {
       var tmp = <Animation>[];
-      for (int j = 0; j < application._maxTotalFields; j++) {
-        tmp.add(new CurveTween(curve: Curves.easeInSine)
-            .animate(_cellAnimationControllers[i][j]));
+      for (var j = 0; j < application.MaxTotalFields; j++) {
+        tmp.add(CurveTween(curve: Curves.easeInSine)
+            .animate(CellAnimationControllers[i][j]));
       }
-      _cellAnimation.add(tmp);
+      CellAnimation.add(tmp);
     }
 
-    for (int i = 0; i < application._maxNrPlayers + 1; i++) {
-      for (int j = 0; j < application._maxTotalFields; j++) {
-        _cellAnimationControllers[i][j].addListener(() {
-          application._boardXAnimationPos[i][j] =
-              _cellAnimation[i][j].value * 100.0;
-          if ((j < application._maxTotalFields - 1) &&
-              _cellAnimation[i][j].value > 0.02) {
-            if (!_cellAnimationControllers[i][j + 1].isAnimating) {
-              _cellAnimationControllers[i][j + 1].forward();
+    for (var i = 0; i < application.MaxNrPlayers + 1; i++) {
+      for (var j = 0; j < application.MaxTotalFields; j++) {
+        CellAnimationControllers[i][j].addListener(() {
+          application.BoardXAnimationPos[i][j] =
+              CellAnimation[i][j].value * 100.0;
+          if ((j < application.MaxTotalFields - 1) &&
+              CellAnimation[i][j].value > 0.02) {
+            if (!CellAnimationControllers[i][j + 1].isAnimating) {
+              CellAnimationControllers[i][j + 1].forward();
             }
           }
         });
-        _cellAnimationControllers[i][j]
+        CellAnimationControllers[i][j]
             .addStatusListener((AnimationStatus status) {
           if (status == AnimationStatus.completed) {
-            _cellAnimationControllers[i][j].reverse();
+            CellAnimationControllers[i][j].reverse();
           }
         });
       }

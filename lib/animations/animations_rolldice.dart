@@ -5,17 +5,17 @@ class AnimationsRollDices {
     Setup();
   }
 
-  AnimationController _animController = AnimationController(
+  AnimationController AnimController = AnimationController(
       vsync: _MainAppHandlerState(), duration: Duration(milliseconds: 300));
-  late Animation<double> _sizeAnimation;
+  late Animation<double> SizeAnimation;
 
   Setup() {
-    _sizeAnimation =
-        CurveTween(curve: Curves.easeInSine).animate(_animController);
+    SizeAnimation =
+        CurveTween(curve: Curves.easeInSine).animate(AnimController);
 
-    _animController.addStatusListener((AnimationStatus status) {
+    AnimController.addStatusListener((AnimationStatus status) {
       if (status == AnimationStatus.completed) {
-        _animController.reverse();
+        AnimController.reverse();
       }
     });
   }

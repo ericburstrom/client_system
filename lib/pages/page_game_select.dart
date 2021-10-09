@@ -9,7 +9,7 @@ class PageGameSelect extends StatefulWidget {
   _PageGameSelectState createState() => _PageGameSelectState();
 }
 
-late TabController _settingsTabController;
+late TabController SettingsTabController;
 late Function widgetCChangeOverlay;
 
 class _PageGameSelectState extends State<PageGameSelect>
@@ -22,14 +22,14 @@ class _PageGameSelectState extends State<PageGameSelect>
   void initState() {
     super.initState();
     widgetCChangeOverlay = gameSelect.widgetColorChangeOverlay;
-    _settingsTabController =
-        TabController(length: gameSelect.nrTabs, vsync: this);
+    SettingsTabController =
+        TabController(length: gameSelect.NrTabs, vsync: this);
     net.ConnectToServer();
   }
 
   @override
   void dispose() {
-    _settingsTabController.dispose();
+    SettingsTabController.dispose();
     super.dispose();
   }
 

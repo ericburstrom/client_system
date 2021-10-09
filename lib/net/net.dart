@@ -1,13 +1,13 @@
 part of '../main.dart';
 
 class Net {
-  late Socket socket;
+  late Socket SocketConnection;
 
   SendDices(var dices) {
-    socket.emit(
+    SocketConnection.emit(
       "sendDices",
       {
-        "id": socket.id,
+        "id": SocketConnection.id,
         "diceValue": dices,
         "timestamp": DateTime.now().millisecondsSinceEpoch,
       },
@@ -15,10 +15,10 @@ class Net {
   }
 
   SendSelection(var player, var cell, var dices) {
-    socket.emit(
+    SocketConnection.emit(
       "sendSelection",
       {
-        "id": socket.id,
+        "id": SocketConnection.id,
         "player": player,
         "cell": cell,
         "diceValue": dices,
@@ -28,10 +28,10 @@ class Net {
   }
 
   SendRequestGame(var gameType, var nrPlayers) {
-    socket.emit(
+    SocketConnection.emit(
       "sendRequestGame",
       {
-        "id": socket.id,
+        "id": SocketConnection.id,
         "gameType": gameType,
         "nrPlayers": nrPlayers,
         "timestamp": DateTime.now().millisecondsSinceEpoch,
@@ -40,10 +40,10 @@ class Net {
   }
 
   SendJoinGame(var gameID) {
-    socket.emit(
+    SocketConnection.emit(
       "sendJoinGame",
       {
-        "id": socket.id,
+        "id": SocketConnection.id,
         "gameID": gameID,
         "timestamp": DateTime.now().millisecondsSinceEpoch,
       },
@@ -51,10 +51,10 @@ class Net {
   }
 
   SendJoinedGameOK(var gameID) {
-    socket.emit(
+    SocketConnection.emit(
       "sendJoinedGameOK",
       {
-        "id": socket.id,
+        "id": SocketConnection.id,
         "gameID": gameID,
         "timestamp": DateTime.now().millisecondsSinceEpoch,
       },
@@ -65,10 +65,10 @@ class Net {
   void onSelection(var data) {
     print('selection');
     print(data);
-    if (data['id'] != socket.id) {
+    if (data['id'] != SocketConnection.id) {
       print('Got Selection');
-      application._dices._diceValue = data['diceValue'].cast<int>();
-      application._dices._updateDiceValues();
+      application.GameDices.DiceValue = data['diceValue'].cast<int>();
+      application.GameDices.UpdateDiceValues();
       application.CalcNewSums(data['player'], data['cell']);
       globalSetState();
     }
@@ -76,9 +76,9 @@ class Net {
 
   void onDices(var data) {
     print(data['diceValue']);
-    application._dices.MakeDiceRoll(data['diceValue'].cast<int>());
+    application.GameDices.MakeDiceRoll(data['diceValue'].cast<int>());
     application.UpdateDiceValues();
-    application._dices.UpdateDiceImages();
+    application.GameDices.UpdateDiceImages();
     globalSetState();
   }
 
@@ -91,44 +91,45 @@ class Net {
   void onRequestGame(var data) {
     print('onRequestGame');
     print(data); // 0 if rejected
-    if (data['id'] == socket.id) {
-      application._myPlayerId = data['playerId'];
+    if (data['id'] == SocketConnection.id) {
+      application.MyPlayerId = data['playerId'];
     }
   }
 
   // handleSetPlayerNr(var data) {
   //   print('handlesetplayernr');
   //   print(data['playerNr']);
-  //   game._myPlayerId = data['playerNr'];
+  //   game.MyPlayerId = data['playerNr'];
   // }
   //
   // void handleStartGame(var data) {
   //   print('HandleStartGame');
-  //   game._dices.startDices();
-  //   if (game._myPlayerId == 0) {
+  //   game.GameDices.startDices();
+  //   if (game.MyPlayerId == 0) {
   //     print('I start game!');
-  //     game._dices.startDices();
+  //     game.GameDices.startDices();
   //   }
   // }
 
   void ConnectToServer() {
     try {
       // Configure socket transports must be sepecified
-      socket = io(localhostIO, <String, dynamic>{
+      SocketConnection = io(localhostIO, <String, dynamic>{
         'transports': ['websocket'],
       });
 
       print('was here...');
       // Handle socket events
-      socket.on('onSelection', onSelection);
-      socket.on('onDices', onDices);
-      socket.on('onRequestGame', onRequestGame);
-      socket.on('onJoinGame', onJoinGame);
+      SocketConnection.on('onSelection', onSelection);
+      SocketConnection.on('onDices', onDices);
+      SocketConnection.on('onRequestGame', onRequestGame);
+      SocketConnection.on('onJoinGame', onJoinGame);
       //socket.on('StartGame', handleStartGame);
       //socket.on('setPlayerNr', handleSetPlayerNr);
-      socket.on('connect', (_) => print('connect: ${socket.id}'));
-      socket.on('disconnect', (_) => print('disconnect'));
-      socket.on('fromServer', (_) => print(_));
+      SocketConnection.on(
+          'connect', (_) => print('connect: ${SocketConnection.id}'));
+      SocketConnection.on('disconnect', (_) => print('disconnect'));
+      SocketConnection.on('fromServer', (_) => print(_));
     } catch (e) {
       print(e.toString());
     }
@@ -136,8 +137,8 @@ class Net {
 
   // Send update of user's typing status
   sendTyping(bool typing) {
-    socket.emit("typing", {
-      "id": socket.id,
+    SocketConnection.emit("typing", {
+      "id": SocketConnection.id,
       "typing": typing,
     });
   }
@@ -153,7 +154,7 @@ class Net {
         headers: <String, String>{
           'Content-Type': 'application/json; charset=UTF-8',
         },
-        body: jsonEncode(<String, String>{'Authorization': login.jwt}));
+        body: jsonEncode(<String, String>{'Authorization': authenticate.Jwt}));
 
     return response;
   }
@@ -166,7 +167,7 @@ class Net {
         body: jsonEncode(<String, String>{
           'serverName': name,
           'serverScore': score.toString(),
-          'Authorization': login.jwt
+          'Authorization': authenticate.Jwt
         }));
 
     return response;

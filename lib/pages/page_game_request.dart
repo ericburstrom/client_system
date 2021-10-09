@@ -7,7 +7,7 @@ class PageGameRequest extends StatefulWidget {
   _PageGameRequestState createState() => _PageGameRequestState();
 }
 
-late TabController _gameRequestTabController;
+late TabController GameRequestTabController;
 
 class _PageGameRequestState extends State<PageGameRequest>
     with TickerProviderStateMixin {
@@ -18,14 +18,14 @@ class _PageGameRequestState extends State<PageGameRequest>
   @override
   void initState() {
     super.initState();
-    _gameRequestTabController =
-        TabController(length: gameRequest.nrTabs, vsync: this);
+    GameRequestTabController =
+        TabController(length: gameRequest.NrTabs, vsync: this);
     net.ConnectToServer();
   }
 
   @override
   void dispose() {
-    _settingsTabController.dispose();
+    SettingsTabController.dispose();
     super.dispose();
   }
 

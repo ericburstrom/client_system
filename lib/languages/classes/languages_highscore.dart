@@ -1,9 +1,11 @@
 part of '../../main.dart';
 
 class LanguagesHighscore extends Languages {
-  var _highscore = {'English': 'Highscores'};
+  var _highscores = {'English': 'Highscores'};
+
+  String get Highscores => GetText(_highscores);
 
   void LanguagesSetup() {
-    _highscore['Swedish'] = 'Topplista';
+    _highscores['Swedish'] = 'Topplista';
   }
 }

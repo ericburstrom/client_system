@@ -5,21 +5,21 @@ class AnimationsHighscore {
     Setup();
   }
 
-  AnimationController _animController = AnimationController(
+  AnimationController AnimController = AnimationController(
       vsync: _MainAppHandlerState(), duration: Duration(milliseconds: 3000));
-  late Animation<double> _loopAnimation;
+  late Animation<double> LoopAnimation;
 
   Setup() {
-    _loopAnimation =
-        CurveTween(curve: Curves.easeInSine).animate(_animController);
+    LoopAnimation =
+        CurveTween(curve: Curves.easeInSine).animate(AnimController);
 
-    _animController.addStatusListener((AnimationStatus status) {
+    AnimController.addStatusListener((AnimationStatus status) {
       if (status == AnimationStatus.completed) {
-        _animController.reverse();
+        AnimController.reverse();
       } else if (status == AnimationStatus.dismissed) {
-        _animController.forward();
+        AnimController.forward();
       }
     });
-    _animController.forward();
+    AnimController.forward();
   }
 }

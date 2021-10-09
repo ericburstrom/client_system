@@ -1,35 +1,35 @@
 part of '../../main.dart';
 
-class Login extends LanguagesLogin {
-  Login() {
+class Authenticate extends LanguagesLogin {
+  Authenticate() {
     LanguagesSetup();
   }
 
-  final loginTxtUserName = new TextEditingController();
-  final loginTxtPassword = new TextEditingController();
-  final signupTxtUserName = new TextEditingController();
-  final signupTxtPassword = new TextEditingController();
-  final signupTxtPassword2 = new TextEditingController();
+  final LoginTxtUserName = TextEditingController();
+  final LoginTxtPassword = TextEditingController();
+  final SignupTxtUserName = TextEditingController();
+  final SignupTxtPassword = TextEditingController();
+  final SignupTxtPassword2 = TextEditingController();
 
-  GlobalKey<FormState> signupFormKey = GlobalKey<FormState>();
-  GlobalKey<FormState> loginFormKey = GlobalKey<FormState>();
+  GlobalKey<FormState> SignupFormKey = GlobalKey<FormState>();
+  GlobalKey<FormState> LoginFormKey = GlobalKey<FormState>();
 
-  var jwt;
+  var Jwt;
 
   Future CheckUser(BuildContext context) async {
     try {
       var serverResponse =
-          await net.mainLogin(loginTxtUserName.text, loginTxtPassword.text);
+          await net.mainLogin(LoginTxtUserName.text, LoginTxtPassword.text);
       if (serverResponse.statusCode == 200) {
         print(serverResponse.body);
-        userName = loginTxtUserName.text;
-        jwt = serverResponse.body;
+        userName = LoginTxtUserName.text;
+        Jwt = serverResponse.body;
         print('User is logged in!');
         Map<String, dynamic> _json = {
-          'username': loginTxtUserName.text,
-          'password': loginTxtPassword.text
+          'username': LoginTxtUserName.text,
+          'password': LoginTxtPassword.text
         };
-        fileHandler.saveFile(_json, fileHandler._settings);
+        fileHandler.SaveFile(_json, fileHandler.FileSettings);
         pages.NavigateToGameSelectPageR(context);
       } else {
         // TODO: handle not logged in case
@@ -43,24 +43,24 @@ class Login extends LanguagesLogin {
   Future<void> AttemptSignup(BuildContext context) async {
     try {
       var serverResponse =
-          await net.mainSignup(signupTxtUserName.text, signupTxtPassword.text);
+          await net.mainSignup(SignupTxtUserName.text, SignupTxtPassword.text);
 
       print(serverResponse);
 
       if (serverResponse.statusCode == 200) {
-        userName = signupTxtUserName.text;
+        userName = SignupTxtUserName.text;
 
         print('User is created!');
         Map<String, dynamic> _json = {
           'username': userName,
-          'password': signupTxtPassword.text
+          'password': SignupTxtPassword.text
         };
-        fileHandler.saveFile(_json, fileHandler._settings);
+        fileHandler.SaveFile(_json, fileHandler.FileSettings);
         try {
           var serverResponse =
-              await net.mainLogin(userName, signupTxtPassword.text);
+              await net.mainLogin(userName, SignupTxtPassword.text);
           if (serverResponse.statusCode == 200) {
-            jwt = serverResponse.body;
+            Jwt = serverResponse.body;
             print('User is logged in!');
           } else {
             // TODO: handle not logged in case
@@ -80,13 +80,11 @@ class Login extends LanguagesLogin {
 
   String ValidatePassword(String value) {
     if (value.isEmpty) {
-      return GetText(_required);
+      return GetText(Required);
     } else if (value.length < 6) {
-      return GetText(_passwordAtLeast) + 6.toString() + GetText(_characters);
+      return GetText(PasswordAtLeast) + 6.toString() + GetText(Characters);
     } else if (value.length > 15) {
-      return GetText(_passwordNotGreater) +
-          15.toString() +
-          GetText(_characters);
+      return GetText(PasswordNotGreater) + 15.toString() + GetText(Characters);
     } else
       return "";
   }
@@ -100,7 +98,7 @@ class Login extends LanguagesLogin {
   }
 
   void LoginButtonPressed(BuildContext context) {
-    if (loginFormKey.currentState!.validate()) {
+    if (LoginFormKey.currentState!.validate()) {
       print("Validated format");
       CheckUser(context);
     } else {
@@ -109,7 +107,7 @@ class Login extends LanguagesLogin {
   }
 
   void SignupButtonPressed(BuildContext context) {
-    if (signupFormKey.currentState!.validate()) {
+    if (SignupFormKey.currentState!.validate()) {
       print("Validated format");
       AttemptSignup(context);
     } else {
@@ -127,8 +125,8 @@ class Login extends LanguagesLogin {
                 controller: _tabController,
                 isScrollable: false,
                 tabs: [
-                  Tab(text: GetText(_login)),
-                  Tab(text: GetText(_signup)),
+                  Tab(text: GetText(Login)),
+                  Tab(text: GetText(Signup)),
                 ],
               ),
             ),
@@ -136,22 +134,22 @@ class Login extends LanguagesLogin {
               SingleChildScrollView(
                 child: Form(
                   autovalidateMode: AutovalidateMode.always,
-                  key: loginFormKey,
+                  key: LoginFormKey,
                   child: Column(
                     children: <Widget>[
                       settings.widgetImage(
                           200, 150, 'assets/images/flutter_logo.png'),
-                      settings.widgetTextFormField(GetText(_email),
-                          GetText(_enterValidEmail), loginTxtUserName),
-                      settings.widgetTextFormField(GetText(_password),
-                          GetText(_enterSecurePassword), loginTxtPassword),
+                      settings.widgetTextFormField(GetText(Email),
+                          GetText(EnterValidEmail), LoginTxtUserName),
+                      settings.widgetTextFormField(GetText(Password),
+                          GetText(EnterSecurePassword), LoginTxtPassword),
                       settings.widgetTextLink(
-                          ForgotPasswordLinkPressed, GetText(_forgotPassword)),
+                          ForgotPasswordLinkPressed, GetText(ForgotPassword)),
                       settings.widgetButton(
-                          context, LoginButtonPressed, GetText(_login)),
+                          context, LoginButtonPressed, GetText(Login)),
                       settings.widgetSizedBox(100),
                       settings.widgetTextLink(
-                          NewUserLinkPressed, GetText(_newUser)),
+                          NewUserLinkPressed, GetText(NewUser)),
                     ],
                   ),
                 ),
@@ -159,18 +157,18 @@ class Login extends LanguagesLogin {
               SingleChildScrollView(
                 child: Form(
                   autovalidateMode: AutovalidateMode.always,
-                  key: signupFormKey,
+                  key: SignupFormKey,
                   child: Column(
                     children: <Widget>[
                       settings.widgetImage(
                           200, 150, 'assets/images/flutter_logo.png'),
-                      settings.widgetTextFormField(GetText(_email),
-                          GetText(_enterValidEmail), signupTxtUserName),
-                      settings.widgetTextFormField(GetText(_password),
-                          GetText(_enterSecurePassword), signupTxtPassword),
+                      settings.widgetTextFormField(GetText(Email),
+                          GetText(EnterValidEmail), SignupTxtUserName),
+                      settings.widgetTextFormField(GetText(Password),
+                          GetText(EnterSecurePassword), SignupTxtPassword),
                       settings.widgetSizedBox(20),
                       settings.widgetButton(
-                          context, SignupButtonPressed, GetText(_signup)),
+                          context, SignupButtonPressed, GetText(Signup)),
                     ],
                   ),
                 ),

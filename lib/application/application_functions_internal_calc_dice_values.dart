@@ -5,66 +5,66 @@ extension GameCalcDiceValues on Application {
     return 0;
   }
 
-  int Ones() {
+  int CalcOnes() {
     var eye = 1;
     var value = 0;
-    for (var i = 0; i < _dices._nrDices; i++) {
-      if (_dices._diceValue[i] == eye) {
+    for (var i = 0; i < GameDices.NrDices; i++) {
+      if (GameDices.DiceValue[i] == eye) {
         value += eye;
       }
     }
     return value;
   }
 
-  int Twos() {
+  int CalcTwos() {
     var eye = 2;
     var value = 0;
-    for (var i = 0; i < _dices._nrDices; i++) {
-      if (_dices._diceValue[i] == eye) {
+    for (var i = 0; i < GameDices.NrDices; i++) {
+      if (GameDices.DiceValue[i] == eye) {
         value += eye;
       }
     }
     return value;
   }
 
-  int Threes() {
+  int CalcThrees() {
     var eye = 3;
     var value = 0;
-    for (var i = 0; i < _dices._nrDices; i++) {
-      if (_dices._diceValue[i] == eye) {
+    for (var i = 0; i < GameDices.NrDices; i++) {
+      if (GameDices.DiceValue[i] == eye) {
         value += eye;
       }
     }
     return value;
   }
 
-  int Fours() {
+  int CalcFours() {
     var eye = 4;
     var value = 0;
-    for (var i = 0; i < _dices._nrDices; i++) {
-      if (_dices._diceValue[i] == eye) {
+    for (var i = 0; i < GameDices.NrDices; i++) {
+      if (GameDices.DiceValue[i] == eye) {
         value += eye;
       }
     }
     return value;
   }
 
-  int Fives() {
+  int CalcFives() {
     var eye = 5;
     var value = 0;
-    for (var i = 0; i < _dices._nrDices; i++) {
-      if (_dices._diceValue[i] == eye) {
+    for (var i = 0; i < GameDices.NrDices; i++) {
+      if (GameDices.DiceValue[i] == eye) {
         value += eye;
       }
     }
     return value;
   }
 
-  int Sixes() {
+  int CalcSixes() {
     var eye = 6;
     var value = 0;
-    for (var i = 0; i < _dices._nrDices; i++) {
-      if (_dices._diceValue[i] == eye) {
+    for (var i = 0; i < GameDices.NrDices; i++) {
+      if (GameDices.DiceValue[i] == eye) {
         value += eye;
       }
     }
@@ -73,13 +73,13 @@ extension GameCalcDiceValues on Application {
 
   List CalcDiceNr() {
     var tmp = List.filled(6, 0);
-    for (var i = 0; i < _dices._nrDices; i++) {
-      tmp[_dices._diceValue[i] - 1]++;
+    for (var i = 0; i < GameDices.NrDices; i++) {
+      tmp[GameDices.DiceValue[i] - 1]++;
     }
     return tmp;
   }
 
-  int Pair() {
+  int CalcPair() {
     var value = 0;
     var diceNr = CalcDiceNr();
     for (var i = 5; i >= 0; i--) {
@@ -91,7 +91,7 @@ extension GameCalcDiceValues on Application {
     return value;
   }
 
-  int TwoPairs() {
+  int CalcTwoPairs() {
     var value = 0;
     var pairs = 0;
     var diceNr = CalcDiceNr();
@@ -107,7 +107,7 @@ extension GameCalcDiceValues on Application {
     return value;
   }
 
-  int ThreePairs() {
+  int CalcThreePairs() {
     var value = 0;
     var pairs = 0;
     var diceNr = CalcDiceNr();
@@ -123,7 +123,7 @@ extension GameCalcDiceValues on Application {
     return value;
   }
 
-  int ThreeOfKind() {
+  int CalcThreeOfKind() {
     var value = 0;
     var diceNr = CalcDiceNr();
     for (var i = 5; i >= 0; i--) {
@@ -135,7 +135,7 @@ extension GameCalcDiceValues on Application {
     return value;
   }
 
-  int FourOfKind() {
+  int CalcFourOfKind() {
     var value = 0;
     var diceNr = CalcDiceNr();
     for (var i = 5; i >= 0; i--) {
@@ -147,7 +147,7 @@ extension GameCalcDiceValues on Application {
     return value;
   }
 
-  int FiveOfKind() {
+  int CalcFiveOfKind() {
     var value = 0;
     var diceNr = CalcDiceNr();
     for (var i = 5; i >= 0; i--) {
@@ -159,18 +159,18 @@ extension GameCalcDiceValues on Application {
     return value;
   }
 
-  int Yatzy() {
+  int CalcYatzy() {
     var value = 0;
     var diceNr = CalcDiceNr();
     for (var i = 5; i >= 0; i--) {
-      if (diceNr[i] == _dices._nrDices) {
-        if (_dices._nrDices == 4) {
+      if (diceNr[i] == GameDices.NrDices) {
+        if (GameDices.NrDices == 4) {
           value = 25;
         }
-        if (_dices._nrDices == 5) {
+        if (GameDices.NrDices == 5) {
           value = 50;
         }
-        if (_dices._nrDices == 6) {
+        if (GameDices.NrDices == 6) {
           value = 100;
         }
       }
@@ -178,7 +178,7 @@ extension GameCalcDiceValues on Application {
     return value;
   }
 
-  int House() {
+  int CalcHouse() {
     var value = 0;
     var pair = 0;
     var triplet = 0;
@@ -206,7 +206,7 @@ extension GameCalcDiceValues on Application {
     return value;
   }
 
-  int Tower() {
+  int CalcTower() {
     var value = 0;
     var pair = 0;
     var triplet = 0;
@@ -234,7 +234,7 @@ extension GameCalcDiceValues on Application {
     return value;
   }
 
-  int Villa() {
+  int CalcVilla() {
     var value = 0;
     var threes = 0;
     var diceNr = CalcDiceNr();
@@ -250,10 +250,10 @@ extension GameCalcDiceValues on Application {
     return value;
   }
 
-  int SmallLadder() {
+  int CalcSmallLadder() {
     var value = 0;
     var diceNr = CalcDiceNr();
-    if (_gameType == 'Ordinary') {
+    if (GameType == 'Ordinary') {
       // Text is not displayed and therefore not translated
       if ((diceNr[0] > 0) &&
           (diceNr[1] > 0) &&
@@ -263,7 +263,7 @@ extension GameCalcDiceValues on Application {
         value = 1 + 2 + 3 + 4 + 5;
       }
     }
-    if (_gameType == 'Mini') {
+    if (GameType == 'Mini') {
       if ((diceNr[0] > 0) &&
           (diceNr[1] > 0) &&
           (diceNr[2] > 0) &&
@@ -271,7 +271,7 @@ extension GameCalcDiceValues on Application {
         value = 1 + 2 + 3 + 4;
       }
     }
-    if (_gameType == 'Maxi') {
+    if (GameType == 'Maxi') {
       if ((diceNr[0] > 0) &&
           (diceNr[1] > 0) &&
           (diceNr[2] > 0) &&
@@ -283,10 +283,10 @@ extension GameCalcDiceValues on Application {
     return value;
   }
 
-  int LargeLadder() {
+  int CalcLargeLadder() {
     var value = 0;
     var diceNr = CalcDiceNr();
-    if (_gameType == 'Ordinary') {
+    if (GameType == 'Ordinary') {
       if ((diceNr[1] > 0) &&
           (diceNr[2] > 0) &&
           (diceNr[3] > 0) &&
@@ -295,7 +295,7 @@ extension GameCalcDiceValues on Application {
         value = 2 + 3 + 4 + 5 + 6;
       }
     }
-    if (_gameType == 'Mini') {
+    if (GameType == 'Mini') {
       if ((diceNr[2] > 0) &&
           (diceNr[3] > 0) &&
           (diceNr[4] > 0) &&
@@ -303,7 +303,7 @@ extension GameCalcDiceValues on Application {
         value = 3 + 4 + 5 + 6;
       }
     }
-    if (_gameType == 'Maxi') {
+    if (GameType == 'Maxi') {
       if ((diceNr[1] > 0) &&
           (diceNr[2] > 0) &&
           (diceNr[3] > 0) &&
@@ -315,10 +315,10 @@ extension GameCalcDiceValues on Application {
     return value;
   }
 
-  int MiddleLadder() {
+  int CalcMiddleLadder() {
     var value = 0;
     var diceNr = CalcDiceNr();
-    if (_gameType == 'Mini') {
+    if (GameType == 'Mini') {
       if ((diceNr[1] > 0) &&
           (diceNr[2] > 0) &&
           (diceNr[3] > 0) &&
@@ -329,10 +329,10 @@ extension GameCalcDiceValues on Application {
     return value;
   }
 
-  int FullLadder() {
+  int CalcFullLadder() {
     var value = 0;
     var diceNr = CalcDiceNr();
-    if (_gameType == 'Maxi') {
+    if (GameType == 'Maxi') {
       if ((diceNr[0] > 0) &&
           (diceNr[1] > 0) &&
           (diceNr[2] > 0) &&
@@ -345,11 +345,11 @@ extension GameCalcDiceValues on Application {
     return value;
   }
 
-  int Chance() {
+  int CalcChance() {
     var value = 0;
 
-    for (var i = 0; i < _dices._nrDices; i++) {
-      value += _dices._diceValue[i];
+    for (var i = 0; i < GameDices.NrDices; i++) {
+      value += GameDices.DiceValue[i];
     }
     return value;
   }

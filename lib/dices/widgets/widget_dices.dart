@@ -12,12 +12,12 @@ extension WidgetDices on Dices {
       w = height * ratio;
       left = (width - w) / 2;
     }
-    if (!_unityDices[0]) {
+    if (!UnityDices[0]) {
       left = screenWidth;
       top = screenHeight;
     }
 
-    if (_unityDices[0]) {
+    if (UnityDices[0]) {
       Widget widgetUnity = Positioned(
           left: left,
           top: top,
@@ -25,6 +25,7 @@ extension WidgetDices on Dices {
               width: w,
               height: h,
               child: UnityWidget(
+                borderRadius: BorderRadius.zero,
                 onUnityCreated: onUnityCreated,
                 onUnityMessage: onUnityMessage,
                 //onUnitySceneLoaded: onUnitySceneLoaded,
@@ -45,22 +46,22 @@ extension WidgetDices on Dices {
 
     // Spread dices evenly and place roll dice button under or at the side of.
     // The number 3.5 is assuming spacing is half dice 2 dices plus spacing between and around
-    // Scaling 2 * _nrDices instead of optimal (3*_nrDices+1)/2 is to group dices more in portrait mode
+    // Scaling 2 * NrDices instead of optimal (3*NrDices+1)/2 is to group dices more in portrait mode
     // Min 60 is to prevent too large dices
     if (orientationPortrait == 1) {
-      diceWidthHeight = width / (2 * _nrDices);
+      diceWidthHeight = width / (2 * NrDices);
       left =
-          diceWidthHeight / 2 + (width - diceWidthHeight * (2 * _nrDices)) / 2;
+          diceWidthHeight / 2 + (width - diceWidthHeight * (2 * NrDices)) / 2;
       top = min(diceWidthHeight / 2,
           diceWidthHeight / 2 + (height - diceWidthHeight * 3.5) / 2);
     } else {
-      diceWidthHeight = height / (2 * _nrDices);
+      diceWidthHeight = height / (2 * NrDices);
       left = diceWidthHeight / 2;
       top =
-          diceWidthHeight / 2 + (height - diceWidthHeight * (2 * _nrDices)) / 2;
+          diceWidthHeight / 2 + (height - diceWidthHeight * (2 * NrDices)) / 2;
     }
 
-    for (var i = 0; i < _nrDices; i++) {
+    for (var i = 0; i < NrDices; i++) {
       listings.add(
         Positioned(
             left: left + 2 * diceWidthHeight * i * orientationPortrait,
@@ -69,7 +70,7 @@ extension WidgetDices on Dices {
               width: diceWidthHeight,
               height: diceWidthHeight,
               decoration: BoxDecoration(color: Colors.red.withOpacity(0.3)),
-              child: Image.asset(_diceRef[i]),
+              child: Image.asset(DiceRef[i]),
             )),
       );
       listings.add(Positioned(
@@ -84,11 +85,11 @@ extension WidgetDices on Dices {
               width: diceWidthHeight,
               height: diceWidthHeight,
               decoration: BoxDecoration(
-                  color: Colors.grey.withOpacity(_holdOpacity[i])),
+                  color: Colors.grey.withOpacity(HoldDiceOpacity[i])),
               child: FittedBox(
                 fit: BoxFit.contain,
                 child: Text(
-                  _holdText[i],
+                  HoldDiceText[i],
                   style: TextStyle(
                     color: Colors.black.withOpacity(0.8),
                   ),
@@ -103,25 +104,25 @@ extension WidgetDices on Dices {
 
     // Roll button
     listings.add(AnimatedBuilder(
-      animation: animationsRollDices._animController,
+      animation: animationsRollDices.AnimController,
       builder: (BuildContext context, Widget? widget) {
-        final tmp = new Listener(
+        final tmp = Listener(
             onPointerDown: (e) {
-              print(application._playerToMove);
-              print(application._myPlayerId);
-              if (application._playerToMove != application._myPlayerId) {
+              print(application.PlayerToMove);
+              print(application.MyPlayerId);
+              if (application.PlayerToMove != application.MyPlayerId) {
                 return;
               }
               if (RollDices()) {
-                animationsRollDices._animController.forward();
+                animationsRollDices.AnimController.forward();
                 globalSetState();
               }
             },
             child: Container(
               width: diceWidthHeight *
-                  (1 - animationsRollDices._sizeAnimation.value / 2),
+                  (1 - animationsRollDices.SizeAnimation.value / 2),
               height: diceWidthHeight *
-                  (1 - animationsRollDices._sizeAnimation.value / 2),
+                  (1 - animationsRollDices.SizeAnimation.value / 2),
               decoration: BoxDecoration(color: Colors.red),
               child: Image.asset('assets/images/roll.jpg',
                   fit: BoxFit.cover,
@@ -130,11 +131,11 @@ extension WidgetDices on Dices {
             ));
         return Positioned(
           left: left +
-              (_nrDices - 1) * diceWidthHeight * orientationPortrait +
+              (NrDices - 1) * diceWidthHeight * orientationPortrait +
               1.5 * diceWidthHeight * (1 - orientationPortrait),
           top: top +
               1.5 * diceWidthHeight * orientationPortrait +
-              (_nrDices - 1) * diceWidthHeight * (1 - orientationPortrait),
+              (NrDices - 1) * diceWidthHeight * (1 - orientationPortrait),
           child: tmp,
         );
       },

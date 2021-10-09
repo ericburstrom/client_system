@@ -5,261 +5,264 @@ typedef int YatzyFunctions();
 
 class Application extends LanguagesApplication {
   Application() {
-    _dices = new Dices(UpdateDiceValues);
+    GameDices = Dices(UpdateDiceValues);
     LanguagesSetup();
     Setup('Ordinary', 2);
   }
 
   // Used by animations
-  int _maxNrPlayers = 4;
-  int _maxTotalFields = 23;
+  var MaxNrPlayers = 4;
+  var MaxTotalFields = 23;
 
   // 'Ordinary' , 'Mini', 'Maxi'
-  String _gameType = 'Ordinary';
+  var GameType = 'Ordinary';
 
-  var _totalFields;
+  var TotalFields;
 
-  var _boardXPos,
-      _boardYPos,
-      _boardWidth,
-      _boardHeight,
-      _boardXAnimationPos,
-      _boardYAnimationPos;
+  var BoardXPos,
+      BoardYPos,
+      BoardWidth,
+      BoardHeight,
+      BoardXAnimationPos,
+      BoardYAnimationPos;
 
-  int _nrPlayers = 2;
-  int _bonusSum = 63;
-  int _bonusAmount = 50;
+  int NrPlayers = 2;
+  int BonusSum = 63;
+  int BonusAmount = 50;
 
-  var _cellValue;
+  var CellValue;
 
-  int _myPlayerId = -1;
-  int _playerToMove = 0;
-  var _fixedCell;
-  var _text;
-  var _colors;
-  var _focusStatus;
-  GlobalKey _listenerKey = new GlobalKey();
+  int MyPlayerId = 0; // -1
+  int PlayerToMove = 0;
+  var FixedCell;
+  var AppText;
+  var AppColors;
+  var FocusStatus;
+  GlobalKey ListenerKey = GlobalKey();
 
   /*
   var _cellKeys = [];
-  for (int i = 0; i < _nrPlayers + 1; i++) {
+  for (int i = 0; i < NrPlayers + 1; i++) {
   List<GlobalKey> tmp = [];
-  for (int j = 0; j < _totalFields; j++) {
+  for (int j = 0; j < TotalFields; j++) {
   tmp.add(new GlobalKey());
   }
   _cellKeys.add(tmp);
   }
    */
 
-  late Dices _dices;
+  late Dices GameDices;
 
-  late List<YatzyFunctions> _yatzyFunctions;
+  late List<YatzyFunctions> YatzyFunc;
 
   //LanguagesYatzy lang = new LanguagesYatzy();
 
   UpdateDiceValues() {
     ClearFocus();
-    for (var i = 0; i < _totalFields; i++) {
-      if (!_fixedCell[_playerToMove][i]) {
-        _cellValue[_playerToMove][i] = _yatzyFunctions[i]();
-        _text[_playerToMove + 1][i] = _cellValue[_playerToMove][i].toString();
+    for (var i = 0; i < TotalFields; i++) {
+      if (!FixedCell[PlayerToMove][i]) {
+        CellValue[PlayerToMove][i] = YatzyFunc[i]();
+        AppText[PlayerToMove + 1][i] = CellValue[PlayerToMove][i].toString();
       }
     }
   }
 
   Setup(String gameType, int nrPlayers) {
-    _gameType = gameType;
-    _nrPlayers = nrPlayers;
-    _playerToMove = 0;
+    GameType = gameType;
+    NrPlayers = nrPlayers;
+    PlayerToMove = 0;
 
-    if (_gameType == 'Mini') {
-      _totalFields = 17;
-      _dices.InitDices(4);
-      _bonusSum = 50;
-      _bonusAmount = 25;
-      _text = [
+    if (GameType == 'Mini') {
+      TotalFields = 17;
+      GameDices.InitDices(4);
+      BonusSum = 50;
+      BonusAmount = 25;
+      AppText = [
         [
-          GetText(_ones),
-          GetText(_twos),
-          GetText(_threes),
-          GetText(_fours),
-          GetText(_fives),
-          GetText(_sixes),
-          GetText(_sum),
-          GetText(_bonus) + ' (' + _bonusAmount.toString() + ')',
-          GetText(_pair),
-          GetText(_twoPairs),
-          GetText(_threeOfKind),
-          GetText(_smallStraight),
-          GetText(_middleStraight),
-          GetText(_largeStraight),
-          GetText(_chance),
-          GetText(_yatzy),
-          GetText(_totalSum)
+          GetText(Ones),
+          GetText(Twos),
+          GetText(Threes),
+          GetText(Fours),
+          GetText(Fives),
+          GetText(Sixes),
+          GetText(Sum),
+          GetText(Bonus) + ' (' + BonusAmount.toString() + ')',
+          GetText(Pair),
+          GetText(TwoPairs),
+          GetText(ThreeOfKind),
+          GetText(SmallStraight),
+          GetText(MiddleStraight),
+          GetText(LargeStraight),
+          GetText(Chance),
+          GetText(Yatzy),
+          GetText(TotalSum)
         ]
       ];
-      _yatzyFunctions = [Ones, Twos, Threes, Fours, Fives, Sixes] +
-          [
-            Zero,
-            Zero,
-            Pair,
-            TwoPairs,
-            ThreeOfKind,
-            SmallLadder,
-            MiddleLadder,
-            LargeLadder,
-            Chance,
-            Yatzy,
-            Zero
-          ];
-    } else if (_gameType == 'Maxi') {
-      _totalFields = 23;
-      _dices.InitDices(6);
-      _bonusSum = 84;
-      _bonusAmount = 100;
-      _text = [
+      YatzyFunc =
+          [CalcOnes, CalcTwos, CalcThrees, CalcFours, CalcFives, CalcSixes] +
+              [
+                Zero,
+                Zero,
+                CalcPair,
+                CalcTwoPairs,
+                CalcThreeOfKind,
+                CalcSmallLadder,
+                CalcMiddleLadder,
+                CalcLargeLadder,
+                CalcChance,
+                CalcYatzy,
+                Zero
+              ];
+    } else if (GameType == 'Maxi') {
+      TotalFields = 23;
+      GameDices.InitDices(6);
+      BonusSum = 84;
+      BonusAmount = 100;
+      AppText = [
         [
-          GetText(_ones),
-          GetText(_twos),
-          GetText(_threes),
-          GetText(_fours),
-          GetText(_fives),
-          GetText(_sixes),
-          GetText(_sum),
-          GetText(_bonus) + ' (' + _bonusAmount.toString() + ')',
-          GetText(_pair),
-          GetText(_twoPairs),
-          GetText(_threePairs),
-          GetText(_threeOfKind),
-          GetText(_fourOfKind),
-          GetText(_fiveOfKind),
-          GetText(_smallStraight),
-          GetText(_largeStraight),
-          GetText(_fullStraight),
-          GetText(_house32),
-          GetText(_house33),
-          GetText(_house24),
-          GetText(_chance),
-          GetText(_maxiYatzy),
-          GetText(_totalSum)
+          GetText(Ones),
+          GetText(Twos),
+          GetText(Threes),
+          GetText(Fours),
+          GetText(Fives),
+          GetText(Sixes),
+          GetText(Sum),
+          GetText(Bonus) + ' (' + BonusAmount.toString() + ')',
+          GetText(Pair),
+          GetText(TwoPairs),
+          GetText(ThreePairs),
+          GetText(ThreeOfKind),
+          GetText(FourOfKind),
+          GetText(FiveOfKind),
+          GetText(SmallStraight),
+          GetText(LargeStraight),
+          GetText(FullStraight),
+          GetText(House32),
+          GetText(House33),
+          GetText(House24),
+          GetText(Chance),
+          GetText(MaxiYatzy),
+          GetText(TotalSum)
         ]
       ];
-      _yatzyFunctions = [Ones, Twos, Threes, Fours, Fives, Sixes] +
-          [
-            Zero,
-            Zero,
-            Pair,
-            TwoPairs,
-            ThreePairs,
-            ThreeOfKind,
-            FourOfKind,
-            FiveOfKind,
-            SmallLadder,
-            LargeLadder,
-            FullLadder,
-            House,
-            Villa,
-            Tower,
-            Chance,
-            Yatzy,
-            Zero
-          ];
+      YatzyFunc =
+          [CalcOnes, CalcTwos, CalcThrees, CalcFours, CalcFives, CalcSixes] +
+              [
+                Zero,
+                Zero,
+                CalcPair,
+                CalcTwoPairs,
+                CalcThreePairs,
+                CalcThreeOfKind,
+                CalcFourOfKind,
+                CalcFiveOfKind,
+                CalcSmallLadder,
+                CalcLargeLadder,
+                CalcFullLadder,
+                CalcHouse,
+                CalcVilla,
+                CalcTower,
+                CalcChance,
+                CalcYatzy,
+                Zero
+              ];
     } else {
-      _totalFields = 18;
-      _dices.InitDices(5);
-      _bonusSum = 63;
-      _bonusAmount = 50;
-      _text = [
+      TotalFields = 18;
+      GameDices.InitDices(5);
+      BonusSum = 63;
+      BonusAmount = 50;
+      AppText = [
         [
-          GetText(_ones),
-          GetText(_twos),
-          GetText(_threes),
-          GetText(_fours),
-          GetText(_fives),
-          GetText(_sixes),
-          GetText(_sum),
-          GetText(_bonus) + ' (' + _bonusAmount.toString() + ')',
-          GetText(_pair),
-          GetText(_twoPairs),
-          GetText(_threeOfKind),
-          GetText(_fourOfKind),
-          GetText(_house),
-          GetText(_smallStraight),
-          GetText(_largeStraight),
-          GetText(_chance),
-          GetText(_yatzy),
-          GetText(_totalSum)
+          GetText(Ones),
+          GetText(Twos),
+          GetText(Threes),
+          GetText(Fours),
+          GetText(Fives),
+          GetText(Sixes),
+          GetText(Sum),
+          GetText(Bonus) + ' (' + BonusAmount.toString() + ')',
+          GetText(Pair),
+          GetText(TwoPairs),
+          GetText(ThreeOfKind),
+          GetText(FourOfKind),
+          GetText(House),
+          GetText(SmallStraight),
+          GetText(LargeStraight),
+          GetText(Chance),
+          GetText(Yatzy),
+          GetText(TotalSum)
         ]
       ];
-      _yatzyFunctions = [Ones, Twos, Threes, Fours, Fives, Sixes] +
-          [
-            Zero,
-            Zero,
-            Pair,
-            TwoPairs,
-            ThreeOfKind,
-            FourOfKind,
-            House,
-            SmallLadder,
-            LargeLadder,
-            Chance,
-            Yatzy,
-            Zero
-          ];
+      YatzyFunc =
+          [CalcOnes, CalcTwos, CalcThrees, CalcFours, CalcFives, CalcSixes] +
+              [
+                Zero,
+                Zero,
+                CalcPair,
+                CalcTwoPairs,
+                CalcThreeOfKind,
+                CalcFourOfKind,
+                CalcHouse,
+                CalcSmallLadder,
+                CalcLargeLadder,
+                CalcChance,
+                CalcYatzy,
+                Zero
+              ];
     }
 
-    for (int i = 0; i < _nrPlayers; i++) {
-      _text.add(List.filled(6, '') +
+    for (int i = 0; i < NrPlayers; i++) {
+      AppText.add(List.filled(6, '') +
           List.filled(1, '0') +
-          List.filled(1, (-_bonusSum).toString()) +
-          List.filled(_totalFields - 9, '') +
+          List.filled(1, (-BonusSum).toString()) +
+          List.filled(TotalFields - 9, '') +
           List.filled(1, '0'));
     }
-    //_boardXPos = List.filled(_nrPlayers, [List.filled(_totalFields, 0.0)]);
-    _boardXPos = [List.filled(_maxTotalFields, 0.0)];
-    _boardYPos = [List.filled(_maxTotalFields, 0.0)];
-    _boardWidth = [List.filled(_maxTotalFields, 0.0)];
-    _boardHeight = [List.filled(_maxTotalFields, 0.0)];
-    _boardXAnimationPos = [List.filled(_maxTotalFields, 0.0)];
-    _boardYAnimationPos = [List.filled(_maxTotalFields, 0.0)];
-    for (int i = 0; i < _maxNrPlayers; i++) {
-      _boardXPos.add(List.filled(_maxTotalFields, 0.0));
-      _boardYPos.add(List.filled(_maxTotalFields, 0.0));
-      _boardWidth.add(List.filled(_maxTotalFields, 0.0));
-      _boardHeight.add(List.filled(_maxTotalFields, 0.0));
-      _boardXAnimationPos.add(List.filled(_maxTotalFields, 0.0));
-      _boardYAnimationPos.add(List.filled(_maxTotalFields, 0.0));
+    //BoardXPos = List.filled(NrPlayers, [List.filled(TotalFields, 0.0)]);
+    BoardXPos = [List.filled(MaxTotalFields, 0.0)];
+    BoardYPos = [List.filled(MaxTotalFields, 0.0)];
+    BoardWidth = [List.filled(MaxTotalFields, 0.0)];
+    BoardHeight = [List.filled(MaxTotalFields, 0.0)];
+    BoardXAnimationPos = [List.filled(MaxTotalFields, 0.0)];
+    BoardYAnimationPos = [List.filled(MaxTotalFields, 0.0)];
+    for (int i = 0; i < MaxNrPlayers; i++) {
+      BoardXPos.add(List.filled(MaxTotalFields, 0.0));
+      BoardYPos.add(List.filled(MaxTotalFields, 0.0));
+      BoardWidth.add(List.filled(MaxTotalFields, 0.0));
+      BoardHeight.add(List.filled(MaxTotalFields, 0.0));
+      BoardXAnimationPos.add(List.filled(MaxTotalFields, 0.0));
+      BoardYAnimationPos.add(List.filled(MaxTotalFields, 0.0));
     }
     ClearFocus();
-    _fixedCell = [];
-    _cellValue = [];
-    _colors = [
+    FixedCell = [];
+    CellValue = [];
+    AppColors = [
       List.filled(6, Colors.white.withOpacity(0.3)) +
           List.filled(2, Colors.blueAccent.withOpacity(0.8)) +
-          List.filled(_totalFields - 9, Colors.white.withOpacity(0.3)) +
+          List.filled(TotalFields - 9, Colors.white.withOpacity(0.3)) +
           List.filled(1, Colors.blueAccent.withOpacity(0.8))
     ];
-    for (int i = 0; i < _nrPlayers; i++) {
-      _fixedCell.add(List.filled(6, false) +
+    for (int i = 0; i < NrPlayers; i++) {
+      FixedCell.add(List.filled(6, false) +
           [true, true] +
-          List.filled(_totalFields - 9, false) +
+          List.filled(TotalFields - 9, false) +
           [true]);
       //game.fixedCell.add([false]+List.filled(5, true) + [true, true] + List.filled(game.totalFields-9, true) + [true]);//trick to end game fast
-      if (i == _playerToMove) {
-        _colors.add(List.filled(6, Colors.greenAccent.withOpacity(0.3)) +
+      if (i == PlayerToMove) {
+        AppColors.add(List.filled(6, Colors.greenAccent.withOpacity(0.3)) +
             List.filled(2, Colors.blue.withOpacity(0.3)) +
-            List.filled(_totalFields - 9, Colors.greenAccent.withOpacity(0.3)) +
+            List.filled(TotalFields - 9, Colors.greenAccent.withOpacity(0.3)) +
             List.filled(1, Colors.blue.withOpacity(0.3)));
       } else {
-        _colors.add(List.filled(6, Colors.grey.withOpacity(0.3)) +
+        AppColors.add(List.filled(6, Colors.grey.withOpacity(0.3)) +
             List.filled(2, Colors.blue.withOpacity(0.3)) +
-            List.filled(_totalFields - 9, Colors.grey.withOpacity(0.3)) +
+            List.filled(TotalFields - 9, Colors.grey.withOpacity(0.3)) +
             List.filled(1, Colors.blue.withOpacity(0.3)));
       }
-      _cellValue.add(List.filled(_totalFields, -1));
+      CellValue.add(List.filled(TotalFields, -1));
     }
-    if (_dices._unityCreated) {
-      _dices.SendResetToUnity();
+    if (GameDices.UnityCreated) {
+      GameDices.SendResetToUnity();
     }
   }
 }

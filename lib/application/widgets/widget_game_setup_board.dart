@@ -2,26 +2,25 @@ part of '../../main.dart';
 
 extension WidgetSetupGameBoard on Application {
   MainOnDrag(mainX, mainY) {
-    if (application._playerToMove != application._myPlayerId) {
+    if (application.PlayerToMove != application.MyPlayerId) {
       return;
     }
-    //print(_listenerKey.currentContext.size);
-    RenderBox box =
-        _listenerKey.currentContext!.findRenderObject() as RenderBox;
+    //print(ListenerKey.currentContext.size);
+    RenderBox box = ListenerKey.currentContext!.findRenderObject() as RenderBox;
     Offset position = box.localToGlobal(Offset.zero); //this is global position
     mainY -= position.dy;
     var cell;
-    for (var i = 0; i < _totalFields; i++) {
-      if ( //mainX >= _boardXPos[0][i] &&
-          //mainX <= _boardXPos[0][i] + _boardWidth[0][i] &&
-          mainY >= _boardYPos[0][i] &&
-              mainY <= _boardYPos[0][i] + _boardHeight[0][i]) {
+    for (var i = 0; i < TotalFields; i++) {
+      if ( //mainX >= BoardXPos[0][i] &&
+          //mainX <= BoardXPos[0][i] + BoardWidth[0][i] &&
+          mainY >= BoardYPos[0][i] &&
+              mainY <= BoardYPos[0][i] + BoardHeight[0][i]) {
         cell = i;
-        if (!_fixedCell[_playerToMove][cell] &&
-            _cellValue[_playerToMove][cell] != -1) {
-          if (_focusStatus[_playerToMove][cell] == 0) {
+        if (!FixedCell[PlayerToMove][cell] &&
+            CellValue[PlayerToMove][cell] != -1) {
+          if (FocusStatus[PlayerToMove][cell] == 0) {
             ClearFocus();
-            _focusStatus[_playerToMove][cell] = 1;
+            FocusStatus[PlayerToMove][cell] = 1;
           }
         }
       }
@@ -29,69 +28,69 @@ extension WidgetSetupGameBoard on Application {
   }
 
   Widget widgetSetupGameBoard(double width, double height) {
-    double cellWidth = min(120, width / ((_nrPlayers) / 3 + 1.5));
-    double left = (width - cellWidth * ((_nrPlayers - 1) / 3 + 1.5)) / 2;
-    double cellHeight = min(30, height / (_totalFields + 1));
-    double top = (height - cellHeight * _totalFields) / 2;
+    double cellWidth = min(120, width / ((NrPlayers) / 3 + 1.5));
+    double left = (width - cellWidth * ((NrPlayers - 1) / 3 + 1.5)) / 2;
+    double cellHeight = min(30, height / (TotalFields + 1));
+    double top = (height - cellHeight * TotalFields) / 2;
 
     // Setup board cell positions
-    for (var i = 0; i < _totalFields; i++) {
-      _boardWidth[0][i] = cellWidth;
-      _boardHeight[0][i] = cellHeight;
-      _boardXPos[0][i] = left;
-      _boardYPos[0][i] = i * cellHeight + top;
+    for (var i = 0; i < TotalFields; i++) {
+      BoardWidth[0][i] = cellWidth;
+      BoardHeight[0][i] = cellHeight;
+      BoardXPos[0][i] = left;
+      BoardYPos[0][i] = i * cellHeight + top;
     }
 
-    for (var i = 0; i < _nrPlayers; i++) {
-      for (var j = 0; j < _totalFields; j++) {
-        _boardXPos[i + 1][j] = _boardXPos[i][j] + _boardWidth[i][j];
-        _boardYPos[i + 1][j] = _boardYPos[0][j];
-        _boardHeight[i + 1][j] = _boardHeight[0][j];
-        if (i == _playerToMove) {
-          _boardWidth[i + 1][j] = _boardWidth[0][j] / 2;
+    for (var i = 0; i < NrPlayers; i++) {
+      for (var j = 0; j < TotalFields; j++) {
+        BoardXPos[i + 1][j] = BoardXPos[i][j] + BoardWidth[i][j];
+        BoardYPos[i + 1][j] = BoardYPos[0][j];
+        BoardHeight[i + 1][j] = BoardHeight[0][j];
+        if (i == PlayerToMove) {
+          BoardWidth[i + 1][j] = BoardWidth[0][j] / 2;
         } else {
-          _boardWidth[i + 1][j] = _boardWidth[0][j] / 3;
+          BoardWidth[i + 1][j] = BoardWidth[0][j] / 3;
         }
       }
     }
 
-    for (var i = 0; i < _nrPlayers; i++) {
-      for (var j = 0; j < _totalFields; j++) {
+    for (var i = 0; i < NrPlayers; i++) {
+      for (var j = 0; j < TotalFields; j++) {
         // enlarge dimension of cell in focus
-        if (_focusStatus[i][j] == 1) {
-          _boardXPos[i + 1][j] -= _boardWidth[0][j] / 4;
-          _boardWidth[i + 1][j] *= 2;
-          _boardYPos[i + 1][j] -= _boardHeight[0][j] / 2;
-          _boardHeight[i + 1][j] *= 2;
+        if (FocusStatus[i][j] == 1) {
+          BoardXPos[i + 1][j] -= BoardWidth[0][j] / 4;
+          BoardWidth[i + 1][j] *= 2;
+          BoardYPos[i + 1][j] -= BoardHeight[0][j] / 2;
+          BoardHeight[i + 1][j] *= 2;
         }
       }
     }
 
     List<Widget> listings = <Widget>[];
 
-    for (var i = 0; i < _totalFields; i++) {
+    for (var i = 0; i < TotalFields; i++) {
       listings.add(
         AnimatedBuilder(
-            animation: animationBoardEffect._cellAnimationControllers[0][i],
+            animation: animationBoardEffect.CellAnimationControllers[0][i],
             builder: (BuildContext context, Widget? widget) {
               return Positioned(
                   //key: _cellKeys[0][i],
-                  left: _boardXPos[0][i] + _boardXAnimationPos[0][i],
-                  top: _boardYPos[0][i] + _boardYAnimationPos[0][i],
+                  left: BoardXPos[0][i] + BoardXAnimationPos[0][i],
+                  top: BoardYPos[0][i] + BoardYAnimationPos[0][i],
                   child: Container(
-                    width: _boardWidth[0][i],
-                    height: _boardHeight[0][i],
+                    width: BoardWidth[0][i],
+                    height: BoardHeight[0][i],
                     decoration: BoxDecoration(
                       border: Border.all(
                         color: Colors.grey,
                         width: 1.0,
                       ),
-                      color: _colors[0][i],
+                      color: AppColors[0][i],
                     ),
                     child: FittedBox(
                       fit: BoxFit.contain,
                       child: Text(
-                        _text[0][i],
+                        AppText[0][i],
                         style: TextStyle(
                           fontWeight: FontWeight.bold,
                           //color: Colors.blue[800],
@@ -114,52 +113,51 @@ extension WidgetSetupGameBoard on Application {
     // add listener object to get drag positions
     // Important it comes after the part over which it should trigger
     listings.add(GestureDetector(
-        key: _listenerKey,
+        key: ListenerKey,
         onVerticalDragUpdate: (d) {
           MainOnDrag(d.globalPosition.dx, d.globalPosition.dy);
           globalSetState();
         },
-        child: Container(
+        child: SizedBox(
           width: width,
           height: height,
-          child: Text(""),
         )));
 
     Widget? focusWidget;
     Widget tmpWidget;
-    for (var i = 0; i < _nrPlayers; i++) {
-      for (var j = 0; j < _totalFields; j++) {
+    for (var i = 0; i < NrPlayers; i++) {
+      for (var j = 0; j < TotalFields; j++) {
         tmpWidget = new AnimatedBuilder(
-            animation: animationBoardEffect._cellAnimationControllers[i][j],
+            animation: animationBoardEffect.CellAnimationControllers[i][j],
             builder: (BuildContext context, Widget? widget) {
               return Positioned(
                 //key: _cellKeys[i + 1][j],
-                left: _boardXPos[i + 1][j] + _boardXAnimationPos[i + 1][j],
-                top: _boardYPos[i + 1][j] + _boardYAnimationPos[i + 1][j],
+                left: BoardXPos[i + 1][j] + BoardXAnimationPos[i + 1][j],
+                top: BoardYPos[i + 1][j] + BoardYAnimationPos[i + 1][j],
                 child: GestureDetector(
                     onTap: () {
                       CellClick(i, j);
                       globalSetState();
                     },
                     child: Container(
-                        width: _boardWidth[i + 1][j],
-                        height: _boardHeight[i + 1][j],
+                        width: BoardWidth[i + 1][j],
+                        height: BoardHeight[i + 1][j],
                         decoration: BoxDecoration(
                           border: Border.all(
                             color: Colors.blue,
                           ),
                           borderRadius: BorderRadius.circular(10.0),
-                          color: _colors[i + 1][j],
+                          color: AppColors[i + 1][j],
                         ),
                         child: FittedBox(
                           fit: BoxFit.contain,
-                          child: Text(_text[i + 1][j],
+                          child: Text(AppText[i + 1][j],
                               textAlign: TextAlign.center,
                               style: TextStyle(fontWeight: FontWeight.bold)),
                         ))),
               );
             });
-        if (_focusStatus[i][j] == 1) {
+        if (FocusStatus[i][j] == 1) {
           focusWidget = tmpWidget;
         } else {
           listings.add(tmpWidget);

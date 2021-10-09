@@ -1,6 +1,6 @@
 part of '../main.dart';
 
-class Settings {
+class InputItems {
   Widget widgetImage(double width, double height, String image) {
     return Padding(
       padding: const EdgeInsets.only(top: 10.0),
@@ -179,7 +179,7 @@ class Settings {
   }
 
   Widget widgetWrapCCOverlay(BuildContext context, Function state) {
-    if (application._dices._unityColorChangeOverlay[0]) {
+    if (application.GameDices.UnityColorChangeOverlay[0]) {
       return Positioned(
           left: 0,
           top: 380,

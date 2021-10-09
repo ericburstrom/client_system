@@ -5,86 +5,86 @@ class GameSelect extends LanguagesGameSelect {
     LanguagesSetup();
   }
 
-  int nrTabs = 2;
-  List<String> gameType = [application._gameType];
-  List<String> nrPlayers = [application._nrPlayers.toString()];
+  int NrTabs = 2;
+  List<String> GameType = [application.GameType];
+  List<String> NrPlayers = [application.NrPlayers.toString()];
 
   List<Widget> widgetColorChangeOverlay(BuildContext context, Function state) {
     return <Widget>[
       settings.widgetCheckbox(
           state,
-          application._dices.SendTransparencyChangedToUnity,
-          GetText(_transparency),
-          application._dices._unityTransparent),
+          application.GameDices.SendTransparencyChangedToUnity,
+          GetText(Transparency),
+          application.GameDices.UnityTransparent),
       settings.widgetCheckbox(
           state,
-          application._dices.SendLightMotionChangedToUnity,
-          GetText(_lightMotion),
-          application._dices._unityLightMotion),
+          application.GameDices.SendLightMotionChangedToUnity,
+          GetText(LightMotion),
+          application.GameDices.UnityLightMotion),
       settings.widgetSlider(
           context,
           state,
-          application._dices.SendColorsToUnity,
-          GetText(_red),
-          application._dices._unityColors,
+          application.GameDices.SendColorsToUnity,
+          GetText(Red),
+          application.GameDices.UnityColors,
           0),
       settings.widgetSlider(
           context,
           state,
-          application._dices.SendColorsToUnity,
-          GetText(_green),
-          application._dices._unityColors,
+          application.GameDices.SendColorsToUnity,
+          GetText(Green),
+          application.GameDices.UnityColors,
           1),
       settings.widgetSlider(
           context,
           state,
-          application._dices.SendColorsToUnity,
-          GetText(_blue),
-          application._dices._unityColors,
+          application.GameDices.SendColorsToUnity,
+          GetText(Blue),
+          application.GameDices.UnityColors,
           2),
       settings.widgetSlider(
           context,
           state,
-          application._dices.SendColorsToUnity,
-          GetText(_transparency),
-          application._dices._unityColors,
+          application.GameDices.SendColorsToUnity,
+          GetText(Transparency),
+          application.GameDices.UnityColors,
           3)
     ];
   }
 
   void onStartGameButton(BuildContext context) {
-    pages.NavigateToGameRequestPageR(context);
+    //pages.NavigateToGameRequestPageR(context);
 
     //net.SendRequestGame(gameType[0], int.parse(nrPlayers[0]));
 
-    // application.Setup(gameType[0], int.parse(nrPlayers[0]));
-    // if (_gameStarted) {
-    //   Navigator.pop(context);
-    // } else {
-    //   _gameStarted = true;
-    //   net.SendRequestGame(gameType[0], int.parse(nrPlayers[0]));
-    //   pages.NavigateToMainAppHandlerPageR(context);
-    // }
+    application.Setup(GameType[0], int.parse(NrPlayers[0]));
+    if (GameStarted) {
+      Navigator.pop(context);
+    } else {
+      GameStarted = true;
+      net.SendRequestGame(GameType[0], int.parse(NrPlayers[0]));
+      pages.NavigateToMainAppHandlerPageR(context);
+    }
   }
 
   Widget widgetScaffoldGameSelect(BuildContext context, Function state) {
     return DefaultTabController(
-        length: nrTabs,
+        length: NrTabs,
         child: Scaffold(
             appBar: AppBar(
-              title: Text(GetText(_settings)),
+              title: Text(GetText(Settings)),
               backgroundColor: Colors.redAccent,
               bottom: TabBar(
-                controller: _settingsTabController,
+                controller: SettingsTabController,
                 isScrollable: false,
                 tabs: [
-                  Tab(text: GetText(_game)),
-                  Tab(text: GetText(_general)),
+                  Tab(text: GetText(Game)),
+                  Tab(text: GetText(General)),
                 ],
               ),
             ),
             body: TabBarView(
-              controller: _settingsTabController,
+              controller: SettingsTabController,
               children: [
                 Scrollbar(
                   child: ListView(
@@ -92,27 +92,30 @@ class GameSelect extends LanguagesGameSelect {
                       settings.widgetStringRadioButton(
                           state,
                           ['Mini', 'Ordinary', 'Maxi'],
-                          gameType,
+                          GameType,
                           [
-                            GetText(_gameTypeMini),
-                            GetText(_gameTypeOrdinary),
-                            GetText(_gameTypeMaxi)
+                            GetText(GameTypeMini),
+                            GetText(GameTypeOrdinary),
+                            GetText(GameTypeMaxi)
                           ]),
                       settings.widgetStringRadioButton(
                           state,
                           ['1', '2', '3', '4'],
-                          nrPlayers,
+                          NrPlayers,
                           ['1', '2', '3', '4']),
-                      settings.widgetCheckbox(state, () => {},
-                          GetText(_choseUnity), application._dices._unityDices),
                       settings.widgetCheckbox(
                           state,
                           () => {},
-                          GetText(_colorChangeOverlay),
-                          application._dices._unityColorChangeOverlay),
+                          GetText(ChoseUnity),
+                          application.GameDices.UnityDices),
+                      settings.widgetCheckbox(
+                          state,
+                          () => {},
+                          GetText(ColorChangeOverlay),
+                          application.GameDices.UnityColorChangeOverlay),
                       settings.widgetSizedBox(15),
                       settings.widgetButton(
-                          context, onStartGameButton, GetText(_startGame)),
+                          context, onStartGameButton, GetText(StartGame)),
                     ],
                   ),
                 ),
@@ -121,17 +124,17 @@ class GameSelect extends LanguagesGameSelect {
                         padding: EdgeInsets.all(10.0),
                         child: ListView(
                             children: [
-                                  settings.widgetParagraph(GetText(_appearance))
+                                  settings.widgetParagraph(GetText(Appearance))
                                 ] +
                                 widgetColorChangeOverlay(context, state) +
                                 [
                                   settings.widgetSizedBox(15),
-                                  settings.widgetParagraph(GetText(_misc)),
+                                  settings.widgetParagraph(GetText(Misc)),
                                   settings.widgetDropDownList(
                                       state,
-                                      ' ' + GetText(_choseLanguage),
-                                      Languages._languages,
-                                      Languages._chosenLanguage),
+                                      ' ' + GetText(ChoseLanguage),
+                                      Languages.DifferentLanguages,
+                                      Languages.ChosenLanguage),
                                 ])))
               ],
             )));

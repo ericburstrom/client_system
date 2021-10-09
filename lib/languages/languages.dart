@@ -5,10 +5,10 @@ class Languages {
     LanguagesSetup();
   }
 
-  static List<String> _chosenLanguage = ['Swedish'];
-  static String _standardLanguage = 'English';
+  static List<String> ChosenLanguage = ['Swedish'];
+  static String StandardLanguage = 'English';
 
-  static var _languages = ['English', 'Swedish'];
+  static var DifferentLanguages = ['English', 'Swedish'];
 
   void LanguagesSetup() {}
 
@@ -19,11 +19,11 @@ class Languages {
   }
 
   String GetText(var textVariable) {
-    var text = textVariable[_chosenLanguage[0]];
+    var text = textVariable[ChosenLanguage[0]];
     if (text != null) {
       return text;
     } else {
-      return textVariable[_standardLanguage]!;
+      return textVariable[StandardLanguage]!;
     }
   }
 }

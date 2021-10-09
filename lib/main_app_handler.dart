@@ -1,13 +1,13 @@
 part of './main.dart';
 
-String localhost = 'http://192.168.0.168:3000';
-String localhostIO = 'http://192.168.0.168:3001';
-bool _gameStarted = false;
-bool platformWeb = false;
-bool reloadHighscore = true; // only used ones at loadup
+var localhost = 'http://192.168.0.168:3000';
+var localhostIO = 'http://192.168.0.168:3001';
+var GameStarted = false;
+var platformWeb = false;
+var reloadHighscore = true; // only used ones at loadup
 var userName = 'Yatzy';
+var emptyContainerKey = GlobalKey();
 late Function globalSetState;
-GlobalKey emptyContainerKey = new GlobalKey();
 List<Widget> stackedWidgets = [];
 late double screenWidth;
 late double screenHeight;
@@ -16,24 +16,23 @@ late double screenHeight;
 // android/app/Src/main/AndroidManifest.xml
 
 startAnimations(BuildContext context) {
-  animationsScroll._animationController.repeat(reverse: true);
+  animationsScroll.AnimController.repeat(reverse: true);
 }
 
-AnimationsRollDices animationsRollDices = new AnimationsRollDices();
-AnimationsBoardEffect animationBoardEffect = new AnimationsBoardEffect();
-AnimationsScroll animationsScroll = new AnimationsScroll(emptyContainerKey);
-AnimationsHighscore animationsHighscore = new AnimationsHighscore();
+AnimationsRollDices animationsRollDices = AnimationsRollDices();
+AnimationsBoardEffect animationBoardEffect = AnimationsBoardEffect();
+AnimationsScroll animationsScroll = AnimationsScroll(emptyContainerKey);
+AnimationsHighscore animationsHighscore = AnimationsHighscore();
 
-FileHandler fileHandler = new FileHandler();
-Net net = new Net();
-Highscore highscore = new Highscore();
-Pages pages = new Pages();
-Application application = new Application();
-Settings settings = new Settings();
-Login login = new Login();
-GameSelect gameSelect = new GameSelect();
-
-GameRequest gameRequest = new GameRequest();
+FileHandler fileHandler = FileHandler();
+Net net = Net();
+Highscore highscore = Highscore();
+Pages pages = Pages();
+Application application = Application();
+InputItems settings = InputItems();
+Authenticate authenticate = Authenticate();
+GameSelect gameSelect = GameSelect();
+GameRequest gameRequest = GameRequest();
 
 class MainAppHandler extends StatefulWidget {
   @override
@@ -91,7 +90,7 @@ class _MainAppHandlerState extends State<MainAppHandler>
                     screenHeight,
                     highscore.widgetHighscore,
                     application.widgetSetupGameBoard,
-                    application._dices.widgetDices,
+                    application.GameDices.widgetDices,
                     emptyContainer) +
                 [settings.widgetWrapCCOverlay(context, state)],
           ));
@@ -118,11 +117,10 @@ class _MainAppHandlerState extends State<MainAppHandler>
                     screenWidth,
                     screenHeight,
                     application.widgetSetupGameBoard,
-                    application._dices.widgetDices,
+                    application.GameDices.widgetDices,
                     highscore.widgetHighscore,
                     emptyContainer),
           ));
     }
-    ;
   }
 }

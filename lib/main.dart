@@ -69,9 +69,9 @@ part './pages/page_game_request.dart';
 
 part './pages/page_game_select.dart';
 
-part './pages/page_login.dart';
+part './pages/page_authenticate.dart';
 
-part './pages/widgets/login.dart';
+part './pages/widgets/authenticate.dart';
 
 part './pages/widgets/game_request.dart';
 
@@ -102,14 +102,14 @@ class MyHomePage extends StatefulWidget {
 
 Future attemptLogin(BuildContext context) async {
   try {
-    var userData = await fileHandler.ReadFile(fileHandler._settings);
+    var userData = await fileHandler.ReadFile(fileHandler.FileSettings);
     print(userData);
     userName = userData['username'];
     try {
       var serverResponse = await net.mainLogin(userName, userData['password']);
       if (serverResponse.statusCode == 200) {
         print(serverResponse.body);
-        login.jwt = serverResponse.body;
+        authenticate.Jwt = serverResponse.body;
         print('User is logged in!');
       } else {
         print('user not logged in');
@@ -120,9 +120,9 @@ Future attemptLogin(BuildContext context) async {
   } catch (e) {}
 
   Timer.run(() {
-    if (login.jwt == null && !platformWeb) {
+    if (authenticate.Jwt == null && !platformWeb) {
       pages.NavigateToLoginPageR(context);
-    } else if (!_gameStarted) {
+    } else if (!GameStarted) {
       pages.NavigateToGameSelectPageR(context);
     } else {
       pages.NavigateToMainAppHandlerPageR(context);

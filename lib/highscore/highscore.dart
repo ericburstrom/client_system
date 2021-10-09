@@ -7,8 +7,8 @@ class Highscore extends LanguagesHighscore {
   }
 
   ///// Internal variables
-  var _highscoreText = List.filled(10, "Yatzy", growable: true);
-  var _highscoreValue = List.filled(10, 200, growable: true);
+  var HighscoreText = List.filled(10, "Yatzy", growable: true);
+  var HighscoreValue = List.filled(10, 200, growable: true);
 
   Future LoadAndUpdateHighscoresFromServer() async {
     //List<dynamic> serverResponse;
@@ -20,7 +20,7 @@ class Highscore extends LanguagesHighscore {
         SetHighscores(serverBody);
         globalSetState();
         print('Highscores loaded from server');
-        await fileHandler.saveFile(serverBody, fileHandler._highscores);
+        await fileHandler.SaveFile(serverBody, fileHandler.FileHighscores);
       } else {
         print('Error getting highscores1');
       }
@@ -31,7 +31,7 @@ class Highscore extends LanguagesHighscore {
 
   Future LoadHighscoresFromFile() async {
     try {
-      var highscores = await fileHandler.ReadFile(fileHandler._highscores);
+      var highscores = await fileHandler.ReadFile(fileHandler.FileHighscores);
       print("highscores loaded from file");
       SetHighscores(highscores);
     } catch (e) {
@@ -48,7 +48,7 @@ class Highscore extends LanguagesHighscore {
         var serverBody = jsonDecode(serverResponse.body);
         SetHighscores(serverBody);
         globalSetState();
-        fileHandler.saveFile(serverBody, fileHandler._highscores);
+        fileHandler.SaveFile(serverBody, fileHandler.FileHighscores);
       } else {
         print('Error getting highscores');
       }
@@ -59,8 +59,8 @@ class Highscore extends LanguagesHighscore {
 
   void SetHighscores(List<dynamic> highscores) {
     for (var i = 0; i < highscores.length; i++) {
-      _highscoreText[i] = highscores[i]['name'];
-      _highscoreValue[i] = highscores[i]['score'];
+      HighscoreText[i] = highscores[i]['name'];
+      HighscoreValue[i] = highscores[i]['score'];
     }
   }
 }

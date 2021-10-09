@@ -28,7 +28,7 @@ environment:
 # versions available, run `flutter pub outdated`.
 dependencies:
   animated_text_kit: ^4.2.1
-  flutter_unity_widget: ^4.2.0
+  flutter_unity_widget: ^4.2.2
   http: ^0.13.3
   marquee: ^2.2.0
   path_provider: ^2.0.1

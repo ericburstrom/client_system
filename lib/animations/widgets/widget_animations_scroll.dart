@@ -3,19 +3,19 @@ part of '../../main.dart';
 extension WidgetAnimationsScroll on AnimationsScroll {
   Widget widgetAnimationsScroll() {
     return AnimatedBuilder(
-        animation: _animationController,
+        animation: AnimController,
         builder: (BuildContext context, Widget? widget) {
-          List<String> text = GetText(_scrollText).split('.');
+          List<String> text = GetText(ScrollText).split('.');
           List<AnimatedText> animatedTexts = [];
           text.forEach((element) {
             animatedTexts.add(FadeAnimatedText(element));
           });
-          return new Positioned(
-              left: keyXPos,
-              top: keyYPos,
+          return Positioned(
+              left: KeyXPos,
+              top: KeyYPos,
               child: Container(
-                  width: scrollWidth,
-                  height: scrollHeight,
+                  width: SizeAnimation,
+                  height: ScrollHeight,
                   child: FittedBox(
                     child: DefaultTextStyle(
                         style: const TextStyle(
