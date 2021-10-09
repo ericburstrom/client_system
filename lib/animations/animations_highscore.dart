@@ -5,7 +5,7 @@ class AnimationsHighscore {
     Setup();
   }
 
-  AnimationController AnimController = AnimationController(
+  var AnimController = AnimationController(
       vsync: _MainAppHandlerState(), duration: Duration(milliseconds: 3000));
   late Animation<double> LoopAnimation;
 

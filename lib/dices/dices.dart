@@ -33,12 +33,12 @@ class UnityMessage {
         'bool': Flag,
       };
 
-  String Action = "";
-  String Property = "";
-  List<double> UnityColors = [0.6, 0.7, 0.8, 0.1];
-  bool Flag = true;
-  int NrDices = 5;
-  int NrThrows = 3;
+  var Action = "";
+  var Property = "";
+  var UnityColors = [0.6, 0.7, 0.8, 0.1];
+  var Flag = true;
+  var NrDices = 5;
+  var NrThrows = 3;
 }
 
 class Dices extends LanguagesDices {
@@ -51,8 +51,8 @@ class Dices extends LanguagesDices {
   var HoldDiceOpacity;
 
   var RandomNumberGenerator = Random();
-  int NrRolls = 0;
-  int NrDices = 5;
+  var NrRolls = 0;
+  var NrDices = 5;
   var DiceValue = List.filled(5, 0);
   var DiceRef = [
     'assets/images/empty.jpg',
@@ -73,13 +73,13 @@ class Dices extends LanguagesDices {
 
   late Function UpdateDiceValues;
   late UnityWidgetController UWController;
-  bool UnityCreated = false;
-  List<double> UnityColors = [0.6, 0.7, 0.8, 0.1];
+  var UnityCreated = false;
+  var UnityColors = [0.6, 0.7, 0.8, 0.1];
 
-  List<bool> UnityDices = [false];
-  List<bool> UnityTransparent = [true];
-  List<bool> UnityLightMotion = [true];
-  List<bool> UnityColorChangeOverlay = [false];
+  var UnityDices = [false];
+  var UnityTransparent = [true];
+  var UnityLightMotion = [true];
+  var UnityColorChangeOverlay = [false];
 
   ClearDices() {
     DiceValue = List.filled(NrDices, 0);
@@ -157,7 +157,7 @@ class Dices extends LanguagesDices {
   void SendResetToUnity() {
     UnityMessage msg = UnityMessage.reset(NrDices, 3);
 
-    String json = jsonEncode(msg.toJson());
+    var json = jsonEncode(msg.toJson());
     print(json);
     UWController.postMessage(
       'GameManager',
@@ -167,9 +167,9 @@ class Dices extends LanguagesDices {
   }
 
   void SendColorsToUnity() {
-    UnityMessage msg = UnityMessage.updateColors(UnityColors);
+    var msg = UnityMessage.updateColors(UnityColors);
 
-    String json = jsonEncode(msg.toJson());
+    var json = jsonEncode(msg.toJson());
     print(json);
     UWController.postMessage(
       'GameManager',
@@ -179,10 +179,9 @@ class Dices extends LanguagesDices {
   }
 
   void SendTransparencyChangedToUnity() {
-    UnityMessage msg =
-        UnityMessage.changeBool('Transparency', UnityTransparent[0]);
+    var msg = UnityMessage.changeBool('Transparency', UnityTransparent[0]);
 
-    String json = jsonEncode(msg.toJson());
+    var json = jsonEncode(msg.toJson());
     print(json);
     UWController.postMessage(
       'GameManager',
@@ -192,10 +191,9 @@ class Dices extends LanguagesDices {
   }
 
   void SendLightMotionChangedToUnity() {
-    UnityMessage msg =
-        UnityMessage.changeBool('LightMotion', UnityLightMotion[0]);
+    var msg = UnityMessage.changeBool('LightMotion', UnityLightMotion[0]);
 
-    String json = jsonEncode(msg.toJson());
+    var json = jsonEncode(msg.toJson());
     print(json);
     UWController.postMessage(
       'GameManager',
@@ -206,7 +204,7 @@ class Dices extends LanguagesDices {
 
   // Communication from Unity to Flutter
   void onUnityMessage(message) {
-    String msg = message.toString();
+    var msg = message.toString();
     print('Received message from unity: ${msg}');
     try {
       var _json = jsonDecode(msg);

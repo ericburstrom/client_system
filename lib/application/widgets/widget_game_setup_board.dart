@@ -1,13 +1,13 @@
 part of '../../main.dart';
 
-extension WidgetSetupGameBoard on Application {
+extension ApplicationWidgets on Application {
   MainOnDrag(mainX, mainY) {
     if (application.PlayerToMove != application.MyPlayerId) {
       return;
     }
     //print(ListenerKey.currentContext.size);
-    RenderBox box = ListenerKey.currentContext!.findRenderObject() as RenderBox;
-    Offset position = box.localToGlobal(Offset.zero); //this is global position
+    var box = ListenerKey.currentContext!.findRenderObject() as RenderBox;
+    var position = box.localToGlobal(Offset.zero); //this is global position
     mainY -= position.dy;
     var cell;
     for (var i = 0; i < TotalFields; i++) {
@@ -27,11 +27,11 @@ extension WidgetSetupGameBoard on Application {
     }
   }
 
-  Widget widgetSetupGameBoard(double width, double height) {
-    double cellWidth = min(120, width / ((NrPlayers) / 3 + 1.5));
-    double left = (width - cellWidth * ((NrPlayers - 1) / 3 + 1.5)) / 2;
-    double cellHeight = min(30, height / (TotalFields + 1));
-    double top = (height - cellHeight * TotalFields) / 2;
+  Widget WidgetSetupGameBoard(double width, double height) {
+    var cellWidth = min(120.0, width / ((NrPlayers) / 3 + 1.5));
+    var left = (width - cellWidth * ((NrPlayers - 1) / 3 + 1.5)) / 2;
+    var cellHeight = min(30.0, height / (TotalFields + 1));
+    var top = (height - cellHeight * TotalFields) / 2;
 
     // Setup board cell positions
     for (var i = 0; i < TotalFields; i++) {
@@ -66,7 +66,7 @@ extension WidgetSetupGameBoard on Application {
       }
     }
 
-    List<Widget> listings = <Widget>[];
+    var listings = <Widget>[];
 
     for (var i = 0; i < TotalFields; i++) {
       listings.add(

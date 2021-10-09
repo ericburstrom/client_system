@@ -24,6 +24,6 @@ class _PageLoginState extends State<PageLogin> with TickerProviderStateMixin {
 
   @override
   Widget build(BuildContext context) {
-    return authenticate.widgetScaffoldLogin(context);
+    return authenticate.WidgetScaffoldLogin(context);
   }
 }

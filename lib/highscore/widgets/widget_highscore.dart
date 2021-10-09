@@ -1,11 +1,11 @@
 part of '../../main.dart';
 
-extension WidgetHighscore on Highscore {
-  Widget widgetHighscore(double width, double height) {
-    double containerWidth = width;
-    double heightCaption = height / 6.4;
-    double containerHeight = height - heightCaption;
-    double left = 0, top = 0;
+extension HighscoreWidget on Highscore {
+  Widget WidgetHighscore(double width, double height) {
+    var containerWidth = width;
+    var heightCaption = height / 6.4;
+    var containerHeight = height - heightCaption;
+    var left = 0.0, top = 0.0;
 
     List<Widget> listings = <Widget>[];
 

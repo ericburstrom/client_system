@@ -1,9 +1,11 @@
 part of '../../main.dart';
 
 class LanguagesGameRequest extends Languages {
-  var GameRequest = {'English': 'Game Request'};
+  var _gameRequest = {'English': 'Game Request'};
+
+  String get GameRequest => GetText(_gameRequest);
 
   void LanguagesSetup() {
-    GameRequest['Swedish'] = 'Spel Inbjudan';
+    _gameRequest['Swedish'] = 'Spel Inbjudan';
   }
 }

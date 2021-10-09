@@ -6,11 +6,11 @@ class AnimationsScroll extends LanguagesAnimationsScroll {
     Setup();
   }
 
-  double SizeAnimation = 350;
-  double ScrollHeight = 200;
-  double KeyXPos = 0, KeyYPos = 0;
-  int CounterR = 0, CounterG = 0, CounterB = 0;
-  TextStyle ScrollTextStyle = TextStyle(
+  var SizeAnimation = 350.0;
+  var ScrollHeight = 200.0;
+  var KeyXPos = 0.0, KeyYPos = 0.0;
+  var CounterR = 0, CounterG = 0, CounterB = 0;
+  var ScrollTextStyle = TextStyle(
     color: Color.fromRGBO(0, 0, 0, 0),
     fontWeight: FontWeight.bold,
     fontSize: 40.0,
@@ -18,7 +18,7 @@ class AnimationsScroll extends LanguagesAnimationsScroll {
     wordSpacing: 3,
   );
 
-  AnimationController AnimController = AnimationController(
+  var AnimController = AnimationController(
       vsync: _MainAppHandlerState(), duration: Duration(seconds: 1));
 
   late Animation<double> PositionAnimation;
@@ -44,8 +44,8 @@ class AnimationsScroll extends LanguagesAnimationsScroll {
           box.localToGlobal(Offset.zero); //this is global position
       KeyXPos = position.dx;
       KeyYPos = position.dy;
-      SizeAnimation = emptyContainerKey.currentContext!.size!.width;
-      ScrollHeight = emptyContainerKey.currentContext!.size!.height;
+      SizeAnimation = EmptyContainerKey.currentContext!.size!.width;
+      ScrollHeight = EmptyContainerKey.currentContext!.size!.height;
       CounterR = CounterR + 3;
       CounterG = CounterG + 2;
       CounterB = CounterB + 1;
@@ -60,6 +60,6 @@ class AnimationsScroll extends LanguagesAnimationsScroll {
 
       KeyYPos += PositionAnimation.value * 30;
     });
-    stackedWidgets.add(widgetAnimationsScroll());
+    stackedWidgets.add(WidgetAnimationsScroll());
   }
 }

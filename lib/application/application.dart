@@ -26,19 +26,19 @@ class Application extends LanguagesApplication {
       BoardXAnimationPos,
       BoardYAnimationPos;
 
-  int NrPlayers = 2;
-  int BonusSum = 63;
-  int BonusAmount = 50;
+  var NrPlayers = 2;
+  var BonusSum = 63;
+  var BonusAmount = 50;
 
   var CellValue;
 
-  int MyPlayerId = 0; // -1
-  int PlayerToMove = 0;
+  var MyPlayerId = 0; // -1
+  var PlayerToMove = 0;
   var FixedCell;
   var AppText;
   var AppColors;
   var FocusStatus;
-  GlobalKey ListenerKey = GlobalKey();
+  var ListenerKey = GlobalKey();
 
   /*
   var _cellKeys = [];
@@ -79,23 +79,23 @@ class Application extends LanguagesApplication {
       BonusAmount = 25;
       AppText = [
         [
-          GetText(Ones),
-          GetText(Twos),
-          GetText(Threes),
-          GetText(Fours),
-          GetText(Fives),
-          GetText(Sixes),
-          GetText(Sum),
-          GetText(Bonus) + ' (' + BonusAmount.toString() + ')',
-          GetText(Pair),
-          GetText(TwoPairs),
-          GetText(ThreeOfKind),
-          GetText(SmallStraight),
-          GetText(MiddleStraight),
-          GetText(LargeStraight),
-          GetText(Chance),
-          GetText(Yatzy),
-          GetText(TotalSum)
+          Ones,
+          Twos,
+          Threes,
+          Fours,
+          Fives,
+          Sixes,
+          Sum,
+          Bonus + ' (' + BonusAmount.toString() + ')',
+          Pair,
+          TwoPairs,
+          ThreeOfKind,
+          SmallStraight,
+          MiddleStraight,
+          LargeStraight,
+          Chance,
+          Yatzy,
+          TotalSum
         ]
       ];
       YatzyFunc =
@@ -120,29 +120,29 @@ class Application extends LanguagesApplication {
       BonusAmount = 100;
       AppText = [
         [
-          GetText(Ones),
-          GetText(Twos),
-          GetText(Threes),
-          GetText(Fours),
-          GetText(Fives),
-          GetText(Sixes),
-          GetText(Sum),
-          GetText(Bonus) + ' (' + BonusAmount.toString() + ')',
-          GetText(Pair),
-          GetText(TwoPairs),
-          GetText(ThreePairs),
-          GetText(ThreeOfKind),
-          GetText(FourOfKind),
-          GetText(FiveOfKind),
-          GetText(SmallStraight),
-          GetText(LargeStraight),
-          GetText(FullStraight),
-          GetText(House32),
-          GetText(House33),
-          GetText(House24),
-          GetText(Chance),
-          GetText(MaxiYatzy),
-          GetText(TotalSum)
+          Ones,
+          Twos,
+          Threes,
+          Fours,
+          Fives,
+          Sixes,
+          Sum,
+          Bonus + ' (' + BonusAmount.toString() + ')',
+          Pair,
+          TwoPairs,
+          ThreePairs,
+          ThreeOfKind,
+          FourOfKind,
+          FiveOfKind,
+          SmallStraight,
+          LargeStraight,
+          FullStraight,
+          House32,
+          House33,
+          House24,
+          Chance,
+          MaxiYatzy,
+          TotalSum
         ]
       ];
       YatzyFunc =
@@ -173,24 +173,24 @@ class Application extends LanguagesApplication {
       BonusAmount = 50;
       AppText = [
         [
-          GetText(Ones),
-          GetText(Twos),
-          GetText(Threes),
-          GetText(Fours),
-          GetText(Fives),
-          GetText(Sixes),
-          GetText(Sum),
-          GetText(Bonus) + ' (' + BonusAmount.toString() + ')',
-          GetText(Pair),
-          GetText(TwoPairs),
-          GetText(ThreeOfKind),
-          GetText(FourOfKind),
-          GetText(House),
-          GetText(SmallStraight),
-          GetText(LargeStraight),
-          GetText(Chance),
-          GetText(Yatzy),
-          GetText(TotalSum)
+          Ones,
+          Twos,
+          Threes,
+          Fours,
+          Fives,
+          Sixes,
+          Sum,
+          Bonus + ' (' + BonusAmount.toString() + ')',
+          Pair,
+          TwoPairs,
+          ThreeOfKind,
+          FourOfKind,
+          House,
+          SmallStraight,
+          LargeStraight,
+          Chance,
+          Yatzy,
+          TotalSum
         ]
       ];
       YatzyFunc =
@@ -211,7 +211,7 @@ class Application extends LanguagesApplication {
               ];
     }
 
-    for (int i = 0; i < NrPlayers; i++) {
+    for (var i = 0; i < NrPlayers; i++) {
       AppText.add(List.filled(6, '') +
           List.filled(1, '0') +
           List.filled(1, (-BonusSum).toString()) +
@@ -225,7 +225,7 @@ class Application extends LanguagesApplication {
     BoardHeight = [List.filled(MaxTotalFields, 0.0)];
     BoardXAnimationPos = [List.filled(MaxTotalFields, 0.0)];
     BoardYAnimationPos = [List.filled(MaxTotalFields, 0.0)];
-    for (int i = 0; i < MaxNrPlayers; i++) {
+    for (var i = 0; i < MaxNrPlayers; i++) {
       BoardXPos.add(List.filled(MaxTotalFields, 0.0));
       BoardYPos.add(List.filled(MaxTotalFields, 0.0));
       BoardWidth.add(List.filled(MaxTotalFields, 0.0));
@@ -242,7 +242,7 @@ class Application extends LanguagesApplication {
           List.filled(TotalFields - 9, Colors.white.withOpacity(0.3)) +
           List.filled(1, Colors.blueAccent.withOpacity(0.8))
     ];
-    for (int i = 0; i < NrPlayers; i++) {
+    for (var i = 0; i < NrPlayers; i++) {
       FixedCell.add(List.filled(6, false) +
           [true, true] +
           List.filled(TotalFields - 9, false) +

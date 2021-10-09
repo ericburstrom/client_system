@@ -1,8 +1,8 @@
 part of '../main.dart';
 
 class FileHandler {
-  String FileSettings = "user_loginSettings.json";
-  String FileHighscores = "highscores.json";
+  var FileSettings = "user_loginSettings.json";
+  var FileHighscores = "highscores.json";
 
   Future<String> LocalPath() async {
     final directory = await getApplicationDocumentsDirectory();
@@ -21,7 +21,7 @@ class FileHandler {
     try {
       final file = await LocalFile(fileName);
       // Read the file
-      String contents = await file.readAsString();
+      var contents = await file.readAsString();
       _json = jsonDecode(contents);
       return _json;
     } catch (e) {
@@ -36,7 +36,7 @@ class FileHandler {
     //fileFileName = fileName;
     try {
       final file = await LocalFile(fileName);
-      String _jsonString = jsonEncode(_json);
+      var _jsonString = jsonEncode(_json);
       // Write the file
       return file.writeAsString(_jsonString);
     } catch (e) {

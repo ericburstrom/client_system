@@ -3,7 +3,7 @@ part of '../main.dart';
 extension GameFunctionsInternal on Application {
   ClearFocus() {
     FocusStatus = [];
-    for (int i = 0; i < NrPlayers; i++) {
+    for (var i = 0; i < NrPlayers; i++) {
       FocusStatus.add(List.filled(TotalFields, 0));
     }
   }
@@ -27,9 +27,9 @@ extension GameFunctionsInternal on Application {
     FixedCell[PlayerToMove][cell] = true;
     // Update Sums
     var sum = 0;
-    int totalSum = 0;
+    var totalSum = 0;
     var ts = 0;
-    for (int i = 0; i < 6; i++) {
+    for (var i = 0; i < 6; i++) {
       if (FixedCell[PlayerToMove][i]) {
         ts++;
         sum += CellValue[PlayerToMove][i] as int;
@@ -47,7 +47,7 @@ extension GameFunctionsInternal on Application {
         AppText[PlayerToMove + 1][7] = "0";
       }
     }
-    for (int i = 8; i <= TotalFields - 2; i++) {
+    for (var i = 8; i <= TotalFields - 2; i++) {
       if (FixedCell[PlayerToMove][i]) {
         totalSum += CellValue[PlayerToMove][i] as int;
       }
@@ -56,7 +56,7 @@ extension GameFunctionsInternal on Application {
     CellValue[PlayerToMove][TotalFields - 1] = totalSum;
 
     // New Rolls
-    for (int i = 0; i < TotalFields; i++) {
+    for (var i = 0; i < TotalFields; i++) {
       if (!FixedCell[PlayerToMove][i]) {
         AppText[PlayerToMove + 1][i] = "";
         CellValue[PlayerToMove][i] = -1;
@@ -67,20 +67,20 @@ extension GameFunctionsInternal on Application {
     PlayerToMove = (PlayerToMove + 1) % NrPlayers;
     if (!FixedCell[PlayerToMove].contains(false)) {
       // Game finished
-      for (int i = 0; i < NrPlayers; i++) {
+      for (var i = 0; i < NrPlayers; i++) {
         highscore.Update(userName, CellValue[i][TotalFields - 1]);
       }
     }
 
-    for (int i = 0; i < TotalFields; i++) {
+    for (var i = 0; i < TotalFields; i++) {
       if (FixedCell[PlayerToMove][i]) {
         AppColors[0][i] = Colors.white.withOpacity(0.7);
       } else {
         AppColors[0][i] = Colors.white.withOpacity(0.3);
       }
     }
-    for (int i = 0; i < NrPlayers; i++) {
-      for (int j = 0; j < TotalFields; j++) {
+    for (var i = 0; i < NrPlayers; i++) {
+      for (var j = 0; j < TotalFields; j++) {
         if (!FixedCell[i][j]) {
           if (i == PlayerToMove) {
             AppColors[i + 1][j] = Colors.greenAccent.withOpacity(0.3);

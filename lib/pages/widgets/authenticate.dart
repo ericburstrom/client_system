@@ -11,8 +11,8 @@ class Authenticate extends LanguagesLogin {
   final SignupTxtPassword = TextEditingController();
   final SignupTxtPassword2 = TextEditingController();
 
-  GlobalKey<FormState> SignupFormKey = GlobalKey<FormState>();
-  GlobalKey<FormState> LoginFormKey = GlobalKey<FormState>();
+  var SignupFormKey = GlobalKey<FormState>();
+  var LoginFormKey = GlobalKey<FormState>();
 
   var Jwt;
 
@@ -25,7 +25,7 @@ class Authenticate extends LanguagesLogin {
         userName = LoginTxtUserName.text;
         Jwt = serverResponse.body;
         print('User is logged in!');
-        Map<String, dynamic> _json = {
+        var _json = {
           'username': LoginTxtUserName.text,
           'password': LoginTxtPassword.text
         };
@@ -51,10 +51,7 @@ class Authenticate extends LanguagesLogin {
         userName = SignupTxtUserName.text;
 
         print('User is created!');
-        Map<String, dynamic> _json = {
-          'username': userName,
-          'password': SignupTxtPassword.text
-        };
+        var _json = {'username': userName, 'password': SignupTxtPassword.text};
         fileHandler.SaveFile(_json, fileHandler.FileSettings);
         try {
           var serverResponse =
@@ -80,11 +77,11 @@ class Authenticate extends LanguagesLogin {
 
   String ValidatePassword(String value) {
     if (value.isEmpty) {
-      return GetText(Required);
+      return Required;
     } else if (value.length < 6) {
-      return GetText(PasswordAtLeast) + 6.toString() + GetText(Characters);
+      return PasswordAtLeast + 6.toString() + Character;
     } else if (value.length > 15) {
-      return GetText(PasswordNotGreater) + 15.toString() + GetText(Characters);
+      return PasswordNotGreater + 15.toString() + Character;
     } else
       return "";
   }
@@ -115,7 +112,7 @@ class Authenticate extends LanguagesLogin {
     }
   }
 
-  Widget widgetScaffoldLogin(BuildContext context) {
+  Widget WidgetScaffoldLogin(BuildContext context) {
     return DefaultTabController(
         length: 2,
         child: Scaffold(
@@ -125,8 +122,8 @@ class Authenticate extends LanguagesLogin {
                 controller: _tabController,
                 isScrollable: false,
                 tabs: [
-                  Tab(text: GetText(Login)),
-                  Tab(text: GetText(Signup)),
+                  Tab(text: Login),
+                  Tab(text: Signup),
                 ],
               ),
             ),
@@ -137,19 +134,17 @@ class Authenticate extends LanguagesLogin {
                   key: LoginFormKey,
                   child: Column(
                     children: <Widget>[
-                      settings.widgetImage(
+                      settings.WidgetImage(
                           200, 150, 'assets/images/flutter_logo.png'),
-                      settings.widgetTextFormField(GetText(Email),
-                          GetText(EnterValidEmail), LoginTxtUserName),
-                      settings.widgetTextFormField(GetText(Password),
-                          GetText(EnterSecurePassword), LoginTxtPassword),
-                      settings.widgetTextLink(
-                          ForgotPasswordLinkPressed, GetText(ForgotPassword)),
-                      settings.widgetButton(
-                          context, LoginButtonPressed, GetText(Login)),
-                      settings.widgetSizedBox(100),
-                      settings.widgetTextLink(
-                          NewUserLinkPressed, GetText(NewUser)),
+                      settings.WidgetTextFormField(
+                          Email, EnterValidEmail, LoginTxtUserName),
+                      settings.WidgetTextFormField(
+                          Password, EnterSecurePassword, LoginTxtPassword),
+                      settings.WidgetTextLink(
+                          ForgotPasswordLinkPressed, ForgotPassword),
+                      settings.WidgetButton(context, LoginButtonPressed, Login),
+                      settings.WidgetSizedBox(100),
+                      settings.WidgetTextLink(NewUserLinkPressed, NewUser),
                     ],
                   ),
                 ),
@@ -160,15 +155,15 @@ class Authenticate extends LanguagesLogin {
                   key: SignupFormKey,
                   child: Column(
                     children: <Widget>[
-                      settings.widgetImage(
+                      settings.WidgetImage(
                           200, 150, 'assets/images/flutter_logo.png'),
-                      settings.widgetTextFormField(GetText(Email),
-                          GetText(EnterValidEmail), SignupTxtUserName),
-                      settings.widgetTextFormField(GetText(Password),
-                          GetText(EnterSecurePassword), SignupTxtPassword),
-                      settings.widgetSizedBox(20),
-                      settings.widgetButton(
-                          context, SignupButtonPressed, GetText(Signup)),
+                      settings.WidgetTextFormField(
+                          Email, EnterValidEmail, SignupTxtUserName),
+                      settings.WidgetTextFormField(
+                          Password, EnterSecurePassword, SignupTxtPassword),
+                      settings.WidgetSizedBox(20),
+                      settings.WidgetButton(
+                          context, SignupButtonPressed, Signup),
                     ],
                   ),
                 ),

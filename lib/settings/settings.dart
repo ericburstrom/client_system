@@ -1,7 +1,7 @@
 part of '../main.dart';
 
 class InputItems {
-  Widget widgetImage(double width, double height, String image) {
+  Widget WidgetImage(double width, double height, String image) {
     return Padding(
       padding: const EdgeInsets.only(top: 10.0),
       child: Center(
@@ -11,7 +11,7 @@ class InputItems {
     );
   }
 
-  Widget widgetTextFormField(
+  Widget WidgetTextFormField(
       String lableText, String hintText, TextEditingController controller) {
     return Padding(
       padding: EdgeInsets.only(left: 15.0, right: 15.0, top: 15, bottom: 0),
@@ -31,7 +31,7 @@ class InputItems {
     );
   }
 
-  Widget widgetTextLink(Function onPressed, String text) {
+  Widget WidgetTextLink(Function onPressed, String text) {
     return TextButton(
       onPressed: () {
         onPressed();
@@ -43,7 +43,7 @@ class InputItems {
     );
   }
 
-  Widget widgetButton(BuildContext context, Function onPressed, String text) {
+  Widget WidgetButton(BuildContext context, Function onPressed, String text) {
     return Container(
       height: 50,
       width: 200,
@@ -61,13 +61,13 @@ class InputItems {
     );
   }
 
-  Widget widgetSizedBox(double height) {
+  Widget WidgetSizedBox(double height) {
     return SizedBox(
       height: height,
     );
   }
 
-  Widget widgetStringRadioButton(Function state, List<String> values,
+  Widget WidgetStringRadioButton(Function state, List<String> values,
       List<String> radioValue, List<String> translations) {
     Widget radioButton(String name) {
       return Radio(
@@ -79,8 +79,8 @@ class InputItems {
           });
     }
 
-    List<Widget> radioWidgets = [];
-    for (int i = 0; i < values.length; i++) {
+    var radioWidgets = <Widget>[];
+    for (var i = 0; i < values.length; i++) {
       radioWidgets.add(radioButton(values[i]));
       radioWidgets.add(Text(translations[i]));
     }
@@ -99,7 +99,7 @@ class InputItems {
     return Colors.red;
   }
 
-  Widget widgetCheckbox(
+  Widget WidgetCheckbox(
       Function state, Function onChanged, String text, List<bool> toggles) {
     List<Widget> checkWidgets = [];
 
@@ -118,9 +118,9 @@ class InputItems {
     return Row(children: checkWidgets);
   }
 
-  Widget widgetSlider(BuildContext context, Function state, Function onChanged,
+  Widget WidgetSlider(BuildContext context, Function state, Function onChanged,
       String text, List<double> slider, int offset) {
-    List<Widget> sliderWidgets = [];
+    var sliderWidgets = <Widget>[];
 
     sliderWidgets.add(SliderTheme(
         data: SliderTheme.of(context).copyWith(
@@ -148,9 +148,10 @@ class InputItems {
     return Row(children: sliderWidgets);
   }
 
-  Widget widgetDropDownList(
+  Widget WidgetDropDownList(
       Function state, String text, List<String> items, List<String> choice) {
-    List<Widget> dropWidgets = [];
+    var dropWidgets = <Widget>[];
+
     dropWidgets.add(Padding(
         padding: EdgeInsets.all(4.0),
         child: DropdownButton<String>(
@@ -178,7 +179,7 @@ class InputItems {
     return Row(children: dropWidgets);
   }
 
-  Widget widgetWrapCCOverlay(BuildContext context, Function state) {
+  Widget WidgetWrapCCOverlay(BuildContext context, Function state) {
     if (application.GameDices.UnityColorChangeOverlay[0]) {
       return Positioned(
           left: 0,
@@ -193,8 +194,8 @@ class InputItems {
     }
   }
 
-  Widget widgetParagraph(String text) {
-    List<Widget> paragraphWidgets = [];
+  Widget WidgetParagraph(String text) {
+    var paragraphWidgets = <Widget>[];
     paragraphWidgets.add(Text(text,
         style: TextStyle(
             color: Colors.black, fontSize: 20, fontStyle: FontStyle.italic)));

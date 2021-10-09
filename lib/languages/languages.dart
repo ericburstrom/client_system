@@ -5,8 +5,8 @@ class Languages {
     LanguagesSetup();
   }
 
-  static List<String> ChosenLanguage = ['Swedish'];
-  static String StandardLanguage = 'English';
+  static var ChosenLanguage = ['Swedish'];
+  static var StandardLanguage = 'English';
 
   static var DifferentLanguages = ['English', 'Swedish'];
 

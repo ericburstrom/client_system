@@ -31,6 +31,6 @@ class _PageGameRequestState extends State<PageGameRequest>
 
   @override
   Widget build(BuildContext context) {
-    return gameRequest.widgetScaffoldGameRequest(context, state);
+    return gameRequest.WidgetScaffoldGameRequest(context, state);
   }
 }

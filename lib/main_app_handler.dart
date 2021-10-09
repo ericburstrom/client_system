@@ -6,7 +6,7 @@ var GameStarted = false;
 var platformWeb = false;
 var reloadHighscore = true; // only used ones at loadup
 var userName = 'Yatzy';
-var emptyContainerKey = GlobalKey();
+var EmptyContainerKey = GlobalKey();
 late Function globalSetState;
 List<Widget> stackedWidgets = [];
 late double screenWidth;
@@ -19,20 +19,20 @@ startAnimations(BuildContext context) {
   animationsScroll.AnimController.repeat(reverse: true);
 }
 
-AnimationsRollDices animationsRollDices = AnimationsRollDices();
-AnimationsBoardEffect animationBoardEffect = AnimationsBoardEffect();
-AnimationsScroll animationsScroll = AnimationsScroll(emptyContainerKey);
-AnimationsHighscore animationsHighscore = AnimationsHighscore();
+var animationsRollDices = AnimationsRollDices();
+var animationBoardEffect = AnimationsBoardEffect();
+var animationsScroll = AnimationsScroll(EmptyContainerKey);
+var animationsHighscore = AnimationsHighscore();
 
-FileHandler fileHandler = FileHandler();
-Net net = Net();
-Highscore highscore = Highscore();
-Pages pages = Pages();
-Application application = Application();
-InputItems settings = InputItems();
-Authenticate authenticate = Authenticate();
-GameSelect gameSelect = GameSelect();
-GameRequest gameRequest = GameRequest();
+var fileHandler = FileHandler();
+var net = Net();
+var highscore = Highscore();
+var pages = Pages();
+var application = Application();
+var settings = InputItems();
+var authenticate = Authenticate();
+var gameSelect = GameSelect();
+var gameRequest = GameRequest();
 
 class MainAppHandler extends StatefulWidget {
   @override
@@ -52,8 +52,8 @@ class _MainAppHandlerState extends State<MainAppHandler>
         .addPostFrameCallback((_) => startAnimations(context));
   }
 
-  Widget emptyContainer(double width, double height) {
-    return Container(key: emptyContainerKey, width: width, height: height);
+  Widget EmptyContainer(double width, double height) {
+    return Container(key: EmptyContainerKey, width: width, height: height);
   }
 
   @override
@@ -88,11 +88,11 @@ class _MainAppHandlerState extends State<MainAppHandler>
                 LayoutPTopToBottom4(
                     screenWidth,
                     screenHeight,
-                    highscore.widgetHighscore,
-                    application.widgetSetupGameBoard,
-                    application.GameDices.widgetDices,
-                    emptyContainer) +
-                [settings.widgetWrapCCOverlay(context, state)],
+                    highscore.WidgetHighscore,
+                    application.WidgetSetupGameBoard,
+                    application.GameDices.WidgetDices,
+                    EmptyContainer) +
+                [settings.WidgetWrapCCOverlay(context, state)],
           ));
     } else {
       print('hello landscape');
@@ -116,10 +116,10 @@ class _MainAppHandlerState extends State<MainAppHandler>
                 LayoutLLeftToRight4(
                     screenWidth,
                     screenHeight,
-                    application.widgetSetupGameBoard,
-                    application.GameDices.widgetDices,
-                    highscore.widgetHighscore,
-                    emptyContainer),
+                    application.WidgetSetupGameBoard,
+                    application.GameDices.WidgetDices,
+                    highscore.WidgetHighscore,
+                    EmptyContainer),
           ));
     }
   }

@@ -5,7 +5,7 @@ class AnimationsRollDices {
     Setup();
   }
 
-  AnimationController AnimController = AnimationController(
+  var AnimController = AnimationController(
       vsync: _MainAppHandlerState(), duration: Duration(milliseconds: 300));
   late Animation<double> SizeAnimation;
 

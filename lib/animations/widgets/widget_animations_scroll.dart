@@ -1,11 +1,11 @@
 part of '../../main.dart';
 
-extension WidgetAnimationsScroll on AnimationsScroll {
-  Widget widgetAnimationsScroll() {
+extension AnimationsScrollWidget on AnimationsScroll {
+  Widget WidgetAnimationsScroll() {
     return AnimatedBuilder(
         animation: AnimController,
         builder: (BuildContext context, Widget? widget) {
-          List<String> text = GetText(ScrollText).split('.');
+          List<String> text = ScrollText.split('.');
           List<AnimatedText> animatedTexts = [];
           text.forEach((element) {
             animatedTexts.add(FadeAnimatedText(element));

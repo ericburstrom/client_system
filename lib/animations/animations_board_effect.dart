@@ -7,7 +7,7 @@ class AnimationsBoardEffect {
 
   final AnimationControllers = <AnimationController>[];
 
-  List<Duration> AnimationDurations = List.filled(2, Duration(seconds: 1));
+  var AnimationDurations = List.filled(2, Duration(seconds: 1));
   var CellAnimationControllers = [];
   var CellAnimation = [];
 

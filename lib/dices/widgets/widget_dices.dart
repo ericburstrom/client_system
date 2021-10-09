@@ -1,10 +1,10 @@
 part of '../../main.dart';
 
-extension WidgetDices on Dices {
-  Widget widgetDices(double width, double height) {
+extension DicesWidget on Dices {
+  Widget WidgetDices(double width, double height) {
     // First always start unity and hide if only 2D
     // Get best 16:9 fit
-    double left = 0, top = 0, w = width, h = height, ratio = 16 / 9;
+    var left = 0.0, top = 0.0, w = width, h = height, ratio = 16 / 9;
     if (width / height < ratio) {
       h = width / ratio;
       top = (height - h) / 2;
@@ -36,12 +36,12 @@ extension WidgetDices on Dices {
           width: width, height: height, child: Stack(children: [widgetUnity]));
     }
 
-    double orientationPortrait = (screenHeight > screenWidth) ? 1 : 0;
+    var orientationPortrait = (screenHeight > screenWidth) ? 1 : 0;
     double diceWidthHeight;
 
     left = 0;
     top = 0;
-    List<Widget> listings = <Widget>[];
+    var listings = <Widget>[];
     //listings.add(widgetUnity);
 
     // Spread dices evenly and place roll dice button under or at the side of.

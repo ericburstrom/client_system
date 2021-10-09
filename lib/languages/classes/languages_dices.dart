@@ -1,9 +1,11 @@
 part of '../../main.dart';
 
 class LanguagesDices extends Languages {
-  var Hold = {'English': 'HOLD'};
+  var _hold = {'English': 'HOLD'};
+
+  String get Hold => GetText(_hold);
 
   void LanguagesSetup() {
-    Hold['Swedish'] = 'HÅLL';
+    _hold['Swedish'] = 'HÅLL';
   }
 }

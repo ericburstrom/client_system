@@ -21,7 +21,7 @@ class _PageGameSelectState extends State<PageGameSelect>
   @override
   void initState() {
     super.initState();
-    widgetCChangeOverlay = gameSelect.widgetColorChangeOverlay;
+    widgetCChangeOverlay = gameSelect.WidgetColorChangeOverlay;
     SettingsTabController =
         TabController(length: gameSelect.NrTabs, vsync: this);
     net.ConnectToServer();
@@ -35,6 +35,6 @@ class _PageGameSelectState extends State<PageGameSelect>
 
   @override
   Widget build(BuildContext context) {
-    return gameSelect.widgetScaffoldGameSelect(context, state);
+    return gameSelect.WidgetScaffoldGameSelect(context, state);
   }
 }

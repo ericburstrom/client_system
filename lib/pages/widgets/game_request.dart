@@ -7,9 +7,9 @@ class GameRequest extends LanguagesGameRequest {
         gameSelect.GameType[0], int.parse(gameSelect.NrPlayers[0]));
   }
 
-  int NrTabs = 1;
+  var NrTabs = 1;
 
-  Widget widgetScaffoldGameRequest(BuildContext context, Function state) {
+  Widget WidgetScaffoldGameRequest(BuildContext context, Function state) {
     return DefaultTabController(
         length: NrTabs,
         child: Scaffold(
