@@ -18,7 +18,7 @@ extension HighscoreWidget on Highscore {
             child: Center(
                 child: FittedBox(
                     fit: BoxFit.contain,
-                    child: Text(Highscores,
+                    child: Text(Highscores_,
                         style: TextStyle(
                           fontStyle: FontStyle.italic,
                           color: Colors.blue[800],

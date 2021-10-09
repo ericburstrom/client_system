@@ -28,57 +28,57 @@ class LanguagesApplication extends Languages {
   var _maxiYatzy = {'English': 'Maxi Yatzy'};
   var _totalSum = {'English': 'Total Sum'};
 
-  String get Ones => GetText(_ones);
+  String get Ones_ => GetText(_ones);
 
-  String get Twos => GetText(_twos);
+  String get Twos_ => GetText(_twos);
 
-  String get Threes => GetText(_threes);
+  String get Threes_ => GetText(_threes);
 
-  String get Fours => GetText(_fours);
+  String get Fours_ => GetText(_fours);
 
-  String get Fives => GetText(_fives);
+  String get Fives_ => GetText(_fives);
 
-  String get Sixes => GetText(_sixes);
+  String get Sixes_ => GetText(_sixes);
 
-  String get Sum => GetText(_sum);
+  String get Sum_ => GetText(_sum);
 
-  String get Bonus => GetText(_bonus);
+  String get Bonus_ => GetText(_bonus);
 
-  String get Pair => GetText(_pair);
+  String get Pair_ => GetText(_pair);
 
-  String get TwoPairs => GetText(_twoPairs);
+  String get TwoPairs_ => GetText(_twoPairs);
 
-  String get ThreePairs => GetText(_threePairs);
+  String get ThreePairs_ => GetText(_threePairs);
 
-  String get ThreeOfKind => GetText(_threeOfKind);
+  String get ThreeOfKind_ => GetText(_threeOfKind);
 
-  String get FourOfKind => GetText(_fourOfKind);
+  String get FourOfKind_ => GetText(_fourOfKind);
 
-  String get FiveOfKind => GetText(_fiveOfKind);
+  String get FiveOfKind_ => GetText(_fiveOfKind);
 
-  String get House => GetText(_house);
+  String get House_ => GetText(_house);
 
-  String get SmallStraight => GetText(_smallStraight);
+  String get SmallStraight_ => GetText(_smallStraight);
 
-  String get LargeStraight => GetText(_largeStraight);
+  String get LargeStraight_ => GetText(_largeStraight);
 
-  String get FullStraight => GetText(_fullStraight);
+  String get FullStraight_ => GetText(_fullStraight);
 
-  String get MiddleStraight => GetText(_middleStraight);
+  String get MiddleStraight_ => GetText(_middleStraight);
 
-  String get House32 => GetText(_house32);
+  String get House32_ => GetText(_house32);
 
-  String get House33 => GetText(_house33);
+  String get House33_ => GetText(_house33);
 
-  String get House24 => GetText(_house24);
+  String get House24_ => GetText(_house24);
 
-  String get Chance => GetText(_chance);
+  String get Chance_ => GetText(_chance);
 
-  String get Yatzy => GetText(_yatzy);
+  String get Yatzy_ => GetText(_yatzy);
 
-  String get MaxiYatzy => GetText(_maxiYatzy);
+  String get MaxiYatzy_ => GetText(_maxiYatzy);
 
-  String get TotalSum => GetText(_totalSum);
+  String get TotalSum_ => GetText(_totalSum);
 
   void LanguagesSetup() {
     _ones['Swedish'] = 'Ettor';

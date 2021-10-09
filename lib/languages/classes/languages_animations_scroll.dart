@@ -8,7 +8,7 @@ class LanguagesAnimationsScroll extends Languages {
             " cool system around."
   };
 
-  String get ScrollText => GetText(_scrollText);
+  String get ScrollText_ => GetText(_scrollText);
 
   void LanguagesSetup() {
     _scrollText['Swedish'] =

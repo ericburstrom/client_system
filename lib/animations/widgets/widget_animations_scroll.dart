@@ -5,7 +5,7 @@ extension AnimationsScrollWidget on AnimationsScroll {
     return AnimatedBuilder(
         animation: AnimController,
         builder: (BuildContext context, Widget? widget) {
-          List<String> text = ScrollText.split('.');
+          List<String> text = ScrollText_.split('.');
           List<AnimatedText> animatedTexts = [];
           text.forEach((element) {
             animatedTexts.add(FadeAnimatedText(element));

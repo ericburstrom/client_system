@@ -14,39 +14,39 @@ class GameSelect extends LanguagesGameSelect {
       settings.WidgetCheckbox(
           state,
           application.GameDices.SendTransparencyChangedToUnity,
-          Transparency,
+          Transparency_,
           application.GameDices.UnityTransparent),
       settings.WidgetCheckbox(
           state,
           application.GameDices.SendLightMotionChangedToUnity,
-          LightMotion,
+          LightMotion_,
           application.GameDices.UnityLightMotion),
       settings.WidgetSlider(
           context,
           state,
           application.GameDices.SendColorsToUnity,
-          Red,
+          Red_,
           application.GameDices.UnityColors,
           0),
       settings.WidgetSlider(
           context,
           state,
           application.GameDices.SendColorsToUnity,
-          Green,
+          Green_,
           application.GameDices.UnityColors,
           1),
       settings.WidgetSlider(
           context,
           state,
           application.GameDices.SendColorsToUnity,
-          Blue,
+          Blue_,
           application.GameDices.UnityColors,
           2),
       settings.WidgetSlider(
           context,
           state,
           application.GameDices.SendColorsToUnity,
-          Transparency,
+          Transparency_,
           application.GameDices.UnityColors,
           3)
     ];
@@ -72,14 +72,14 @@ class GameSelect extends LanguagesGameSelect {
         length: NrTabs,
         child: Scaffold(
             appBar: AppBar(
-              title: Text(Settings),
+              title: Text(Settings_),
               backgroundColor: Colors.redAccent,
               bottom: TabBar(
                 controller: SettingsTabController,
                 isScrollable: false,
                 tabs: [
-                  Tab(text: Game),
-                  Tab(text: General),
+                  Tab(text: Game_),
+                  Tab(text: General_),
                 ],
               ),
             ),
@@ -93,22 +93,22 @@ class GameSelect extends LanguagesGameSelect {
                           state,
                           ['Mini', 'Ordinary', 'Maxi'],
                           GameType,
-                          [GameTypeMini, GameTypeOrdinary, GameTypeMaxi]),
+                          [GameTypeMini_, GameTypeOrdinary_, GameTypeMaxi_]),
                       settings.WidgetStringRadioButton(
                           state,
                           ['1', '2', '3', '4'],
                           NrPlayers,
                           ['1', '2', '3', '4']),
-                      settings.WidgetCheckbox(state, () => {}, ChoseUnity,
+                      settings.WidgetCheckbox(state, () => {}, ChoseUnity_,
                           application.GameDices.UnityDices),
                       settings.WidgetCheckbox(
                           state,
                           () => {},
-                          ColorChangeOverlay,
+                          ColorChangeOverlay_,
                           application.GameDices.UnityColorChangeOverlay),
                       settings.WidgetSizedBox(15),
                       settings.WidgetButton(
-                          context, OnStartGameButton, StartGame),
+                          context, OnStartGameButton, StartGame_),
                     ],
                   ),
                 ),
@@ -116,16 +116,14 @@ class GameSelect extends LanguagesGameSelect {
                     child: Padding(
                         padding: EdgeInsets.all(10.0),
                         child: ListView(
-                            children: [
-                                  settings.WidgetParagraph(Appearance)
-                                ] +
+                            children: [settings.WidgetParagraph(Appearance_)] +
                                 WidgetColorChangeOverlay(context, state) +
                                 [
                                   settings.WidgetSizedBox(15),
-                                  settings.WidgetParagraph(Misc),
+                                  settings.WidgetParagraph(Misc_),
                                   settings.WidgetDropDownList(
                                       state,
-                                      ' ' + ChoseLanguage,
+                                      ' ' + ChoseLanguage_,
                                       Languages.DifferentLanguages,
                                       Languages.ChosenLanguage),
                                 ])))

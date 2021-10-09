@@ -77,11 +77,11 @@ class Authenticate extends LanguagesLogin {
 
   String ValidatePassword(String value) {
     if (value.isEmpty) {
-      return Required;
+      return Required_;
     } else if (value.length < 6) {
-      return PasswordAtLeast + 6.toString() + Character;
+      return PasswordAtLeast_ + 6.toString() + Characters_;
     } else if (value.length > 15) {
-      return PasswordNotGreater + 15.toString() + Character;
+      return PasswordNotGreater_ + 15.toString() + Characters_;
     } else
       return "";
   }
@@ -122,8 +122,8 @@ class Authenticate extends LanguagesLogin {
                 controller: _tabController,
                 isScrollable: false,
                 tabs: [
-                  Tab(text: Login),
-                  Tab(text: Signup),
+                  Tab(text: Login_),
+                  Tab(text: Signup_),
                 ],
               ),
             ),
@@ -137,14 +137,15 @@ class Authenticate extends LanguagesLogin {
                       settings.WidgetImage(
                           200, 150, 'assets/images/flutter_logo.png'),
                       settings.WidgetTextFormField(
-                          Email, EnterValidEmail, LoginTxtUserName),
+                          Email_, EnterValidEmail_, LoginTxtUserName),
                       settings.WidgetTextFormField(
-                          Password, EnterSecurePassword, LoginTxtPassword),
+                          Password_, EnterSecurePassword_, LoginTxtPassword),
                       settings.WidgetTextLink(
-                          ForgotPasswordLinkPressed, ForgotPassword),
-                      settings.WidgetButton(context, LoginButtonPressed, Login),
+                          ForgotPasswordLinkPressed, ForgotPassword_),
+                      settings.WidgetButton(
+                          context, LoginButtonPressed, Login_),
                       settings.WidgetSizedBox(100),
-                      settings.WidgetTextLink(NewUserLinkPressed, NewUser),
+                      settings.WidgetTextLink(NewUserLinkPressed, NewUser_),
                     ],
                   ),
                 ),
@@ -158,12 +159,12 @@ class Authenticate extends LanguagesLogin {
                       settings.WidgetImage(
                           200, 150, 'assets/images/flutter_logo.png'),
                       settings.WidgetTextFormField(
-                          Email, EnterValidEmail, SignupTxtUserName),
+                          Email_, EnterValidEmail_, SignupTxtUserName),
                       settings.WidgetTextFormField(
-                          Password, EnterSecurePassword, SignupTxtPassword),
+                          Password_, EnterSecurePassword_, SignupTxtPassword),
                       settings.WidgetSizedBox(20),
                       settings.WidgetButton(
-                          context, SignupButtonPressed, Signup),
+                          context, SignupButtonPressed, Signup_),
                     ],
                   ),
                 ),

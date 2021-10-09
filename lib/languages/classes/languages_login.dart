@@ -14,29 +14,29 @@ class LanguagesLogin extends Languages {
   var _forgotPassword = {'English': 'Forgot Password'};
   var _newUser = {'English': 'New User? Create Account'};
 
-  String get Required => GetText(_required);
+  String get Required_ => GetText(_required);
 
-  String get PasswordAtLeast => GetText(_passwordAtLeast);
+  String get PasswordAtLeast_ => GetText(_passwordAtLeast);
 
-  String get Character => GetText(_characters);
+  String get Characters_ => GetText(_characters);
 
-  String get PasswordNotGreater => GetText(_passwordNotGreater);
+  String get PasswordNotGreater_ => GetText(_passwordNotGreater);
 
-  String get Login => GetText(_login);
+  String get Login_ => GetText(_login);
 
-  String get Signup => GetText(_signup);
+  String get Signup_ => GetText(_signup);
 
-  String get Email => GetText(_email);
+  String get Email_ => GetText(_email);
 
-  String get EnterValidEmail => GetText(_enterValidEmail);
+  String get EnterValidEmail_ => GetText(_enterValidEmail);
 
-  String get Password => GetText(_password);
+  String get Password_ => GetText(_password);
 
-  String get EnterSecurePassword => GetText(_enterSecurePassword);
+  String get EnterSecurePassword_ => GetText(_enterSecurePassword);
 
-  String get ForgotPassword => GetText(_forgotPassword);
+  String get ForgotPassword_ => GetText(_forgotPassword);
 
-  String get NewUser => GetText(_newUser);
+  String get NewUser_ => GetText(_newUser);
 
   void LanguagesSetup() {
     _required['Swedish'] = '* Nödvändig';

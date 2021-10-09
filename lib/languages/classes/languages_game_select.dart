@@ -19,39 +19,39 @@ class LanguagesGameSelect extends Languages {
   var _appearance = {'English': 'Appearance'};
   var _misc = {'English': 'Misc'};
 
-  String get GameTypeOrdinary => GetText(_gameTypeOrdinary);
+  String get GameTypeOrdinary_ => GetText(_gameTypeOrdinary);
 
-  String get GameTypeMini => GetText(_gameTypeMini);
+  String get GameTypeMini_ => GetText(_gameTypeMini);
 
-  String get GameTypeMaxi => GetText(_gameTypeMaxi);
+  String get GameTypeMaxi_ => GetText(_gameTypeMaxi);
 
-  String get ChoseUnity => GetText(_choseUnity);
+  String get ChoseUnity_ => GetText(_choseUnity);
 
-  String get Settings => GetText(_settings);
+  String get Settings_ => GetText(_settings);
 
-  String get Game => GetText(_game);
+  String get Game_ => GetText(_game);
 
-  String get General => GetText(_general);
+  String get General_ => GetText(_general);
 
-  String get ColorChangeOverlay => GetText(_colorChangeOverlay);
+  String get ColorChangeOverlay_ => GetText(_colorChangeOverlay);
 
-  String get ChoseLanguage => GetText(_choseLanguage);
+  String get ChoseLanguage_ => GetText(_choseLanguage);
 
-  String get StartGame => GetText(_startGame);
+  String get StartGame_ => GetText(_startGame);
 
-  String get Transparency => GetText(_transparency);
+  String get Transparency_ => GetText(_transparency);
 
-  String get LightMotion => GetText(_lightMotion);
+  String get LightMotion_ => GetText(_lightMotion);
 
-  String get Red => GetText(_red);
+  String get Red_ => GetText(_red);
 
-  String get Green => GetText(_green);
+  String get Green_ => GetText(_green);
 
-  String get Blue => GetText(_blue);
+  String get Blue_ => GetText(_blue);
 
-  String get Appearance => GetText(_appearance);
+  String get Appearance_ => GetText(_appearance);
 
-  String get Misc => GetText(_misc);
+  String get Misc_ => GetText(_misc);
 
   void LanguagesSetup() {
     _gameTypeOrdinary['Swedish'] = 'Standard';

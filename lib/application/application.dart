@@ -79,23 +79,23 @@ class Application extends LanguagesApplication {
       BonusAmount = 25;
       AppText = [
         [
-          Ones,
-          Twos,
-          Threes,
-          Fours,
-          Fives,
-          Sixes,
-          Sum,
-          Bonus + ' (' + BonusAmount.toString() + ')',
-          Pair,
-          TwoPairs,
-          ThreeOfKind,
-          SmallStraight,
-          MiddleStraight,
-          LargeStraight,
-          Chance,
-          Yatzy,
-          TotalSum
+          Ones_,
+          Twos_,
+          Threes_,
+          Fours_,
+          Fives_,
+          Sixes_,
+          Sum_,
+          Bonus_ + ' (' + BonusAmount.toString() + ')',
+          Pair_,
+          TwoPairs_,
+          ThreeOfKind_,
+          SmallStraight_,
+          MiddleStraight_,
+          LargeStraight_,
+          Chance_,
+          Yatzy_,
+          TotalSum_
         ]
       ];
       YatzyFunc =
@@ -120,29 +120,29 @@ class Application extends LanguagesApplication {
       BonusAmount = 100;
       AppText = [
         [
-          Ones,
-          Twos,
-          Threes,
-          Fours,
-          Fives,
-          Sixes,
-          Sum,
-          Bonus + ' (' + BonusAmount.toString() + ')',
-          Pair,
-          TwoPairs,
-          ThreePairs,
-          ThreeOfKind,
-          FourOfKind,
-          FiveOfKind,
-          SmallStraight,
-          LargeStraight,
-          FullStraight,
-          House32,
-          House33,
-          House24,
-          Chance,
-          MaxiYatzy,
-          TotalSum
+          Ones_,
+          Twos_,
+          Threes_,
+          Fours_,
+          Fives_,
+          Sixes_,
+          Sum_,
+          Bonus_ + ' (' + BonusAmount.toString() + ')',
+          Pair_,
+          TwoPairs_,
+          ThreePairs_,
+          ThreeOfKind_,
+          FourOfKind_,
+          FiveOfKind_,
+          SmallStraight_,
+          LargeStraight_,
+          FullStraight_,
+          House32_,
+          House33_,
+          House24_,
+          Chance_,
+          MaxiYatzy_,
+          TotalSum_
         ]
       ];
       YatzyFunc =
@@ -173,24 +173,24 @@ class Application extends LanguagesApplication {
       BonusAmount = 50;
       AppText = [
         [
-          Ones,
-          Twos,
-          Threes,
-          Fours,
-          Fives,
-          Sixes,
-          Sum,
-          Bonus + ' (' + BonusAmount.toString() + ')',
-          Pair,
-          TwoPairs,
-          ThreeOfKind,
-          FourOfKind,
-          House,
-          SmallStraight,
-          LargeStraight,
-          Chance,
-          Yatzy,
-          TotalSum
+          Ones_,
+          Twos_,
+          Threes_,
+          Fours_,
+          Fives_,
+          Sixes_,
+          Sum_,
+          Bonus_ + ' (' + BonusAmount.toString() + ')',
+          Pair_,
+          TwoPairs_,
+          ThreeOfKind_,
+          FourOfKind_,
+          House_,
+          SmallStraight_,
+          LargeStraight_,
+          Chance_,
+          Yatzy_,
+          TotalSum_
         ]
       ];
       YatzyFunc =

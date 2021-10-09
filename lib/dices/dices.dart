@@ -115,7 +115,7 @@ class Dices extends LanguagesDices {
     if (NrRolls > 0 && NrRolls < 3) {
       HoldDices[dice] = !HoldDices[dice];
       if (HoldDices[dice]) {
-        HoldDiceText[dice] = GetText(Hold);
+        HoldDiceText[dice] = GetText(Hold_);
         HoldDiceOpacity[dice] = 0.7;
       } else {
         HoldDiceText[dice] = "";
