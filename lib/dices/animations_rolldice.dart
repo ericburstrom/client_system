@@ -2,7 +2,8 @@ part of '../main.dart';
 
 class AnimationsRollDices {
   var AnimController = AnimationController(
-      vsync: _MainAppHandlerState(), duration: Duration(milliseconds: 300));
+      vsync: _MainAppHandlerState(),
+      duration: const Duration(milliseconds: 300));
   late Animation<double> SizeAnimation;
 
   SetupAnimation() {

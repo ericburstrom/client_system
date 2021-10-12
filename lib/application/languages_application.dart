@@ -1,32 +1,32 @@
-part of '../../main.dart';
+part of '../main.dart';
 
 class LanguagesApplication extends Languages {
-  var _ones = {'English': 'Ones'};
-  var _twos = {'English': 'Twos'};
-  var _threes = {'English': 'Threes'};
-  var _fours = {'English': 'Fours'};
-  var _fives = {'English': 'Fives'};
-  var _sixes = {'English': 'Sixes'};
-  var _sum = {'English': 'Sum'};
-  var _bonus = {'English': 'Bonus'};
-  var _pair = {'English': 'Pair'};
-  var _twoPairs = {'English': 'Two Pairs'};
-  var _threePairs = {'English': 'Three Pairs'};
-  var _threeOfKind = {'English': 'Three of a Kind'};
-  var _fourOfKind = {'English': 'Four of a Kind'};
-  var _fiveOfKind = {'English': 'Five of a Kind'};
-  var _house = {'English': 'House'};
-  var _smallStraight = {'English': 'Small Straight'};
-  var _largeStraight = {'English': 'Large Straight'};
-  var _fullStraight = {'English': 'Full Straight'};
-  var _middleStraight = {'English': 'Middle Straight'};
-  var _house32 = {'English': 'House 3+2'};
-  var _house33 = {'English': 'House 3+3'};
-  var _house24 = {'English': 'House 2+4'};
-  var _chance = {'English': 'Chance'};
-  var _yatzy = {'English': 'Yatzy'};
-  var _maxiYatzy = {'English': 'Maxi Yatzy'};
-  var _totalSum = {'English': 'Total Sum'};
+  final _ones = {'English': 'Ones'};
+  final _twos = {'English': 'Twos'};
+  final _threes = {'English': 'Threes'};
+  final _fours = {'English': 'Fours'};
+  final _fives = {'English': 'Fives'};
+  final _sixes = {'English': 'Sixes'};
+  final _sum = {'English': 'Sum'};
+  final _bonus = {'English': 'Bonus'};
+  final _pair = {'English': 'Pair'};
+  final _twoPairs = {'English': 'Two Pairs'};
+  final _threePairs = {'English': 'Three Pairs'};
+  final _threeOfKind = {'English': 'Three of a Kind'};
+  final _fourOfKind = {'English': 'Four of a Kind'};
+  final _fiveOfKind = {'English': 'Five of a Kind'};
+  final _house = {'English': 'House'};
+  final _smallStraight = {'English': 'Small Straight'};
+  final _largeStraight = {'English': 'Large Straight'};
+  final _fullStraight = {'English': 'Full Straight'};
+  final _middleStraight = {'English': 'Middle Straight'};
+  final _house32 = {'English': 'House 3+2'};
+  final _house33 = {'English': 'House 3+3'};
+  final _house24 = {'English': 'House 2+4'};
+  final _chance = {'English': 'Chance'};
+  final _yatzy = {'English': 'Yatzy'};
+  final _maxiYatzy = {'English': 'Maxi Yatzy'};
+  final _totalSum = {'English': 'Total Sum'};
 
   String get Ones_ => GetText(_ones);
 
@@ -80,6 +80,7 @@ class LanguagesApplication extends Languages {
 
   String get TotalSum_ => GetText(_totalSum);
 
+  @override
   void LanguagesSetup() {
     _ones['Swedish'] = 'Ettor';
     _twos['Swedish'] = 'Tvåor';

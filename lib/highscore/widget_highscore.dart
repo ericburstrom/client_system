@@ -22,7 +22,7 @@ extension HighscoreWidget on Highscore {
                         style: TextStyle(
                           fontStyle: FontStyle.italic,
                           color: Colors.blue[800],
-                          shadows: [
+                          shadows: const [
                             Shadow(
                               blurRadius: 10.0,
                               color: Colors.red,
@@ -71,14 +71,14 @@ extension HighscoreWidget on Highscore {
                                       fit: BoxFit.contain,
                                       child: Text(
                                           "  " + (index + 1).toString() + '.',
-                                          style: TextStyle(
+                                          style: const TextStyle(
                                               fontStyle: FontStyle.italic)))),
                               Container(
                                   alignment: Alignment.center,
                                   child: FittedBox(
                                       fit: BoxFit.contain,
                                       child: Text(HighscoreText[index],
-                                          style: TextStyle(
+                                          style: const TextStyle(
                                               fontWeight: FontWeight.bold)))),
                               Container(
                                   alignment: Alignment.centerRight,
@@ -87,8 +87,8 @@ extension HighscoreWidget on Highscore {
                                       child: Text(
                                           HighscoreValue[index].toString() +
                                               "  ",
-                                          style:
-                                              TextStyle(color: Colors.yellow))))
+                                          style: const TextStyle(
+                                              color: Colors.yellow))))
                             ]),
                       );
                     }),

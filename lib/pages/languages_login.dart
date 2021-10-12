@@ -1,18 +1,20 @@
-part of '../../main.dart';
+part of '../main.dart';
 
 class LanguagesLogin extends Languages {
-  var _required = {'English': '* Required'};
-  var _passwordAtLeast = {'English': 'Password should be atleast'};
-  var _characters = {'English': 'characters'};
-  var _passwordNotGreater = {'English': 'Password should not be greater than'};
-  var _login = {'English': 'Login'};
-  var _signup = {'English': 'Signup'};
-  var _email = {'English': 'Email'};
-  var _enterValidEmail = {'English': 'Enter valid email id as abc@gmail.com'};
-  var _password = {'English': 'Password'};
-  var _enterSecurePassword = {'English': 'Enter secure password'};
-  var _forgotPassword = {'English': 'Forgot Password'};
-  var _newUser = {'English': 'New User? Create Account'};
+  final _required = {'English': '* Required'};
+  final _passwordAtLeast = {'English': 'Password should be atleast'};
+  final _characters = {'English': 'characters'};
+  final _passwordNotGreater = {
+    'English': 'Password should not be greater than'
+  };
+  final _login = {'English': 'Login'};
+  final _signup = {'English': 'Signup'};
+  final _email = {'English': 'Email'};
+  final _enterValidEmail = {'English': 'Enter valid email id as abc@gmail.com'};
+  final _password = {'English': 'Password'};
+  final _enterSecurePassword = {'English': 'Enter secure password'};
+  final _forgotPassword = {'English': 'Forgot Password'};
+  final _newUser = {'English': 'New User? Create Account'};
 
   String get Required_ => GetText(_required);
 
@@ -38,6 +40,7 @@ class LanguagesLogin extends Languages {
 
   String get NewUser_ => GetText(_newUser);
 
+  @override
   void LanguagesSetup() {
     _required['Swedish'] = '* Nödvändig';
     _passwordAtLeast['Swedish'] = 'Lösenord skall vara minst';

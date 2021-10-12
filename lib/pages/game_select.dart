@@ -1,54 +1,34 @@
-part of '../../main.dart';
+part of '../main.dart';
 
-class GameSelect extends LanguagesGameSelect {
+class GameSelect extends LanguagesGameSelect with InputItems {
   GameSelect() {
     LanguagesSetup();
+    net.ConnectToServer();
   }
 
   var NrTabs = 2;
   var GameType = [application.GameType];
   var NrPlayers = [application.NrPlayers.toString()];
+  late var SettingsTabController =
+      TabController(length: gameSelect.NrTabs, vsync: _PageGameSelectState());
 
   List<Widget> WidgetColorChangeOverlay(BuildContext context, Function state) {
     return <Widget>[
-      settings.WidgetCheckbox(
+      WidgetCheckbox(
           state,
           application.GameDices.SendTransparencyChangedToUnity,
           Transparency_,
           application.GameDices.UnityTransparent),
-      settings.WidgetCheckbox(
-          state,
-          application.GameDices.SendLightMotionChangedToUnity,
-          LightMotion_,
-          application.GameDices.UnityLightMotion),
-      settings.WidgetSlider(
-          context,
-          state,
-          application.GameDices.SendColorsToUnity,
-          Red_,
-          application.GameDices.UnityColors,
-          0),
-      settings.WidgetSlider(
-          context,
-          state,
-          application.GameDices.SendColorsToUnity,
-          Green_,
-          application.GameDices.UnityColors,
-          1),
-      settings.WidgetSlider(
-          context,
-          state,
-          application.GameDices.SendColorsToUnity,
-          Blue_,
-          application.GameDices.UnityColors,
-          2),
-      settings.WidgetSlider(
-          context,
-          state,
-          application.GameDices.SendColorsToUnity,
-          Transparency_,
-          application.GameDices.UnityColors,
-          3)
+      WidgetCheckbox(state, application.GameDices.SendLightMotionChangedToUnity,
+          LightMotion_, application.GameDices.UnityLightMotion),
+      WidgetSlider(context, state, application.GameDices.SendColorsToUnity,
+          Red_, application.GameDices.UnityColors, 0),
+      WidgetSlider(context, state, application.GameDices.SendColorsToUnity,
+          Green_, application.GameDices.UnityColors, 1),
+      WidgetSlider(context, state, application.GameDices.SendColorsToUnity,
+          Blue_, application.GameDices.UnityColors, 2),
+      WidgetSlider(context, state, application.GameDices.SendColorsToUnity,
+          Transparency_, application.GameDices.UnityColors, 3)
     ];
   }
 
@@ -89,39 +69,32 @@ class GameSelect extends LanguagesGameSelect {
                 Scrollbar(
                   child: ListView(
                     children: <Widget>[
-                      settings.WidgetStringRadioButton(
+                      WidgetStringRadioButton(
                           state,
                           ['Mini', 'Ordinary', 'Maxi'],
                           GameType,
                           [GameTypeMini_, GameTypeOrdinary_, GameTypeMaxi_]),
-                      settings.WidgetStringRadioButton(
-                          state,
-                          ['1', '2', '3', '4'],
-                          NrPlayers,
-                          ['1', '2', '3', '4']),
-                      settings.WidgetCheckbox(state, () => {}, ChoseUnity_,
+                      WidgetStringRadioButton(state, ['1', '2', '3', '4'],
+                          NrPlayers, ['1', '2', '3', '4']),
+                      WidgetCheckbox(state, () => {}, ChoseUnity_,
                           application.GameDices.UnityDices),
-                      settings.WidgetCheckbox(
-                          state,
-                          () => {},
-                          ColorChangeOverlay_,
+                      WidgetCheckbox(state, () => {}, ColorChangeOverlay_,
                           application.GameDices.UnityColorChangeOverlay),
-                      settings.WidgetSizedBox(15),
-                      settings.WidgetButton(
-                          context, OnStartGameButton, StartGame_),
+                      WidgetSizedBox(15),
+                      WidgetButton(context, OnStartGameButton, StartGame_),
                     ],
                   ),
                 ),
                 Scrollbar(
                     child: Padding(
-                        padding: EdgeInsets.all(10.0),
+                        padding: const EdgeInsets.all(10.0),
                         child: ListView(
-                            children: [settings.WidgetParagraph(Appearance_)] +
+                            children: [WidgetParagraph(Appearance_)] +
                                 WidgetColorChangeOverlay(context, state) +
                                 [
-                                  settings.WidgetSizedBox(15),
-                                  settings.WidgetParagraph(Misc_),
-                                  settings.WidgetDropDownList(
+                                  WidgetSizedBox(15),
+                                  WidgetParagraph(Misc_),
+                                  WidgetDropDownList(
                                       state,
                                       ' ' + ChoseLanguage_,
                                       Languages.DifferentLanguages,

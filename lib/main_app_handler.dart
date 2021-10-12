@@ -26,12 +26,13 @@ var net = Net();
 var highscore = Highscore();
 var pages = Pages();
 var application = Application();
-var settings = InputItems();
 var authenticate = Authenticate();
 var gameSelect = GameSelect();
 var gameRequest = GameRequest();
 
 class MainAppHandler extends StatefulWidget {
+  const MainAppHandler({Key? key}) : super(key: key);
+
   @override
   _MainAppHandlerState createState() => _MainAppHandlerState();
 }
@@ -42,6 +43,7 @@ class _MainAppHandlerState extends State<MainAppHandler>
     setState(() {});
   }
 
+  @override
   void initState() {
     super.initState();
     globalSetState = state;
@@ -71,7 +73,7 @@ class _MainAppHandlerState extends State<MainAppHandler>
               pages.NavigateToSelectPage(context);
             },
             tooltip: 'Settings',
-            child: Icon(Icons.settings_applications),
+            child: const Icon(Icons.settings_applications),
             backgroundColor: Colors.blue,
           ),
           body: Stack(
@@ -89,7 +91,7 @@ class _MainAppHandlerState extends State<MainAppHandler>
                     application.WidgetSetupGameBoard,
                     application.GameDices.WidgetDices,
                     EmptyContainer) +
-                [settings.WidgetWrapCCOverlay(context, state)],
+                [gameSelect.WidgetWrapCCOverlay(context, state)],
           ));
     } else {
       print('hello landscape');
@@ -99,7 +101,7 @@ class _MainAppHandlerState extends State<MainAppHandler>
               pages.NavigateToSelectPage(context);
             },
             tooltip: 'Settings',
-            child: Icon(Icons.settings_applications),
+            child: const Icon(Icons.settings_applications),
             backgroundColor: Colors.blue,
           ),
           body: Stack(

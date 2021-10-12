@@ -10,7 +10,7 @@ class AnimationsScroll extends LanguagesAnimationsScroll {
   var ScrollHeight = 200.0;
   var KeyXPos = 0.0, KeyYPos = 0.0;
   var CounterR = 0, CounterG = 0, CounterB = 0;
-  var ScrollTextStyle = TextStyle(
+  var ScrollTextStyle = const TextStyle(
     color: Color.fromRGBO(0, 0, 0, 0),
     fontWeight: FontWeight.bold,
     fontSize: 40.0,
@@ -19,7 +19,7 @@ class AnimationsScroll extends LanguagesAnimationsScroll {
   );
 
   var AnimController = AnimationController(
-      vsync: _MainAppHandlerState(), duration: Duration(seconds: 1));
+      vsync: _MainAppHandlerState(), duration: const Duration(seconds: 1));
 
   late Animation<double> PositionAnimation;
   late GlobalKey Key;

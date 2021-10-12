@@ -12,10 +12,8 @@ class Highscore extends LanguagesHighscore with AnimationsHighscore {
   var HighscoreValue = List.filled(10, 200, growable: true);
 
   Future LoadAndUpdateHighscoresFromServer() async {
-    //List<dynamic> serverResponse;
-    var serverResponse;
     try {
-      serverResponse = await net.mainMakeGetHighscores();
+      var serverResponse = await net.mainMakeGetHighscores();
       if (serverResponse.statusCode == 200) {
         var serverBody = jsonDecode(serverResponse.body);
         SetHighscores(serverBody);
@@ -41,10 +39,8 @@ class Highscore extends LanguagesHighscore with AnimationsHighscore {
   }
 
   Future Update(String name, int score) async {
-    //List<dynamic> serverResponse;
-    var serverResponse;
     try {
-      serverResponse = await net.mainMakeUpdateHighscores(name, score);
+      var serverResponse = await net.mainMakeUpdateHighscores(name, score);
       if (serverResponse.statusCode == 200) {
         var serverBody = jsonDecode(serverResponse.body);
         SetHighscores(serverBody);

@@ -1,4 +1,4 @@
-part of '../../main.dart';
+part of '../main.dart';
 
 class GameRequest extends LanguagesGameRequest {
   GameRequest() {
@@ -8,6 +8,8 @@ class GameRequest extends LanguagesGameRequest {
   }
 
   var NrTabs = 1;
+  late var GameRequestTabController =
+      TabController(length: NrTabs, vsync: _PageGameRequestState());
 
   Widget WidgetScaffoldGameRequest(BuildContext context, Function state) {
     return DefaultTabController(
@@ -29,7 +31,7 @@ class GameRequest extends LanguagesGameRequest {
               children: [
                 Scrollbar(
                   child: ListView(
-                    children: <Widget>[],
+                    children: const <Widget>[],
                   ),
                 ),
               ],

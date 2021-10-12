@@ -121,7 +121,7 @@ extension DicesWidget on Dices {
             child: Container(
               width: diceWidthHeight * (1 - SizeAnimation.value / 2),
               height: diceWidthHeight * (1 - SizeAnimation.value / 2),
-              decoration: BoxDecoration(color: Colors.red),
+              decoration: const BoxDecoration(color: Colors.red),
               child: Image.asset('assets/images/roll.jpg',
                   fit: BoxFit.cover,
                   height: double.infinity,

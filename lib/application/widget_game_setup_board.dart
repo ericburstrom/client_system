@@ -5,22 +5,18 @@ extension ApplicationWidgets on Application {
     if (application.PlayerToMove != application.MyPlayerId) {
       return;
     }
+
     //print(ListenerKey.currentContext.size);
     var box = ListenerKey.currentContext!.findRenderObject() as RenderBox;
     var position = box.localToGlobal(Offset.zero); //this is global position
     mainY -= position.dy;
-    var cell;
     for (var i = 0; i < TotalFields; i++) {
-      if ( //mainX >= BoardXPos[0][i] &&
-          //mainX <= BoardXPos[0][i] + BoardWidth[0][i] &&
-          mainY >= BoardYPos[0][i] &&
-              mainY <= BoardYPos[0][i] + BoardHeight[0][i]) {
-        cell = i;
-        if (!FixedCell[PlayerToMove][cell] &&
-            CellValue[PlayerToMove][cell] != -1) {
-          if (FocusStatus[PlayerToMove][cell] == 0) {
+      if (mainY >= BoardYPos[0][i] &&
+          mainY <= BoardYPos[0][i] + BoardHeight[0][i]) {
+        if (!FixedCell[PlayerToMove][i] && CellValue[PlayerToMove][i] != -1) {
+          if (FocusStatus[PlayerToMove][i] == 0) {
             ClearFocus();
-            FocusStatus[PlayerToMove][cell] = 1;
+            FocusStatus[PlayerToMove][i] = 1;
           }
         }
       }
@@ -91,7 +87,7 @@ extension ApplicationWidgets on Application {
                       fit: BoxFit.contain,
                       child: Text(
                         AppText[0][i],
-                        style: TextStyle(
+                        style: const TextStyle(
                           fontWeight: FontWeight.bold,
                           //color: Colors.blue[800],
                           shadows: [
@@ -118,16 +114,13 @@ extension ApplicationWidgets on Application {
           MainOnDrag(d.globalPosition.dx, d.globalPosition.dy);
           globalSetState();
         },
-        child: SizedBox(
-          width: width,
-          height: height,
-        )));
+        child: Container(width: width, height: height, child: Text(""))));
 
     Widget? focusWidget;
     Widget tmpWidget;
     for (var i = 0; i < NrPlayers; i++) {
       for (var j = 0; j < TotalFields; j++) {
-        tmpWidget = new AnimatedBuilder(
+        tmpWidget = AnimatedBuilder(
             animation: CellAnimationControllers[i][j],
             builder: (BuildContext context, Widget? widget) {
               return Positioned(
@@ -153,7 +146,8 @@ extension ApplicationWidgets on Application {
                           fit: BoxFit.contain,
                           child: Text(AppText[i + 1][j],
                               textAlign: TextAlign.center,
-                              style: TextStyle(fontWeight: FontWeight.bold)),
+                              style:
+                                  const TextStyle(fontWeight: FontWeight.bold)),
                         ))),
               );
             });

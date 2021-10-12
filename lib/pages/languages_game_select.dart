@@ -1,23 +1,23 @@
-part of '../../main.dart';
+part of '../main.dart';
 
 class LanguagesGameSelect extends Languages {
-  var _gameTypeOrdinary = {'English': 'Ordinary'};
-  var _gameTypeMini = {'English': 'Mini'};
-  var _gameTypeMaxi = {'English': 'Maxi'};
-  var _choseUnity = {'English': '3D Dices'};
-  var _settings = {'English': 'Settings'};
-  var _game = {'English': 'Game'};
-  var _general = {'English': 'General'};
-  var _colorChangeOverlay = {'English': 'Color Change Overlay'};
-  var _choseLanguage = {'English': 'Chose Language'};
-  var _startGame = {'English': 'Start Game'};
-  var _transparency = {'English': 'Transparency'};
-  var _lightMotion = {'English': 'Light Motion'};
-  var _red = {'English': 'Red'};
-  var _green = {'English': 'Green'};
-  var _blue = {'English': 'Blue'};
-  var _appearance = {'English': 'Appearance'};
-  var _misc = {'English': 'Misc'};
+  final _gameTypeOrdinary = {'English': 'Ordinary'};
+  final _gameTypeMini = {'English': 'Mini'};
+  final _gameTypeMaxi = {'English': 'Maxi'};
+  final _choseUnity = {'English': '3D Dices'};
+  final _settings = {'English': 'Settings'};
+  final _game = {'English': 'Game'};
+  final _general = {'English': 'General'};
+  final _colorChangeOverlay = {'English': 'Color Change Overlay'};
+  final _choseLanguage = {'English': 'Chose Language'};
+  final _startGame = {'English': 'Start Game'};
+  final _transparency = {'English': 'Transparency'};
+  final _lightMotion = {'English': 'Light Motion'};
+  final _red = {'English': 'Red'};
+  final _green = {'English': 'Green'};
+  final _blue = {'English': 'Blue'};
+  final _appearance = {'English': 'Appearance'};
+  final _misc = {'English': 'Misc'};
 
   String get GameTypeOrdinary_ => GetText(_gameTypeOrdinary);
 
@@ -53,6 +53,7 @@ class LanguagesGameSelect extends Languages {
 
   String get Misc_ => GetText(_misc);
 
+  @override
   void LanguagesSetup() {
     _gameTypeOrdinary['Swedish'] = 'Standard';
     _choseUnity['Swedish'] = '3D Tärningar';

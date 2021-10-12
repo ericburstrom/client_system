@@ -1,11 +1,11 @@
-part of '../../main.dart';
+part of '../main.dart';
 
-class Authenticate extends LanguagesLogin {
+class Authenticate extends LanguagesLogin with InputItems {
   Authenticate() {
     LanguagesSetup();
   }
 
-  late TabController _tabController;
+  var TabContr = TabController(length: 2, vsync: _PageAuthenticate());
 
   final LoginTxtUserName = TextEditingController();
   final LoginTxtPassword = TextEditingController();
@@ -16,8 +16,6 @@ class Authenticate extends LanguagesLogin {
   var SignupFormKey = GlobalKey<FormState>();
   var LoginFormKey = GlobalKey<FormState>();
 
-  //var Jwt;
-
   Future CheckUser(BuildContext context) async {
     try {
       var serverResponse =
@@ -25,7 +23,6 @@ class Authenticate extends LanguagesLogin {
       if (serverResponse.statusCode == 200) {
         print(serverResponse.body);
         userName = LoginTxtUserName.text;
-        //Jwt = serverResponse.body;
         print('User is logged in!');
         var _json = {
           'username': LoginTxtUserName.text,
@@ -47,8 +44,6 @@ class Authenticate extends LanguagesLogin {
       var serverResponse =
           await net.mainSignup(SignupTxtUserName.text, SignupTxtPassword.text);
 
-      print(serverResponse);
-
       if (serverResponse.statusCode == 200) {
         userName = SignupTxtUserName.text;
 
@@ -59,7 +54,6 @@ class Authenticate extends LanguagesLogin {
           var serverResponse =
               await net.mainLogin(userName, SignupTxtPassword.text);
           if (serverResponse.statusCode == 200) {
-            //Jwt = serverResponse.body;
             print('User is logged in!');
           } else {
             // TODO: handle not logged in case
@@ -84,8 +78,9 @@ class Authenticate extends LanguagesLogin {
       return PasswordAtLeast_ + 6.toString() + Characters_;
     } else if (value.length > 15) {
       return PasswordNotGreater_ + 15.toString() + Characters_;
-    } else
+    } else {
       return "";
+    }
   }
 
   void ForgotPasswordLinkPressed() {
@@ -93,7 +88,7 @@ class Authenticate extends LanguagesLogin {
   }
 
   void NewUserLinkPressed() {
-    _tabController.animateTo(1);
+    TabContr.animateTo(1);
   }
 
   void LoginButtonPressed(BuildContext context) {
@@ -121,7 +116,7 @@ class Authenticate extends LanguagesLogin {
             backgroundColor: Colors.white,
             appBar: AppBar(
               bottom: TabBar(
-                controller: _tabController,
+                controller: TabContr,
                 isScrollable: false,
                 tabs: [
                   Tab(text: Login_),
@@ -129,25 +124,23 @@ class Authenticate extends LanguagesLogin {
                 ],
               ),
             ),
-            body: TabBarView(controller: _tabController, children: [
+            body: TabBarView(controller: TabContr, children: [
               SingleChildScrollView(
                 child: Form(
                   autovalidateMode: AutovalidateMode.always,
                   key: LoginFormKey,
                   child: Column(
                     children: <Widget>[
-                      settings.WidgetImage(
-                          200, 150, 'assets/images/flutter_logo.png'),
-                      settings.WidgetTextFormField(
+                      WidgetImage(200, 150, 'assets/images/flutter_logo.png'),
+                      WidgetTextFormField(
                           Email_, EnterValidEmail_, LoginTxtUserName),
-                      settings.WidgetTextFormField(
+                      WidgetTextFormField(
                           Password_, EnterSecurePassword_, LoginTxtPassword),
-                      settings.WidgetTextLink(
+                      WidgetTextLink(
                           ForgotPasswordLinkPressed, ForgotPassword_),
-                      settings.WidgetButton(
-                          context, LoginButtonPressed, Login_),
-                      settings.WidgetSizedBox(100),
-                      settings.WidgetTextLink(NewUserLinkPressed, NewUser_),
+                      WidgetButton(context, LoginButtonPressed, Login_),
+                      WidgetSizedBox(100),
+                      WidgetTextLink(NewUserLinkPressed, NewUser_),
                     ],
                   ),
                 ),
@@ -158,15 +151,13 @@ class Authenticate extends LanguagesLogin {
                   key: SignupFormKey,
                   child: Column(
                     children: <Widget>[
-                      settings.WidgetImage(
-                          200, 150, 'assets/images/flutter_logo.png'),
-                      settings.WidgetTextFormField(
+                      WidgetImage(200, 150, 'assets/images/flutter_logo.png'),
+                      WidgetTextFormField(
                           Email_, EnterValidEmail_, SignupTxtUserName),
-                      settings.WidgetTextFormField(
+                      WidgetTextFormField(
                           Password_, EnterSecurePassword_, SignupTxtPassword),
-                      settings.WidgetSizedBox(20),
-                      settings.WidgetButton(
-                          context, SignupButtonPressed, Signup_),
+                      WidgetSizedBox(20),
+                      WidgetButton(context, SignupButtonPressed, Signup_),
                     ],
                   ),
                 ),

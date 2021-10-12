@@ -41,15 +41,13 @@ class UnityMessage {
   var NrThrows = 3;
 }
 
-class Dices extends LanguagesDices with AnimationsRollDices{
+class Dices extends LanguagesDices with AnimationsRollDices {
   Dices(Function updateDiceValues) {
     SetupAnimation();
     UpdateDiceValues = updateDiceValues;
   }
 
-  var HoldDices;
-  var HoldDiceText;
-  var HoldDiceOpacity;
+  var HoldDices = [], HoldDiceText = [], HoldDiceOpacity = [];
 
   var RandomNumberGenerator = Random();
   var NrRolls = 0;
@@ -116,7 +114,7 @@ class Dices extends LanguagesDices with AnimationsRollDices{
     if (NrRolls > 0 && NrRolls < 3) {
       HoldDices[dice] = !HoldDices[dice];
       if (HoldDices[dice]) {
-        HoldDiceText[dice] = GetText(Hold_);
+        HoldDiceText[dice] = Hold_;
         HoldDiceOpacity[dice] = 0.7;
       } else {
         HoldDiceText[dice] = "";
@@ -132,9 +130,7 @@ class Dices extends LanguagesDices with AnimationsRollDices{
   }
 
   bool RollDices() {
-    print('hi');
     if (NrRolls < 3) {
-      print('hi again');
       NrRolls += 1;
       for (var i = 0; i < NrDices; i++) {
         if (!HoldDices[i]) {
@@ -206,7 +202,7 @@ class Dices extends LanguagesDices with AnimationsRollDices{
   // Communication from Unity to Flutter
   void onUnityMessage(message) {
     var msg = message.toString();
-    print('Received message from unity: ${msg}');
+    print('Received message from unity: $msg');
     try {
       var _json = jsonDecode(msg);
       print(_json);
@@ -216,7 +212,9 @@ class Dices extends LanguagesDices with AnimationsRollDices{
         UpdateDiceValues();
         globalSetState();
       }
-    } catch (e) {}
+    } catch (e) {
+      print("Error decoding Unity message");
+    }
   }
 
   // Callback that connects the created controller to the unity controller

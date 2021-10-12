@@ -1,7 +1,7 @@
 part of '../main.dart';
 
 // cannot have typedef inside class
-typedef int YatzyFunctions();
+typedef YatzyFunctions = int Function();
 
 class Application extends LanguagesApplication with AnimationsBoardEffect {
   Application() {
@@ -11,34 +11,32 @@ class Application extends LanguagesApplication with AnimationsBoardEffect {
     SetupAnimation(NrPlayers, MaxNrPlayers, MaxTotalFields);
   }
 
-  // Used by scroll
-  var MaxNrPlayers = 4;
-  var MaxTotalFields = 23;
-
   // 'Ordinary' , 'Mini', 'Maxi'
   var GameType = 'Ordinary';
 
-  var TotalFields;
+  // Used by animation
+  var MaxNrPlayers = 4;
+  var MaxTotalFields = 23;
 
-  var BoardXPos,
-      BoardYPos,
-      BoardWidth,
-      BoardHeight,
-      BoardXAnimationPos,
-      BoardYAnimationPos;
-
+  var TotalFields = 18;
   var NrPlayers = 2;
   var BonusSum = 63;
   var BonusAmount = 50;
-
-  var CellValue;
-
   var MyPlayerId = 0; // -1
   var PlayerToMove = 0;
-  var FixedCell;
-  var AppText;
-  var AppColors;
-  var FocusStatus;
+
+  var BoardXPos = [],
+      BoardYPos = [],
+      BoardWidth = [],
+      BoardHeight = [],
+      BoardXAnimationPos = [],
+      BoardYAnimationPos = [],
+      CellValue = [],
+      FixedCell = [],
+      AppText = [],
+      AppColors = [],
+      FocusStatus = [];
+
   var ListenerKey = GlobalKey();
 
   /*
@@ -219,7 +217,6 @@ class Application extends LanguagesApplication with AnimationsBoardEffect {
           List.filled(TotalFields - 9, '') +
           List.filled(1, '0'));
     }
-    //BoardXPos = List.filled(NrPlayers, [List.filled(TotalFields, 0.0)]);
     BoardXPos = [List.filled(MaxTotalFields, 0.0)];
     BoardYPos = [List.filled(MaxTotalFields, 0.0)];
     BoardWidth = [List.filled(MaxTotalFields, 0.0)];
@@ -248,7 +245,6 @@ class Application extends LanguagesApplication with AnimationsBoardEffect {
           [true, true] +
           List.filled(TotalFields - 9, false) +
           [true]);
-      //game.fixedCell.add([false]+List.filled(5, true) + [true, true] + List.filled(game.totalFields-9, true) + [true]);//trick to end game fast
       if (i == PlayerToMove) {
         AppColors.add(List.filled(6, Colors.greenAccent.withOpacity(0.3)) +
             List.filled(2, Colors.blue.withOpacity(0.3)) +

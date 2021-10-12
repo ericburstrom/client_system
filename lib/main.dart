@@ -11,7 +11,6 @@ import 'package:socket_io_client/socket_io_client.dart';
 // Animations imports
 import 'package:animated_text_kit/animated_text_kit.dart';
 import 'package:flutter_unity_widget/flutter_unity_widget.dart';
-import 'package:marquee/marquee.dart';
 
 part 'layouts.dart';
 
@@ -45,17 +44,19 @@ part './highscore/languages_highscore.dart';
 
 part './highscore/widget_highscore.dart';
 
+part './input_items/input_items.dart';
+
 part './languages/languages.dart';
 
-part './languages/classes/languages_animations_scroll.dart';
+part 'scroll/languages_animations_scroll.dart';
 
-part './languages/classes/languages_game_request.dart';
+part 'pages/languages_game_request.dart';
 
-part './languages/classes/languages_game_select.dart';
+part 'pages/languages_game_select.dart';
 
-part './languages/classes/languages_login.dart';
+part 'pages/languages_login.dart';
 
-part './languages/classes/languages_application.dart';
+part 'application/languages_application.dart';
 
 part './net/net.dart';
 
@@ -67,25 +68,25 @@ part './pages/page_game_select.dart';
 
 part './pages/page_authenticate.dart';
 
-part './pages/widgets/authenticate.dart';
+part 'pages/authenticate.dart';
 
-part './pages/widgets/game_request.dart';
+part 'pages/game_request.dart';
 
-part './pages/widgets/game_select.dart';
+part 'pages/game_select.dart';
 
 part './scroll/animations_scroll.dart';
 
 part './scroll/widget_scroll.dart';
 
-part './settings/settings.dart';
-
-void main() => runApp(MyApp());
+void main() => runApp(const MyApp());
 
 class MyApp extends StatelessWidget {
+  const MyApp({Key? key}) : super(key: key);
+
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      home: MyHomePage(),
+      home: const MyHomePage(),
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
@@ -94,34 +95,34 @@ class MyApp extends StatelessWidget {
 }
 
 class MyHomePage extends StatefulWidget {
-  MyHomePage({Key? key}) : super(key: key);
+  const MyHomePage({Key? key}) : super(key: key);
 
   @override
   _MyHomePageState createState() => _MyHomePageState();
 }
 
 Future attemptLogin(BuildContext context) async {
+  var isLoggedIn = false;
   try {
     var userData = await fileHandler.ReadFile(fileHandler.FileSettings);
-    print(userData);
     userName = userData['username'];
     try {
       var serverResponse = await net.mainLogin(userName, userData['password']);
       if (serverResponse.statusCode == 200) {
-        print(serverResponse.body);
-        //authenticate.Jwt = serverResponse.body;
         print('User is logged in!');
+        isLoggedIn = true;
       } else {
         print('user not logged in');
       }
     } catch (e) {
       print('error logging in!');
     }
-  } catch (e) {}
+  } catch (e) {
+    print('error logging in!');
+  }
 
   Timer.run(() {
-    //if (authenticate.Jwt == null && !platformWeb) {
-    if (!platformWeb) {
+    if (!isLoggedIn && !platformWeb) {
       pages.NavigateToAuthenticatePageR(context);
     } else if (!GameStarted) {
       pages.NavigateToSelectPageR(context);
@@ -140,6 +141,6 @@ class _MyHomePageState extends State<MyHomePage> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(body: Center(child: CircularProgressIndicator()));
+    return const Scaffold(body: Center(child: CircularProgressIndicator()));
   }
 }

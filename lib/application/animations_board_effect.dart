@@ -3,7 +3,7 @@ part of '../main.dart';
 class AnimationsBoardEffect {
   final AnimationControllers = <AnimationController>[];
 
-  var AnimationDurations = List.filled(2, Duration(seconds: 1));
+  var AnimationDurations = List.filled(2, const Duration(seconds: 1));
   var CellAnimationControllers = [];
   var CellAnimation = [];
 
@@ -32,7 +32,7 @@ class AnimationsBoardEffect {
       for (var j = 0; j < maxTotalFields; j++) {
         tmp.add(AnimationController(
           vsync: _MainAppHandlerState(),
-          duration: Duration(milliseconds: 500),
+          duration: const Duration(milliseconds: 500),
         ));
       }
       CellAnimationControllers.add(tmp);

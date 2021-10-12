@@ -17,13 +17,11 @@ class FileHandler {
 
 //Future<Map<String, dynamic>> readFile(String fileName) async {
   Future ReadFile(String fileName) async {
-    var _json;
     try {
       final file = await LocalFile(fileName);
       // Read the file
       var contents = await file.readAsString();
-      _json = jsonDecode(contents);
-      return _json;
+      return jsonDecode(contents);
     } catch (e) {
       // If encountering an error, return 0
       print('no file');
@@ -32,16 +30,15 @@ class FileHandler {
   }
 
 //Future<File> writeFile(Map<String, dynamic> _json, fileName) async {
-  Future<File> SaveFile(var _json, fileName) async {
+  Future<void> SaveFile(var _json, fileName) async {
     //fileFileName = fileName;
     try {
       final file = await LocalFile(fileName);
       var _jsonString = jsonEncode(_json);
       // Write the file
-      return file.writeAsString(_jsonString);
+      file.writeAsString(_jsonString);
     } catch (e) {
       print("error writing file");
-      throw (e);
     }
   }
 }

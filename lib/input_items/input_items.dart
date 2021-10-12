@@ -14,12 +14,13 @@ class InputItems {
   Widget WidgetTextFormField(
       String lableText, String hintText, TextEditingController controller) {
     return Padding(
-      padding: EdgeInsets.only(left: 15.0, right: 15.0, top: 15, bottom: 0),
+      padding:
+          const EdgeInsets.only(left: 15.0, right: 15.0, top: 15, bottom: 0),
       child: TextFormField(
         controller: controller,
         keyboardType: TextInputType.emailAddress,
         decoration: InputDecoration(
-            border: OutlineInputBorder(),
+            border: const OutlineInputBorder(),
             labelText: lableText,
             hintText: hintText),
         validator: (value) {
@@ -38,7 +39,7 @@ class InputItems {
       },
       child: Text(
         text,
-        style: TextStyle(color: Colors.blue, fontSize: 15),
+        style: const TextStyle(color: Colors.blue, fontSize: 15),
       ),
     );
   }
@@ -55,7 +56,7 @@ class InputItems {
         },
         child: Text(
           text,
-          style: TextStyle(color: Colors.white, fontSize: 25),
+          style: const TextStyle(color: Colors.white, fontSize: 25),
         ),
       ),
     );
@@ -126,12 +127,12 @@ class InputItems {
         data: SliderTheme.of(context).copyWith(
           activeTrackColor: Colors.blue,
           inactiveTrackColor: Colors.blue,
-          trackShape: RectangularSliderTrackShape(),
+          trackShape: const RectangularSliderTrackShape(),
           trackHeight: 2.0,
           thumbColor: Colors.blueAccent,
-          thumbShape: RoundSliderThumbShape(enabledThumbRadius: 5.0),
+          thumbShape: const RoundSliderThumbShape(enabledThumbRadius: 5.0),
           overlayColor: Colors.red.withAlpha(32),
-          overlayShape: RoundSliderOverlayShape(overlayRadius: 10.0),
+          overlayShape: const RoundSliderOverlayShape(overlayRadius: 10.0),
         ),
         child: Container(
             //width: 150,
@@ -153,7 +154,7 @@ class InputItems {
     var dropWidgets = <Widget>[];
 
     dropWidgets.add(Padding(
-        padding: EdgeInsets.all(4.0),
+        padding: const EdgeInsets.all(4.0),
         child: DropdownButton<String>(
           value: choice[0],
           icon: const Icon(Icons.arrow_downward),
@@ -188,7 +189,9 @@ class InputItems {
               color: Colors.white,
               width: 250,
               height: 150,
-              child: ListView(children: widgetCChangeOverlay(context, state))));
+              child: ListView(
+                  children:
+                      gameSelect.WidgetColorChangeOverlay(context, state))));
     } else {
       return Container();
     }
@@ -197,7 +200,7 @@ class InputItems {
   Widget WidgetParagraph(String text) {
     var paragraphWidgets = <Widget>[];
     paragraphWidgets.add(Text(text,
-        style: TextStyle(
+        style: const TextStyle(
             color: Colors.black, fontSize: 20, fontStyle: FontStyle.italic)));
     paragraphWidgets.add(const Divider(
       height: 20,
