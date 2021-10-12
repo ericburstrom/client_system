@@ -91,7 +91,7 @@ extension GameFunctionsInternal on Application {
       }
     }
     GameDices.ClearDices();
-    animationBoardEffect.AnimateBoard();
+    AnimateBoard();
     if (PlayerToMove == MyPlayerId) {
       GameDices.StartDices();
     }

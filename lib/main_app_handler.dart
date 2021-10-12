@@ -19,10 +19,7 @@ startAnimations(BuildContext context) {
   animationsScroll.AnimController.repeat(reverse: true);
 }
 
-var animationsRollDices = AnimationsRollDices();
-var animationBoardEffect = AnimationsBoardEffect();
 var animationsScroll = AnimationsScroll(EmptyContainerKey);
-var animationsHighscore = AnimationsHighscore();
 
 var fileHandler = FileHandler();
 var net = Net();
@@ -71,7 +68,7 @@ class _MainAppHandlerState extends State<MainAppHandler>
       return Scaffold(
           floatingActionButton: FloatingActionButton(
             onPressed: () {
-              pages.NavigateToGameSelectPage(context);
+              pages.NavigateToSelectPage(context);
             },
             tooltip: 'Settings',
             child: Icon(Icons.settings_applications),
@@ -99,7 +96,7 @@ class _MainAppHandlerState extends State<MainAppHandler>
       return Scaffold(
           floatingActionButton: FloatingActionButton(
             onPressed: () {
-              pages.NavigateToGameSelectPage(context);
+              pages.NavigateToSelectPage(context);
             },
             tooltip: 'Settings',
             child: Icon(Icons.settings_applications),

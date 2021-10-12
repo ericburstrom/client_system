@@ -1,7 +1,8 @@
 part of '../main.dart';
 
-class Highscore extends LanguagesHighscore {
+class Highscore extends LanguagesHighscore with AnimationsHighscore {
   Highscore() {
+    SetupAnimation();
     LoadHighscoresFromFile();
     //loadHighscoresFromServer();
   }

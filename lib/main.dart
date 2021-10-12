@@ -17,21 +17,7 @@ part 'layouts.dart';
 
 part 'main_app_handler.dart';
 
-part './animations/animations_board_effect.dart';
-
-part './animations/animations_highscore.dart';
-
-part './animations/animations_rolldice.dart';
-
-part './animations/animations_scroll.dart';
-
-part './animations/widgets/widget_animations_scroll.dart';
-
-part './dices/dices.dart';
-
-part './dices/widgets/widget_dices.dart';
-
-part './file_handler/file_handler.dart';
+part './application/animations_board_effect.dart';
 
 part './application/application.dart';
 
@@ -39,23 +25,33 @@ part './application/application_functions_internal.dart';
 
 part './application/application_functions_internal_calc_dice_values.dart';
 
-part './application/widgets/widget_game_setup_board.dart';
+part './application/widget_game_setup_board.dart';
+
+part './dices/animations_rolldice.dart';
+
+part './dices/dices.dart';
+
+part './dices/languages_dices.dart';
+
+part './dices/widget_dices.dart';
+
+part './file_handler/file_handler.dart';
+
+part './highscore/animations_highscore.dart';
 
 part './highscore/highscore.dart';
 
-part './highscore/widgets/widget_highscore.dart';
+part './highscore/languages_highscore.dart';
+
+part './highscore/widget_highscore.dart';
 
 part './languages/languages.dart';
 
 part './languages/classes/languages_animations_scroll.dart';
 
-part './languages/classes/languages_dices.dart';
-
 part './languages/classes/languages_game_request.dart';
 
 part './languages/classes/languages_game_select.dart';
-
-part './languages/classes/languages_highscore.dart';
 
 part './languages/classes/languages_login.dart';
 
@@ -76,6 +72,10 @@ part './pages/widgets/authenticate.dart';
 part './pages/widgets/game_request.dart';
 
 part './pages/widgets/game_select.dart';
+
+part './scroll/animations_scroll.dart';
+
+part './scroll/widget_scroll.dart';
 
 part './settings/settings.dart';
 
@@ -109,7 +109,7 @@ Future attemptLogin(BuildContext context) async {
       var serverResponse = await net.mainLogin(userName, userData['password']);
       if (serverResponse.statusCode == 200) {
         print(serverResponse.body);
-        authenticate.Jwt = serverResponse.body;
+        //authenticate.Jwt = serverResponse.body;
         print('User is logged in!');
       } else {
         print('user not logged in');
@@ -120,10 +120,11 @@ Future attemptLogin(BuildContext context) async {
   } catch (e) {}
 
   Timer.run(() {
-    if (authenticate.Jwt == null && !platformWeb) {
-      pages.NavigateToLoginPageR(context);
+    //if (authenticate.Jwt == null && !platformWeb) {
+    if (!platformWeb) {
+      pages.NavigateToAuthenticatePageR(context);
     } else if (!GameStarted) {
-      pages.NavigateToGameSelectPageR(context);
+      pages.NavigateToSelectPageR(context);
     } else {
       pages.NavigateToMainAppHandlerPageR(context);
     }

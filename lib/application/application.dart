@@ -3,14 +3,15 @@ part of '../main.dart';
 // cannot have typedef inside class
 typedef int YatzyFunctions();
 
-class Application extends LanguagesApplication {
+class Application extends LanguagesApplication with AnimationsBoardEffect {
   Application() {
     GameDices = Dices(UpdateDiceValues);
     LanguagesSetup();
     Setup('Ordinary', 2);
+    SetupAnimation(NrPlayers, MaxNrPlayers, MaxTotalFields);
   }
 
-  // Used by animations
+  // Used by scroll
   var MaxNrPlayers = 4;
   var MaxTotalFields = 23;
 

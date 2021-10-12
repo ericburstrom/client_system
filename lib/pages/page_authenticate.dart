@@ -1,24 +1,23 @@
 part of '../main.dart';
 
-class PageLogin extends StatefulWidget {
-  PageLogin({Key? key}) : super(key: key);
+class PageAuthenticate extends StatefulWidget {
+  PageAuthenticate({Key? key}) : super(key: key);
 
   @override
-  _PageLoginState createState() => _PageLoginState();
+  _PageAuthenticate createState() => _PageAuthenticate();
 }
 
-late TabController _tabController;
-
-class _PageLoginState extends State<PageLogin> with TickerProviderStateMixin {
+class _PageAuthenticate extends State<PageAuthenticate>
+    with TickerProviderStateMixin {
   @override
   void initState() {
     super.initState();
-    _tabController = TabController(length: 2, vsync: this);
+    authenticate._tabController = TabController(length: 2, vsync: this);
   }
 
   @override
   void dispose() {
-    _tabController.dispose();
+    authenticate._tabController.dispose();
     super.dispose();
   }
 

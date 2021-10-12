@@ -14,13 +14,13 @@ class GameRequest extends LanguagesGameRequest {
         length: NrTabs,
         child: Scaffold(
             appBar: AppBar(
-              title: Text(GetText(GameRequest)),
+              title: Text(GameRequest_),
               backgroundColor: Colors.redAccent,
               bottom: TabBar(
                 controller: GameRequestTabController,
                 isScrollable: false,
                 tabs: [
-                  Tab(text: GetText(GameRequest)),
+                  Tab(text: GameRequest_),
                 ],
               ),
             ),

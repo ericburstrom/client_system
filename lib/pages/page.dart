@@ -1,22 +1,22 @@
 part of '../main.dart';
 
 class Pages {
-  Future NavigateToLoginPageR(context) async {
+  Future NavigateToAuthenticatePageR(context) async {
     await Navigator.pushReplacement(
-        context, MaterialPageRoute(builder: (context) => PageLogin()));
+        context, MaterialPageRoute(builder: (context) => PageAuthenticate()));
   }
 
-  Future NavigateToGameRequestPageR(context) async {
+  Future NavigateToRequestPageR(context) async {
     await Navigator.pushReplacement(
         context, MaterialPageRoute(builder: (context) => PageGameRequest()));
   }
 
-  Future NavigateToGameSelectPageR(context) async {
+  Future NavigateToSelectPageR(context) async {
     await Navigator.pushReplacement(
         context, MaterialPageRoute(builder: (context) => PageGameSelect()));
   }
 
-  Future NavigateToGameSelectPage(context) async {
+  Future NavigateToSelectPage(context) async {
     await Navigator.push(
         context, MaterialPageRoute(builder: (context) => PageGameSelect()));
   }

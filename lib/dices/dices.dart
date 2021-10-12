@@ -41,8 +41,9 @@ class UnityMessage {
   var NrThrows = 3;
 }
 
-class Dices extends LanguagesDices {
+class Dices extends LanguagesDices with AnimationsRollDices{
   Dices(Function updateDiceValues) {
+    SetupAnimation();
     UpdateDiceValues = updateDiceValues;
   }
 

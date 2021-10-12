@@ -1,4 +1,4 @@
-part of '../../main.dart';
+part of '../main.dart';
 
 extension HighscoreWidget on Highscore {
   Widget WidgetHighscore(double width, double height) {
@@ -32,7 +32,7 @@ extension HighscoreWidget on Highscore {
                         )))))));
 
     listings.add(AnimatedBuilder(
-        animation: animationsHighscore.AnimController,
+        animation: AnimController,
         builder: (BuildContext context, Widget? widget) {
           return Positioned(
             left: left,
@@ -48,7 +48,7 @@ extension HighscoreWidget on Highscore {
                       Colors.lightBlueAccent.withOpacity(0.7),
                       Colors.indigoAccent.withOpacity(0.7)
                     ],
-                    stops: [0.0, animationsHighscore.LoopAnimation.value],
+                    stops: [0.0, LoopAnimation.value],
                   )),
               child: Scrollbar(
                 //showTrackOnHover: true,

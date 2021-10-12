@@ -1,10 +1,6 @@
 part of '../main.dart';
 
 class AnimationsBoardEffect {
-  AnimationsBoardEffect() {
-    Setup();
-  }
-
   final AnimationControllers = <AnimationController>[];
 
   var AnimationDurations = List.filled(2, Duration(seconds: 1));
@@ -17,7 +13,7 @@ class AnimationsBoardEffect {
     }
   }
 
-  void Setup() {
+  void SetupAnimation(int nrPlayers, int maxNrPlayers, int maxTotalFields) {
     AnimationDurations.forEach((Duration d) {
       AnimationControllers.add(AnimationController(
         vsync: _MainAppHandlerState(),
@@ -31,9 +27,9 @@ class AnimationsBoardEffect {
       }
     });
 
-    for (var i = 0; i < application.MaxNrPlayers + 1; i++) {
+    for (var i = 0; i < maxNrPlayers + 1; i++) {
       var tmp = <AnimationController>[];
-      for (var j = 0; j < application.MaxTotalFields; j++) {
+      for (var j = 0; j < maxTotalFields; j++) {
         tmp.add(AnimationController(
           vsync: _MainAppHandlerState(),
           duration: Duration(milliseconds: 500),
@@ -42,17 +38,17 @@ class AnimationsBoardEffect {
       CellAnimationControllers.add(tmp);
     }
 
-    for (var i = 0; i < application.MaxNrPlayers + 1; i++) {
+    for (var i = 0; i < maxNrPlayers + 1; i++) {
       var tmp = <Animation>[];
-      for (var j = 0; j < application.MaxTotalFields; j++) {
+      for (var j = 0; j < maxTotalFields; j++) {
         tmp.add(CurveTween(curve: Curves.easeInSine)
             .animate(CellAnimationControllers[i][j]));
       }
       CellAnimation.add(tmp);
     }
 
-    for (var i = 0; i < application.MaxNrPlayers + 1; i++) {
-      for (var j = 0; j < application.MaxTotalFields; j++) {
+    for (var i = 0; i < maxNrPlayers + 1; i++) {
+      for (var j = 0; j < maxTotalFields; j++) {
         CellAnimationControllers[i][j].addListener(() {
           application.BoardXAnimationPos[i][j] =
               CellAnimation[i][j].value * 100.0;

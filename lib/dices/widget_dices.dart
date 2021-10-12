@@ -1,4 +1,4 @@
-part of '../../main.dart';
+part of '../main.dart';
 
 extension DicesWidget on Dices {
   Widget WidgetDices(double width, double height) {
@@ -104,7 +104,7 @@ extension DicesWidget on Dices {
 
     // Roll button
     listings.add(AnimatedBuilder(
-      animation: animationsRollDices.AnimController,
+      animation: AnimController,
       builder: (BuildContext context, Widget? widget) {
         final tmp = Listener(
             onPointerDown: (e) {
@@ -114,15 +114,13 @@ extension DicesWidget on Dices {
                 return;
               }
               if (RollDices()) {
-                animationsRollDices.AnimController.forward();
+                AnimController.forward();
                 globalSetState();
               }
             },
             child: Container(
-              width: diceWidthHeight *
-                  (1 - animationsRollDices.SizeAnimation.value / 2),
-              height: diceWidthHeight *
-                  (1 - animationsRollDices.SizeAnimation.value / 2),
+              width: diceWidthHeight * (1 - SizeAnimation.value / 2),
+              height: diceWidthHeight * (1 - SizeAnimation.value / 2),
               decoration: BoxDecoration(color: Colors.red),
               child: Image.asset('assets/images/roll.jpg',
                   fit: BoxFit.cover,

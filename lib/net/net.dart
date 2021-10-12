@@ -153,8 +153,7 @@ class Net {
     var response = await post(Uri.parse(localhost + '/getTopHighscores'),
         headers: <String, String>{
           'Content-Type': 'application/json; charset=UTF-8',
-        },
-        body: jsonEncode(<String, String>{'Authorization': authenticate.Jwt}));
+        });
 
     return response;
   }
@@ -166,8 +165,8 @@ class Net {
         },
         body: jsonEncode(<String, String>{
           'serverName': name,
-          'serverScore': score.toString(),
-          'Authorization': authenticate.Jwt
+          'serverScore': score.toString()
+          //'Authorization': authenticate.Jwt
         }));
 
     return response;

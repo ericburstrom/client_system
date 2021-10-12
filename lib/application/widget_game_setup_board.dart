@@ -1,4 +1,4 @@
-part of '../../main.dart';
+part of '../main.dart';
 
 extension ApplicationWidgets on Application {
   MainOnDrag(mainX, mainY) {
@@ -71,7 +71,7 @@ extension ApplicationWidgets on Application {
     for (var i = 0; i < TotalFields; i++) {
       listings.add(
         AnimatedBuilder(
-            animation: animationBoardEffect.CellAnimationControllers[0][i],
+            animation: CellAnimationControllers[0][i],
             builder: (BuildContext context, Widget? widget) {
               return Positioned(
                   //key: _cellKeys[0][i],
@@ -128,7 +128,7 @@ extension ApplicationWidgets on Application {
     for (var i = 0; i < NrPlayers; i++) {
       for (var j = 0; j < TotalFields; j++) {
         tmpWidget = new AnimatedBuilder(
-            animation: animationBoardEffect.CellAnimationControllers[i][j],
+            animation: CellAnimationControllers[i][j],
             builder: (BuildContext context, Widget? widget) {
               return Positioned(
                 //key: _cellKeys[i + 1][j],

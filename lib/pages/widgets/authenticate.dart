@@ -5,6 +5,8 @@ class Authenticate extends LanguagesLogin {
     LanguagesSetup();
   }
 
+  late TabController _tabController;
+
   final LoginTxtUserName = TextEditingController();
   final LoginTxtPassword = TextEditingController();
   final SignupTxtUserName = TextEditingController();
@@ -14,7 +16,7 @@ class Authenticate extends LanguagesLogin {
   var SignupFormKey = GlobalKey<FormState>();
   var LoginFormKey = GlobalKey<FormState>();
 
-  var Jwt;
+  //var Jwt;
 
   Future CheckUser(BuildContext context) async {
     try {
@@ -23,14 +25,14 @@ class Authenticate extends LanguagesLogin {
       if (serverResponse.statusCode == 200) {
         print(serverResponse.body);
         userName = LoginTxtUserName.text;
-        Jwt = serverResponse.body;
+        //Jwt = serverResponse.body;
         print('User is logged in!');
         var _json = {
           'username': LoginTxtUserName.text,
           'password': LoginTxtPassword.text
         };
         fileHandler.SaveFile(_json, fileHandler.FileSettings);
-        pages.NavigateToGameSelectPageR(context);
+        pages.NavigateToSelectPageR(context);
       } else {
         // TODO: handle not logged in case
         print('user not logged in');
@@ -57,7 +59,7 @@ class Authenticate extends LanguagesLogin {
           var serverResponse =
               await net.mainLogin(userName, SignupTxtPassword.text);
           if (serverResponse.statusCode == 200) {
-            Jwt = serverResponse.body;
+            //Jwt = serverResponse.body;
             print('User is logged in!');
           } else {
             // TODO: handle not logged in case
@@ -66,7 +68,7 @@ class Authenticate extends LanguagesLogin {
         } catch (e) {
           print('error logging in!');
         }
-        pages.NavigateToGameSelectPageR(context);
+        pages.NavigateToSelectPageR(context);
       } else {
         print('User not created');
       }
