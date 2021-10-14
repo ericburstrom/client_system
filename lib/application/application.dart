@@ -22,7 +22,7 @@ class Application extends LanguagesApplication with AnimationsBoardEffect {
   var NrPlayers = 2;
   var BonusSum = 63;
   var BonusAmount = 50;
-  var MyPlayerId = 0; // -1
+  var MyPlayerId = -1;
   var PlayerToMove = 0;
 
   var BoardXPos = [],

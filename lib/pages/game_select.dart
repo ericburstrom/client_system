@@ -1,16 +1,33 @@
 part of '../main.dart';
 
+class PageGameSelect extends StatefulWidget {
+  const PageGameSelect({Key? key}) : super(key: key);
+
+  @override
+  _PageGameSelectState createState() => _PageGameSelectState();
+}
+
+class _PageGameSelectState extends State<PageGameSelect>
+    with TickerProviderStateMixin {
+  void state() {
+    setState(() {});
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return gameSelect.WidgetScaffoldGameSelect(context, state);
+  }
+}
+
 class GameSelect extends LanguagesGameSelect with InputItems {
   GameSelect() {
     LanguagesSetup();
     net.ConnectToServer();
   }
 
-  var NrTabs = 2;
   var GameType = [application.GameType];
   var NrPlayers = [application.NrPlayers.toString()];
-  late var SettingsTabController =
-      TabController(length: gameSelect.NrTabs, vsync: _PageGameSelectState());
+  var TabContr = TabController(length: 2, vsync: _PageGameSelectState());
 
   List<Widget> WidgetColorChangeOverlay(BuildContext context, Function state) {
     return <Widget>[
@@ -33,29 +50,27 @@ class GameSelect extends LanguagesGameSelect with InputItems {
   }
 
   void OnStartGameButton(BuildContext context) {
-    //pages.NavigateToGameRequestPageR(context);
 
-    //net.SendRequestGame(gameType[0], int.parse(nrPlayers[0]));
+    print("request game");
+    pages.NavigateToRequestPageR(context);
 
-    application.Setup(GameType[0], int.parse(NrPlayers[0]));
-    if (GameStarted) {
-      Navigator.pop(context);
-    } else {
-      GameStarted = true;
-      net.SendRequestGame(GameType[0], int.parse(NrPlayers[0]));
-      pages.NavigateToMainAppHandlerPageR(context);
-    }
+    // if (GameStarted) {
+    //   Navigator.pop(context);
+    // } else {
+    //   GameStarted = true;
+    //   pages.NavigateToMainAppHandlerPageR(context);
+    // }
   }
 
   Widget WidgetScaffoldGameSelect(BuildContext context, Function state) {
     return DefaultTabController(
-        length: NrTabs,
+        length: TabContr.length,
         child: Scaffold(
             appBar: AppBar(
               title: Text(Settings_),
               backgroundColor: Colors.redAccent,
               bottom: TabBar(
-                controller: SettingsTabController,
+                controller: TabContr,
                 isScrollable: false,
                 tabs: [
                   Tab(text: Game_),
@@ -64,7 +79,7 @@ class GameSelect extends LanguagesGameSelect with InputItems {
               ),
             ),
             body: TabBarView(
-              controller: SettingsTabController,
+              controller: TabContr,
               children: [
                 Scrollbar(
                   child: ListView(

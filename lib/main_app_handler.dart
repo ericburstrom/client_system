@@ -8,7 +8,7 @@ var reloadHighscore = true; // only used ones at loadup
 var userName = 'Yatzy';
 var EmptyContainerKey = GlobalKey();
 late Function globalSetState;
-List<Widget> stackedWidgets = [];
+var stackedWidgets = <Widget>[];
 late double screenWidth;
 late double screenHeight;
 // scrcpy --shortcut-mod=lctrl --always-on-top --stay-awake --window-title Yatzy
@@ -57,7 +57,6 @@ class _MainAppHandlerState extends State<MainAppHandler>
 
   @override
   Widget build(BuildContext context) {
-    //print(MediaQuery.of(context).devicePixelRatio);
     screenWidth = MediaQuery.of(context).size.width;
     screenHeight = MediaQuery.of(context).size.height;
 

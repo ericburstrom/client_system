@@ -24,6 +24,8 @@ part './application/application_functions_internal.dart';
 
 part './application/application_functions_internal_calc_dice_values.dart';
 
+part './application/languages_application.dart';
+
 part './application/widget_game_setup_board.dart';
 
 part './dices/animations_rolldice.dart';
@@ -48,33 +50,25 @@ part './input_items/input_items.dart';
 
 part './languages/languages.dart';
 
-part 'scroll/languages_animations_scroll.dart';
-
-part 'pages/languages_game_request.dart';
-
-part 'pages/languages_game_select.dart';
-
-part 'pages/languages_login.dart';
-
-part 'application/languages_application.dart';
-
 part './net/net.dart';
 
-part './pages/page.dart';
+part './pages/languages_game_request.dart';
 
-part './pages/page_game_request.dart';
+part './pages/languages_game_select.dart';
 
-part './pages/page_game_select.dart';
+part './pages/languages_login.dart';
 
-part './pages/page_authenticate.dart';
+part './pages/authenticate.dart';
 
-part 'pages/authenticate.dart';
+part './pages/game_request.dart';
 
-part 'pages/game_request.dart';
+part './pages/game_select.dart';
 
-part 'pages/game_select.dart';
+part './pages/pages.dart';
 
 part './scroll/animations_scroll.dart';
+
+part './scroll/languages_animations_scroll.dart';
 
 part './scroll/widget_scroll.dart';
 

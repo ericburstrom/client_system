@@ -22,7 +22,7 @@ class Pages {
   }
 
   Future NavigateToMainAppHandlerPageR(context) async {
-    await Navigator.pushReplacement(
-        context, MaterialPageRoute(builder: (context) => MainAppHandler()));
+    await Navigator.pushReplacement(context,
+        MaterialPageRoute(builder: (context) => const MainAppHandler()));
   }
 }

@@ -46,17 +46,17 @@ class InputItems {
 
   Widget WidgetButton(BuildContext context, Function onPressed, String text) {
     return Container(
-      height: 50,
-      width: 200,
-      decoration: BoxDecoration(
-          color: Colors.blue, borderRadius: BorderRadius.circular(20)),
-      child: TextButton(
+      alignment: Alignment.center,
+      child: ElevatedButton(
         onPressed: () {
           onPressed(context);
         },
         child: Text(
           text,
-          style: const TextStyle(color: Colors.white, fontSize: 25),
+          style: const TextStyle(
+              color: Colors.white,
+              backgroundColor: Colors.blueAccent,
+              fontSize: 25),
         ),
       ),
     );

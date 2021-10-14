@@ -1,5 +1,20 @@
 part of '../main.dart';
 
+class PageAuthenticate extends StatefulWidget {
+  const PageAuthenticate({Key? key}) : super(key: key);
+
+  @override
+  _PageAuthenticate createState() => _PageAuthenticate();
+}
+
+class _PageAuthenticate extends State<PageAuthenticate>
+    with TickerProviderStateMixin {
+  @override
+  Widget build(BuildContext context) {
+    return authenticate.WidgetScaffoldLogin(context);
+  }
+}
+
 class Authenticate extends LanguagesLogin with InputItems {
   Authenticate() {
     LanguagesSetup();
@@ -111,7 +126,7 @@ class Authenticate extends LanguagesLogin with InputItems {
 
   Widget WidgetScaffoldLogin(BuildContext context) {
     return DefaultTabController(
-        length: 2,
+        length: TabContr.length,
         child: Scaffold(
             backgroundColor: Colors.white,
             appBar: AppBar(

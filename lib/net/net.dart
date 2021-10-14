@@ -27,11 +27,11 @@ class Net {
     );
   }
 
-  SendRequestGame(var gameType, var nrPlayers) {
+  SendRequestGame(String gameType, int nrPlayers) {
     SocketConnection.emit(
       "sendRequestGame",
       {
-        "id": SocketConnection.id,
+        "id": [SocketConnection.id],
         "gameType": gameType,
         "nrPlayers": nrPlayers,
         "timestamp": DateTime.now().millisecondsSinceEpoch,
@@ -89,11 +89,51 @@ class Net {
   }
 
   void onRequestGame(var data) {
+    // id: [array connected id's]
+    // gameType: 'Ordinary', 'Mini', 'Maxi'
+    // nrPlayers: integer
+    // connected: same as number of id's
+    // gameId: integer
     print('onRequestGame');
-    print(data); // 0 if rejected
-    if (data['id'] == SocketConnection.id) {
-      application.MyPlayerId = data['playerId'];
+    data = Map<String, dynamic>.from(data);
+    print(data);
+
+    var gameId = data['gameId'];
+    //var foundGame = false;
+    print(gameId);
+    //print(gameRequest.GameList.length);
+    //print(gameRequest.GameList);
+    //for (var i = 0; i < gameRequest.GameList.length; i++) {
+    //print("is game");
+    //print(gameRequest.GameList[i]['gameId']);
+    //if (gameRequest.GameList[i]['gameId'] == gameId) {
+    //foundGame = true;
+    //gameRequest.GameList[i] = data;
+    // Update game
+    // If full number of players, remove from list and start game
+    print(data['nrPlayers']);
+    print(data['connected']);
+
+    if (data['nrPlayers'] == data['connected']) {
+      // Player to move (MyPlayerId) is connect.id position in array
+      var index = data['id'].indexOf(SocketConnection.id);
+      print(SocketConnection.id);
+      print(index);
+      //gameRequest.GameList.removeAt(i);
+      if (index != null) {
+        // Player is part of game
+        application.MyPlayerId = index;
+        print("start game");
+        gameRequest.StartGame(data['gameType'], data['nrPlayers']);
+      }
+      //}
+      //}
     }
+    // if (foundGame == false) {
+    //   print(gameRequest.GameList);
+    //   gameRequest.GameList = [gameRequest.GameList, data];
+    //   print(gameRequest.GameList);
+    // }
   }
 
   // handleSetPlayerNr(var data) {
