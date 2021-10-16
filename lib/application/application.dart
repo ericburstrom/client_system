@@ -18,6 +18,10 @@ class Application extends LanguagesApplication with AnimationsBoardEffect {
   var MaxNrPlayers = 4;
   var MaxTotalFields = 23;
 
+  // Socket game
+  var gameId = -1;
+  var playerIds = [];
+
   var TotalFields = 18;
   var NrPlayers = 2;
   var BonusSum = 63;

@@ -3,25 +3,28 @@ part of '../main.dart';
 class Net {
   late Socket SocketConnection;
 
-  SendDices(var dices) {
+  SendDices(List<int> dices, int gameId, List<dynamic> playerIds) {
     SocketConnection.emit(
       "sendDices",
       {
-        "id": SocketConnection.id,
+        "id": playerIds,
         "diceValue": dices,
+        "gameId": gameId,
         "timestamp": DateTime.now().millisecondsSinceEpoch,
       },
     );
   }
 
-  SendSelection(var player, var cell, var dices) {
+  SendSelection(int player, int cell, List<int> dices, int gameId,
+      List<dynamic> playersIds) {
     SocketConnection.emit(
       "sendSelection",
       {
-        "id": SocketConnection.id,
+        "id": playersIds,
         "player": player,
         "cell": cell,
         "diceValue": dices,
+        "gameId": gameId,
         "timestamp": DateTime.now().millisecondsSinceEpoch,
       },
     );
@@ -75,6 +78,7 @@ class Net {
   }
 
   void onDices(var data) {
+    print("onDices");
     print(data['diceValue']);
     application.GameDices.MakeDiceRoll(data['diceValue'].cast<int>());
     application.UpdateDiceValues();
@@ -123,6 +127,8 @@ class Net {
       if (index != null) {
         // Player is part of game
         application.MyPlayerId = index;
+        application.gameId = data['gameId'];
+        application.playerIds = data['id'];
         print("start game");
         gameRequest.StartGame(data['gameType'], data['nrPlayers']);
       }
