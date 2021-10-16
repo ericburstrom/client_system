@@ -145,7 +145,7 @@ class Dices extends LanguagesDices with AnimationsRollDices {
         }
       }
       UpdateDiceValues();
-      net.SendDices(DiceValue, application.gameId, application.playerIds);
+      net.SendDices(DiceValue, application.GameId, application.PlayerIds);
       return true;
     }
     return false;

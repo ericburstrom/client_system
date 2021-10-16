@@ -92,70 +92,22 @@ class Net {
     // Start game
   }
 
-  void onRequestGame(var data) {
-    // id: [array connected id's]
-    // gameType: 'Ordinary', 'Mini', 'Maxi'
-    // nrPlayers: integer
-    // connected: same as number of id's
-    // gameId: integer
-    print('onRequestGame');
+  void onGameStart(var data) {
+    print('onGameStart');
     data = Map<String, dynamic>.from(data);
     print(data);
-
-    var gameId = data['gameId'];
-    //var foundGame = false;
-    print(gameId);
-    //print(gameRequest.GameList.length);
-    //print(gameRequest.GameList);
-    //for (var i = 0; i < gameRequest.GameList.length; i++) {
-    //print("is game");
-    //print(gameRequest.GameList[i]['gameId']);
-    //if (gameRequest.GameList[i]['gameId'] == gameId) {
-    //foundGame = true;
-    //gameRequest.GameList[i] = data;
-    // Update game
-    // If full number of players, remove from list and start game
-    print(data['nrPlayers']);
-    print(data['connected']);
-
-    if (data['nrPlayers'] == data['connected']) {
-      // Player to move (MyPlayerId) is connect.id position in array
-      var index = data['id'].indexOf(SocketConnection.id);
-      print(SocketConnection.id);
-      print(index);
-      //gameRequest.GameList.removeAt(i);
-      if (index != null) {
-        // Player is part of game
-        application.MyPlayerId = index;
-        application.gameId = data['gameId'];
-        application.playerIds = data['id'];
-        print("start game");
-        gameRequest.StartGame(data['gameType'], data['nrPlayers']);
-      }
-      //}
-      //}
-    }
-    // if (foundGame == false) {
-    //   print(gameRequest.GameList);
-    //   gameRequest.GameList = [gameRequest.GameList, data];
-    //   print(gameRequest.GameList);
-    // }
+    application.MyPlayerId = data['id'].indexOf(SocketConnection.id);
+    application.GameId = data['gameId'];
+    application.PlayerIds = data['id'];
+    print("start game");
+    gameRequest.StartGame(data['gameType'], data['nrPlayers']);
   }
 
-  // handleSetPlayerNr(var data) {
-  //   print('handlesetplayernr');
-  //   print(data['playerNr']);
-  //   game.MyPlayerId = data['playerNr'];
-  // }
-  //
-  // void handleStartGame(var data) {
-  //   print('HandleStartGame');
-  //   game.GameDices.startDices();
-  //   if (game.MyPlayerId == 0) {
-  //     print('I start game!');
-  //     game.GameDices.startDices();
-  //   }
-  // }
+  void onRequestGame(var data) {
+    print('onRequestGame');
+
+    print(data);
+  }
 
   void ConnectToServer() {
     try {
@@ -169,6 +121,7 @@ class Net {
       SocketConnection.on('onSelection', onSelection);
       SocketConnection.on('onDices', onDices);
       SocketConnection.on('onRequestGame', onRequestGame);
+      SocketConnection.on('onGameStart', onGameStart);
       SocketConnection.on('onJoinGame', onJoinGame);
       //socket.on('StartGame', handleStartGame);
       //socket.on('setPlayerNr', handleSetPlayerNr);

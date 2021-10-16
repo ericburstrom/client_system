@@ -49,8 +49,7 @@ class GameSelect extends LanguagesGameSelect with InputItems {
     ];
   }
 
-  void OnStartGameButton(BuildContext context) {
-
+  void OnGameListButton(BuildContext context) {
     print("request game");
     pages.NavigateToRequestPageR(context);
 
@@ -96,7 +95,7 @@ class GameSelect extends LanguagesGameSelect with InputItems {
                       WidgetCheckbox(state, () => {}, ColorChangeOverlay_,
                           application.GameDices.UnityColorChangeOverlay),
                       WidgetSizedBox(15),
-                      WidgetButton(context, OnStartGameButton, StartGame_),
+                      WidgetButton(context, OnGameListButton, GameList_),
                     ],
                   ),
                 ),

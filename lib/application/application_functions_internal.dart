@@ -13,7 +13,7 @@ extension GameFunctionsInternal on Application {
         MyPlayerId == PlayerToMove &&
         !FixedCell[player][cell] &&
         CellValue[player][cell] != -1) {
-      net.SendSelection(player, cell, GameDices.DiceValue, gameId, playerIds);
+      net.SendSelection(player, cell, GameDices.DiceValue, GameId, PlayerIds);
       CalcNewSums(player, cell);
     }
   }

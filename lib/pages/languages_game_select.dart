@@ -11,6 +11,7 @@ class LanguagesGameSelect extends Languages {
   final _colorChangeOverlay = {'English': 'Color Change Overlay'};
   final _choseLanguage = {'English': 'Chose Language'};
   final _startGame = {'English': 'Start Game'};
+  final _gameList = {'English': 'Games List'};
   final _transparency = {'English': 'Transparency'};
   final _lightMotion = {'English': 'Light Motion'};
   final _red = {'English': 'Red'};
@@ -39,6 +40,8 @@ class LanguagesGameSelect extends Languages {
 
   String get StartGame_ => GetText(_startGame);
 
+  String get GameList_ => GetText(_gameList);
+
   String get Transparency_ => GetText(_transparency);
 
   String get LightMotion_ => GetText(_lightMotion);
@@ -63,6 +66,7 @@ class LanguagesGameSelect extends Languages {
     _colorChangeOverlay['Swedish'] = 'Färginställningar Live';
     _choseLanguage['Swedish'] = 'Välj Språk';
     _startGame['Swedish'] = 'Starta Spelet';
+    _gameList['Swedish'] = 'Spel Lista';
     _transparency['Swedish'] = 'Transparens';
     _lightMotion['Swedish'] = 'Cirkulärt Ljus';
     _red['Swedish'] = 'Röd';
