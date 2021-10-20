@@ -93,10 +93,6 @@ class Dices extends LanguagesDices with AnimationsRollDices {
     DiceValue = diceValue;
   }
 
-  StartDices() {
-    NrRolls = 0;
-  }
-
   InitDices(int nrDices) {
     if (UnityCreated) {
       SendResetToUnity();

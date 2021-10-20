@@ -107,6 +107,8 @@ class Net {
     print('onRequestGame');
 
     print(data);
+    print(data[0]['nrPlayers']);
+    int nr = data[0]['nrPlayers'];
   }
 
   void ConnectToServer() {
