@@ -14,7 +14,7 @@ import 'package:flutter_unity_widget/flutter_unity_widget.dart';
 
 part 'layouts.dart';
 
-part 'main_app_handler.dart';
+part 'startup.dart';
 
 part './application/animations_board_effect.dart';
 
