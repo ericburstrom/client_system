@@ -1,4 +1,4 @@
-part of '../main.dart';
+part of '../program.dart';
 
 extension AnimationsScrollWidget on AnimationsScroll {
   Widget WidgetAnimationsScroll() {

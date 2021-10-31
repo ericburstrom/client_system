@@ -1,4 +1,4 @@
-part of '../main.dart';
+part of '../program.dart';
 
 class LanguagesDices extends Languages {
   final _hold = {'English': 'HOLD'};

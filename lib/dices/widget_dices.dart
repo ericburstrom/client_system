@@ -1,4 +1,4 @@
-part of '../main.dart';
+part of '../program.dart';
 
 extension DicesWidget on Dices {
   Widget WidgetDices(double width, double height) {

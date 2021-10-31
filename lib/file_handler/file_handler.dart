@@ -1,4 +1,4 @@
-part of '../main.dart';
+part of '../program.dart';
 
 class FileHandler {
   var FileSettings = "user_loginSettings.json";

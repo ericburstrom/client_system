@@ -1,4 +1,4 @@
-part of '../main.dart';
+part of '../program.dart';
 
 class Net {
   late Socket SocketConnection;
@@ -125,8 +125,6 @@ class Net {
       SocketConnection.on('onRequestGame', onRequestGame);
       SocketConnection.on('onGameStart', onGameStart);
       SocketConnection.on('onJoinGame', onJoinGame);
-      //socket.on('StartGame', handleStartGame);
-      //socket.on('setPlayerNr', handleSetPlayerNr);
       SocketConnection.on(
           'connect', (_) => print('connect: ${SocketConnection.id}'));
       SocketConnection.on('disconnect', (_) => print('disconnect'));

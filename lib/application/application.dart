@@ -1,4 +1,4 @@
-part of '../main.dart';
+part of '../program.dart';
 
 // cannot have typedef inside class
 typedef YatzyFunctions = int Function();

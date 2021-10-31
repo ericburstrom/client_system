@@ -1,4 +1,4 @@
-part of '../main.dart';
+part of '../program.dart';
 
 class LanguagesGameSelect extends Languages {
   final _gameTypeOrdinary = {'English': 'Ordinary'};

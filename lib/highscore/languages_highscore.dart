@@ -1,4 +1,4 @@
-part of '../main.dart';
+part of '../program.dart';
 
 class LanguagesHighscore extends Languages {
   final _highscores = {'English': 'Highscores'};

@@ -1,4 +1,4 @@
-part of './main.dart';
+part of './program.dart';
 
 var localhost = 'http://192.168.0.168:3000';
 var localhostIO = 'http://192.168.0.168:3001';

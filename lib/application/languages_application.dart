@@ -1,4 +1,4 @@
-part of '../main.dart';
+part of '../program.dart';
 
 class LanguagesApplication extends Languages {
   final _ones = {'English': 'Ones'};

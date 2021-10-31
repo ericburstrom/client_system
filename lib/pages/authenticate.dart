@@ -1,4 +1,4 @@
-part of '../main.dart';
+part of '../program.dart';
 
 class PageAuthenticate extends StatefulWidget {
   const PageAuthenticate({Key? key}) : super(key: key);

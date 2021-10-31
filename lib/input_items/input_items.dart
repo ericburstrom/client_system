@@ -1,4 +1,4 @@
-part of '../main.dart';
+part of '../program.dart';
 
 class InputItems {
   Widget WidgetImage(double width, double height, String image) {

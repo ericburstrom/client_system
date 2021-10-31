@@ -1,4 +1,4 @@
-part of '../main.dart';
+part of '../program.dart';
 
 extension GameCalcDiceValues on Application {
   int Zero() {

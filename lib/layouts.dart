@@ -1,4 +1,4 @@
-part of './main.dart';
+part of './program.dart';
 
 List<Widget> LayoutPTopToBottom4(
     double w, double h, Function fA, Function fB, Function fC, Function fD) {

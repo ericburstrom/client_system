@@ -1,4 +1,4 @@
-part of '../main.dart';
+part of '../program.dart';
 
 extension HighscoreWidget on Highscore {
   Widget WidgetHighscore(double width, double height) {

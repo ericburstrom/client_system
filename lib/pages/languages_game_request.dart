@@ -1,4 +1,4 @@
-part of '../main.dart';
+part of '../program.dart';
 
 class LanguagesGameRequest extends Languages {
   final _gameRequest = {'English': 'Game Request'};

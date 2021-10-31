@@ -1,4 +1,4 @@
-part of '../main.dart';
+part of '../program.dart';
 
 class AnimationsScroll extends LanguagesAnimationsScroll {
   AnimationsScroll(GlobalKey key) {

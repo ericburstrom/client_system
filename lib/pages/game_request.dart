@@ -1,4 +1,4 @@
-part of '../main.dart';
+part of '../program.dart';
 
 class PageGameRequest extends StatefulWidget {
   const PageGameRequest({Key? key}) : super(key: key);
